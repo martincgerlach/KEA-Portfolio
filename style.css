@@ -142,4 +142,40 @@ section {
   text-decoration: underline;
 }
 
+.download-cards {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;  /* Lodret stak */
+  gap: 1.5rem;             /* Mellemrum mellem kort */
+  align-items: center;     /* Centrer kortene horisontalt */
+}
 
+.download-cards .card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 90%;              /* Fylder max 90% af container */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+@media (max-width: 650px) {
+  .download-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .download-cards .card {
+    max-width: 90%;
+    flex: none;
+    margin-bottom: 1rem;
+  }
+}
