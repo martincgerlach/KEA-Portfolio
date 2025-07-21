@@ -165,7 +165,41 @@ section {
   text-align: left;
 }
 
+.download-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  width: 90%;
+}
 
+/* Behold din eksisterende .card styling for kortene */
+
+/* Styling til billederne ved siden af kortene */
+.card-image img {
+  width: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Større billeder for elementer med large-image */
+.card-image.large-image img {
+  width: 280px; /* fx lidt bredere */
+}
+
+/* Mobilvenligt: læg billedet under kortet og skaler */
+@media (max-width: 650px) {
+  .download-item {
+    flex-direction: column;
+  }
+  .card-image img,
+  .card-image.large-image img {
+    width: 100%;
+    max-width: 300px;
+  }
+}
 
 
 @media (max-width: 650px) {
