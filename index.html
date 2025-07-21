@@ -15,6 +15,7 @@
     <li><a href="#downloads">Downloads</a></li>
     <li><a href="#case">Optagelses-case</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
+    <li><button id="toggle-theme">🌘 Dark Mode</button></li>
   </ul>
 </nav>
   <header class="top-header">
@@ -69,6 +70,18 @@
     </section>
     <hr />
   </main>
+<script>
+  const button = document.getElementById("toggle-theme");
 
+  button.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+      button.textContent = "☀Light Mode";
+    } else {
+      button.textContent = "🌘 Dark Mode";
+    }
+  });
+</script>
 </body>
 </html>
