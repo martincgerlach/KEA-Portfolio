@@ -46,7 +46,7 @@ body {
 }
 
 h1, h2 {
-  color: #000000
+  color: inherit;
 }
 
 nav ul {
@@ -184,4 +184,62 @@ section {
 /* Smooth scroll ved klik på navigation */
 html {
   scroll-behavior: smooth;
+}
+
+
+/* --- Dark mode --- */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Links i dark mode */
+body.dark-mode a,
+body.dark-mode .main-nav a {
+  color: #82aaff;
+}
+
+body.dark-mode .main-nav {
+  background-color: #222;
+  border-radius: 10px;
+}
+
+/* Navigation links hover i dark mode */
+body.dark-mode .main-nav a:hover {
+  text-decoration: underline;
+  color: #aad4ff;
+}
+
+/* Kort (cards) i dark mode */
+body.dark-mode .download-cards .card {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+  color: #ccc;
+}
+
+/* Header */
+body.dark-mode .top-header {
+  background-color: transparent;
+  color: #eee;
+}
+
+/* Knapper - fx toggle knappen */
+body.dark-mode button {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #555;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode button:hover {
+  background-color: #555;
+}
+
+/* Profilbillede kant (hvis du vil gøre det tydeligere) */
+body.dark-mode .profile-img-top {
+  box-shadow: 0 0 10px 2px rgba(130, 170, 255, 0.6);
 }
