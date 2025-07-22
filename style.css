@@ -4,6 +4,10 @@
   padding: 1rem;
   text-align: center;
   border-bottom: 1px solid #ccc;
+  border-radius: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .main-nav ul {
@@ -16,15 +20,20 @@
   flex-wrap: wrap;
 }
 
+.main-nav li {
+  margin: 0;
+}
+
 .main-nav a {
+  color: black;
   text-decoration: none;
-  color: #333;
   font-weight: bold;
-  transition: color 0.2s ease;
+  font-size: 1.1rem;
+  transition: text-decoration 0.2s ease;
 }
 
 .main-nav a:hover {
-  color: #3b5bff;
+  text-decoration: underline;
 }
 
 .profile-img-top {
@@ -43,6 +52,7 @@ body {
   line-height: 1.6;
   background-color: #f9f9f9;
   color: #222;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2 {
@@ -69,6 +79,7 @@ nav a:hover {
 
 section {
   margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 /* --- Header med billede i højre side --- */
@@ -91,55 +102,12 @@ section {
   margin-left: 1rem;
 }
 
-
 p {
   display: block;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
   line-height: 1.8;
   font-size: 1.05rem;
-}
-
-
-
-section {
-  margin-bottom: 3rem;
-}
-
-
-/* Navigation container */
-.main-nav {
-  border-radius: 10px;
-  background-color: #eaeaea;
-  padding: 1rem;
-}
-
-/* Ul'en inde i navigation */
-.main-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-/* Hvert punkt i listen */
-.main-nav li {
-  margin: 0;
-}
-
-/* Links */
-.main-nav a {
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: text-decoration 0.2s ease;
-}
-
-.main-nav a:hover {
-  text-decoration: underline;
 }
 
 /* Forbedret kortdesign */
@@ -149,19 +117,13 @@ section {
   padding: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   margin-bottom: 1.5rem;
-}
-
-.download-cards .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: 500px;
   width: 90%;
-  min-height: 200px; /* fast minimumshøjde */
+  min-height: 200px;
   background: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   text-align: left;
 }
 
@@ -174,8 +136,6 @@ section {
   width: 90%;
 }
 
-/* Behold din eksisterende .card styling for kortene */
-
 /* Styling til billederne ved siden af kortene */
 .card-image img {
   width: 180px;
@@ -186,7 +146,7 @@ section {
 
 /* Større billeder for elementer med large-image */
 .card-image.large-image img {
-  width: 280px; /* fx lidt bredere */
+  width: 280px;
 }
 
 /* Mobilvenligt: læg billedet under kortet og skaler */
@@ -194,15 +154,13 @@ section {
   .download-item {
     flex-direction: column;
   }
+
   .card-image img,
   .card-image.large-image img {
     width: 100%;
     max-width: 300px;
   }
-}
 
-
-@media (max-width: 650px) {
   .download-cards {
     flex-direction: column;
     align-items: center;
@@ -220,15 +178,37 @@ html {
   scroll-behavior: smooth;
 }
 
+/* === Toggle Dark Mode Button === */
+#toggle-theme {
+  background-color: #d3d3d3;
+  color: #000;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-left: 1rem;
+}
+
+body.dark-mode #toggle-theme {
+  background-color: #303030;
+  color: #fff;
+}
+
+#toggle-theme:hover {
+  background-color: #c0c0c0;
+}
+
+body.dark-mode #toggle-theme:hover {
+  background-color: #505050;
+}
 
 /* --- Dark mode --- */
 body.dark-mode {
   background-color: #121212;
   color: #e0e0e0;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Links i dark mode */
 body.dark-mode a,
 body.dark-mode .main-nav a {
   color: #82aaff;
@@ -239,41 +219,22 @@ body.dark-mode .main-nav {
   border-radius: 10px;
 }
 
-/* Navigation links hover i dark mode */
 body.dark-mode .main-nav a:hover {
   text-decoration: underline;
   color: #aad4ff;
 }
 
-/* Kort (cards) i dark mode */
 body.dark-mode .download-cards .card {
   background-color: #1e1e1e;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
   color: #ccc;
 }
 
-/* Header */
 body.dark-mode .top-header {
   background-color: transparent;
   color: #eee;
 }
 
-/* Knapper - fx toggle knappen */
-body.dark-mode button {
-  background-color: #333;
-  color: #eee;
-  border: 1px solid #555;
-  cursor: pointer;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body.dark-mode button:hover {
-  background-color: #555;
-}
-
-/* Profilbillede kant (hvis du vil gøre det tydeligere) */
 body.dark-mode .profile-img-top {
   box-shadow: 0 0 10px 2px rgba(130, 170, 255, 0.6);
 }
