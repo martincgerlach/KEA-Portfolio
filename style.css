@@ -149,29 +149,69 @@ p {
   width: 280px;
 }
 
-/* Mobilvenligt: læg billedet under kortet og skaler */
 @media (max-width: 650px) {
-  .download-item {
+  /* Header */
+  .top-header {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .card-image img,
-  .card-image.large-image img {
-    width: 100%;
-    max-width: 300px;
+  .profile-img-top {
+    margin-left: 0;
+    margin-top: 1rem;
   }
 
+  .title-container {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Download-kort */
   .download-cards {
     flex-direction: column;
     align-items: center;
+    padding: 0 1rem;
   }
 
   .download-cards .card {
-    max-width: 90%;
-    flex: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     margin-bottom: 1rem;
   }
+
+  /* Generel styling */
+  body {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  /* Navigation */
+  .main-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #toggle-theme {
+    margin: 1rem 0 0;
+  }
 }
+
+
 
 /* Smooth scroll ved klik på navigation */
 html {
