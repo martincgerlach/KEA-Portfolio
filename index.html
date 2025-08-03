@@ -170,6 +170,82 @@
     body.dark-mode .interest-item p {
       color: #cbd5e0;
     }
+    
+    /* Contact section styling - simplified */
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .contact-card {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid #6f42c1;
+      text-align: center;
+    }
+    
+    .contact-card h3 {
+      margin-bottom: 1rem;
+      color: #333;
+      font-size: 1.2rem;
+    }
+    
+    .contact-card p {
+      margin: 0;
+      color: #555;
+    }
+    
+    .contact-card a {
+      color: #6f42c1;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+    
+    .contact-message {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #e9ecef;
+      border-radius: 8px;
+    }
+    
+    .contact-message p {
+      margin: 0;
+      color: #6c757d;
+    }
+    
+    /* Dark mode for contact */
+    body.dark-mode .contact-card {
+      background: #2d3748;
+      color: #e2e8f0;
+    }
+    
+    body.dark-mode .contact-card h3 {
+      color: #e2e8f0;
+    }
+    
+    body.dark-mode .contact-card p {
+      color: #cbd5e0;
+    }
+    
+    body.dark-mode .contact-card a {
+      color: #9f7aea;
+    }
+    
+    body.dark-mode .contact-message {
+      background: #374151;
+    }
+    
+    body.dark-mode .contact-message p {
+      color: #9ca3af;
+    }
   </style>
 </head>
 <body>
@@ -365,7 +441,7 @@
         <p><a href="https://martincgerlach.github.io/KEA-multimedia/" target="_blank" class="project-link">Se projektet →</a></p>
       </div>
       <div class="project-image">
-        <img src="efter-redesign.png" alt="Forhåndsvisning af optagelses-case" style="max-width:100%; border-radius:8px;">
+        <img src="admission-case-preview.jpg" alt="Forhåndsvisning af optagelses-case" style="max-width:100%; border-radius:8px;">
       </div>
     </section>
    
@@ -378,7 +454,7 @@
         <p><a href="https://martincgerlach.github.io/eksperimenter/" target="_blank" rel="noopener noreferrer" class="project-link">Åben Todo-liste →</a></p>
       </div>
       <div class="project-image">
-        <img src="todo-liste.png" alt="Forhåndsvisning af Todo-liste" style="max-width:100%; border-radius:8px;">
+        <img src="todo-list-preview.jpg" alt="Forhåndsvisning af Todo-liste" style="max-width:100%; border-radius:8px;">
       </div>
     </section>
 
@@ -401,12 +477,23 @@
     
     <section id="kontakt">
   <h2>📬 Kontakt</h2>
-  <p>
-    📧 <a href="mailto:martin.gerlach.2950@gmail.com">martin.gerlach.2950@gmail.com</a>
-  </p>
-  <p>
-    💼 <a href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank">Min LinkedIn</a>
-  </p>
+  <p>Har du spørgsmål til mine projekter eller vil du gerne høre mere om mine kompetencer? Jeg vil meget gerne høre fra dig!</p>
+  
+  <div class="contact-cards">
+    <div class="contact-card">
+      <h3>📧 Email</h3>
+      <p><a href="mailto:martin.gerlach.2950@gmail.com">martin.gerlach.2950@gmail.com</a></p>
+    </div>
+    
+    <div class="contact-card">
+      <h3>💼 LinkedIn</h3>
+      <p><a href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank">Se min profil →</a></p>
+    </div>
+  </div>
+  
+  <div class="contact-message">
+    <p><em>Jeg er altid åben for nye muligheder og spændende projekter!</em></p>
+  </div>
 </section>
     <hr />
   </main>
