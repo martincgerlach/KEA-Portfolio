@@ -6,13 +6,180 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Martin Gerlach – Portfolio | Multimediadesign & IT-support</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Skills section styling */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .skill-category {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #007bff;
+    }
+    
+    .skill-category h3 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .skill-item {
+      margin-bottom: 1rem;
+    }
+    
+    .skill-item span {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .skill-bar {
+      background: #e9ecef;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .skill-progress {
+      background: linear-gradient(90deg, #007bff, #0056b3);
+      height: 100%;
+      border-radius: 4px;
+      transition: width 2s ease-in-out;
+    }
+    
+    /* Project grid styling */
+    .project-grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 12px;
+      border-left: 4px solid #28a745;
+      align-items: center;
+    }
+    
+    .project-content h3 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .project-content p {
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+    
+    .project-link {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    
+    .project-link:hover {
+      background: #0056b3;
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Dark mode adjustments */
+    body.dark-mode .skill-category,
+    body.dark-mode .project-card {
+      background: #2d3748;
+      color: #e2e8f0;
+    }
+    
+    body.dark-mode .skill-category h3,
+    body.dark-mode .project-content h3 {
+      color: #e2e8f0;
+    }
+    
+    body.dark-mode .skill-bar {
+      background: #4a5568;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .project-card {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .skills-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .interest-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Personal interests styling */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .interest-item {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #17a2b8;
+    }
+    
+    .interest-item h3 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .interest-item p {
+      line-height: 1.6;
+      color: #555;
+    }
+    
+    /* Dark mode for interests */
+    body.dark-mode .interest-item {
+      background: #2d3748;
+      color: #e2e8f0;
+    }
+    
+    body.dark-mode .interest-item h3 {
+      color: #e2e8f0;
+    }
+    
+    body.dark-mode .interest-item p {
+      color: #cbd5e0;
+    }
+  </style>
 </head>
 <body>
 
   <nav class="main-nav">
   <ul>
     <li><a href="#om-mig">Om mig</a></li>
+    <li><a href="#interesser">Interesser</a></li>
     <li><a href="#downloads">Downloads</a></li>
+    <li><a href="#faerdigheder">Færdigheder</a></li>
     <li><a href="#projekter">Projekter</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
     <li><button id="toggle-theme">🌘 Dark Mode</button></li>
@@ -41,6 +208,34 @@
   <p>
     Derfor vil jeg gerne læse multimediedesign, så jeg kan bruge både min tekniske viden og min kreative side.
     Jeg arbejder selvstændigt og struktureret og går op i at gøre tingene ordentligt – både når jeg koder og designer.
+    </section>
+    <hr />
+
+    <section id="interesser">
+      <h2>🎯 Personlige interesser</h2>
+      <p>Udover mit fokus på IT og design har jeg flere interesser, der former min kreative tilgang og samarbejdsevner:</p>
+      
+      <div class="interest-grid">
+        <div class="interest-item">
+          <h3>🤾‍♂️ Håndbold</h3>
+          <p>Jeg har spillet håndbold i mange år og elsker teamwork og strategisk tænkning. Sporten har lært mig at arbejde under pres, kommunikere effektivt og altid stræbe efter forbedring.</p>
+        </div>
+        
+        <div class="interest-item">
+          <h3>🎨 Kreative projekter</h3>
+          <p>I min fritid arbejder jeg på forskellige kreative projekter - fra webdesign til små DIY-projekter. Det giver mig mulighed for at udforske nye ideer og holde min kreativitet skarp.</p>
+        </div>
+        
+        <div class="interest-item">
+          <h3>💻 Teknologi & Innovation</h3>
+          <p>Jeg følger altid med i de nyeste teknologiske trends og elsker at eksperimentere med nye værktøjer. Fra hardware til software - jeg brænder for at forstå, hvordan teknologi kan forbedre hverdagen.</p>
+        </div>
+        
+        <div class="interest-item">
+          <h3>📖 Læring & Udvikling</h3>
+          <p>Jeg elsker at lære nye ting og udvikle mine færdigheder. Jeg bruger tid på at se tutorials, læse om nye teknologier og prøve nye måder at løse problemer på.</p>
+        </div>
+      </div>
     </section>
     <hr />
     
@@ -82,25 +277,124 @@
 </section>
   <hr />
 
+<section id="faerdigheder">
+  <h2>💡 Færdigheder</h2>
+  <p>Mine tekniske og kreative kompetencer inden for IT og design:</p>
+  
+  <div class="skills-container">
+    <div class="skill-category">
+      <h3>🖥️ Frontend Development</h3>
+      <div class="skill-item">
+        <span>HTML & CSS</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span>JavaScript</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 30%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span>Responsive Design</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 50%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3>🎨 Design & UX</h3>
+      <div class="skill-item">
+        <span>UI/UX Design</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span>Prototyping</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 30%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span>Brugercentreret design</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 50%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3>🔧 IT-Support</h3>
+      <div class="skill-item">
+        <span>Fejlfinding & Support</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 70%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span>Netværk & Hardware</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 65%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span>Brugeroplevelse</span>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 80%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr />
+
 <section id="projekter">
   <h2>🚀 Projekter</h2>
+  <p>Her finder du et udvalg af mine kreative og tekniske projekter, som viser min tilgang til problemløsning, design og udvikling. Hvert projekt demonstrerer forskellige aspekter af mine færdigheder inden for frontend-udvikling, UX/UI-design og brugercentreret tænkning.</p>
      
-  <section id="case">
-      <h3>🎛️ Min optagelses-case</h3>
-      <p>Du kan se min hjemmeside her: <a href="https://martincgerlach.github.io/KEA-multimedia/" target="_blank">Se projektet</a></p>
+  <div class="project-grid">
+    <section id="case" class="project-card">
+      <div class="project-content">
+        <h3>🎛️ Min optagelses-case</h3>
+        <p><strong>Teknologier:</strong> HTML, CSS, JavaScript, Responsive Design</p>
+        <p>Et redesign af Elgato Stream Deck's interface med fokus på forbedret brugeroplevelse og moderne design. Projektet demonstrerer min evne til at analysere eksisterende interfaces og skabe mere intuitive løsninger.</p>
+        <p><strong>Udfordringer løst:</strong> Kompleks navigation simplificeret, bedre visuel hierarki, forbedret accessibility</p>
+        <p><a href="https://martincgerlach.github.io/KEA-multimedia/" target="_blank" class="project-link">Se projektet →</a></p>
+      </div>
+      <div class="project-image">
+        <img src="efter-redesign.png" alt="Forhåndsvisning af optagelses-case" style="max-width:100%; border-radius:8px;">
+      </div>
     </section>
    
-    <section id="todo-list">
-  <h3>📝 Min Todo-liste</h3>
-  <p>Prøv min interaktive todo-liste her: <a href="https://martincgerlach.github.io/eksperimenter/" target="_blank" rel="noopener noreferrer">Åben Todo-liste</a></p>
-</section>
+    <section id="todo-list" class="project-card">
+      <div class="project-content">
+        <h3>📝 Min Todo-liste</h3>
+        <p><strong>Teknologier:</strong> HTML, CSS, JavaScript, Local Storage</p>
+        <p>En interaktiv todo-liste app med drag-and-drop funktionalitet og persistent data storage. Fokus på ren kode og intuitiv brugeroplevelse.</p>
+        <p><strong>Udfordringer løst:</strong> State management, data persistering, responsive layout, smooth animationer</p>
+        <p><a href="https://martincgerlach.github.io/eksperimenter/" target="_blank" rel="noopener noreferrer" class="project-link">Åben Todo-liste →</a></p>
+      </div>
+      <div class="project-image">
+        <img src="todo-liste.png" alt="Forhåndsvisning af Todo-liste" style="max-width:100%; border-radius:8px;">
+      </div>
+    </section>
 
-<section id="cafe-chatbot">
-  <h3>☕ Café – Chat og Klik & Hent</h3>
-  <p>En interaktiv webapp med chatbot til en fiktiv café. Brugeren kan chatte, se menuen, tilføje varer til kurven og få kontaktinformation.</p>
-  <p>Prøv projektet her: <a href="https://martincgerlach.github.io/Coastal-Brew/" target="_blank" rel="noopener noreferrer">Åben Café – Chat og Klik & Hent</a></p>
-<img src="Coastal Brew.png" alt="Forhåndsvisning af Café chatbot" style="max-width:100%; border-radius:8px; margin-top:10px;">
-</section>
+    <section id="cafe-chatbot" class="project-card">
+      <div class="project-content">
+        <h3>☕ Café – Chat og Klik & Hent</h3>
+        <p><strong>Teknologier:</strong> HTML, CSS, JavaScript, API integration, Chatbot logic</p>
+        <p>En interaktiv webapp med chatbot til en fiktiv café. Brugeren kan chatte, se menuen, tilføje varer til kurven og få kontaktinformation. Projektet viser integration mellem forskellige funktionaliteter i en sammenhængende brugeroplevelse.</p>
+        <p><strong>Udfordringer løst:</strong> Chatbot conversation flow, shopping cart funktionalitet, responsive mobile-first design</p>
+        <p><a href="https://martincgerlach.github.io/Coastal-Brew/" target="_blank" rel="noopener noreferrer" class="project-link">Åben Café-projekt →</a></p>
+      </div>
+      <div class="project-image">
+        <img src="Coastal Brew.png" alt="Forhåndsvisning af Café chatbot" style="max-width:100%; border-radius:8px;">
+      </div>
+    </section>
+  </div>
 </section>
 
    <hr />
