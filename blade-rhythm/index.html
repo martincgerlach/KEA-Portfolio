@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Player Health System</title>
+  <link rel="stylesheet" href="game.css">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+<body>
+
+  <h1 id="gameTitle">
+  <img src="favicon.png" alt="icon" id="titleIcon">
+  Blade Rhythm
+</h1>
+  <div id="ui">
+  <p id="healthDisplay">Health: 100</p>
+  <p id="enemyHealth">Enemy: 100</p>
+  <p id="levelDisplay">Difficulty: 1</p>
+  <p id="notification"></p>
+</div>
+  <div id="hpContainer">
+  <div id="hpBar" style="height: 20px; width: 100%; background: green;"></div>
+  </div>
+  
+  <div id="gameArea">
+  <img id="player" src="player.png" alt="player">
+  <img id="enemy" src="orc.png" alt="enemy">
+  <div id="hitZone"></div>
+  </div>
+  
+  
+  <p id="actionFeedback"></p>
+  ⚔️ Space = Attack | ✨ H = Heal
+  </p>
+  <p id="restartHint">Press R to Restart</p>
+
+<button id="reviveBtn" onclick="revive()">🔄 Revive</button>
+  <script src="script.js"></script>
+
+</body>
+</html>
