@@ -123,11 +123,20 @@ body {
   background: var(--panel-bg);
   color: var(--muted);
   font-size: 0.95rem;
-  font-weight: 700;
 }
 
-#healthDisplay {
+.status-panel span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-panel strong {
+  display: block;
   color: var(--text);
+  font-size: 1rem;
 }
 
 #hpContainer {
@@ -182,8 +191,8 @@ body {
   position: absolute;
   z-index: 1;
   bottom: 0;
-  left: clamp(105px, 20%, 150px);
-  width: clamp(64px, 12%, 90px);
+  left: 17%;
+  width: 12%;
   height: 100%;
   border-right: 2px solid rgba(123, 255, 138, 0.9);
   border-left: 2px solid rgba(123, 255, 138, 0.9);
