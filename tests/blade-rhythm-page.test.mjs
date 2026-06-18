@@ -17,6 +17,7 @@ test('Blade Rhythm page has standalone navigation and accessible controls', asyn
   assert.match(html, /<span\s+lang=["']en["']>Attack<\/span>/i);
   assert.match(html, /<span\s+lang=["']en["']>Heal<\/span>/i);
   assert.match(html, /<span\s+lang=["']en["']>Restart<\/span>/i);
+  assert.match(html, /<kbd\s+lang=["']en["']>Space<\/kbd>/i);
   assert.match(html, /helbred dig mellem angrebene/i);
   assert.match(html, /aria-live=["']polite["']/);
   assert.doesNotMatch(html, /onclick\s*=/i);
@@ -33,10 +34,16 @@ test('Blade Rhythm status items separate Danish labels from dynamic values', asy
 test('Blade Rhythm styles support responsive and accessible interaction', async () => {
   const css = await readFile(stylesUrl, 'utf8');
 
-  assert.match(css, /width:\s*min\(100%/);
+  const gameShellRule = css.match(/\.game-shell\s*\{([^}]*)\}/)?.[1] ?? '';
+  const gameAreaRule = css.match(/#gameArea\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(gameShellRule, /width:\s*min\(100%,\s*860px\)\s*;/);
+  assert.match(gameAreaRule, /width:\s*min\(100%,\s*760px\)\s*;/);
   assert.match(css, /@media\s*\(max-width:\s*700px\)/);
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
-  assert.match(css, /:focus-visible/);
+  assert.match(
+    css,
+    /\.back-link:focus-visible\s*,\s*\.game-controls\s+button:focus-visible\s*\{/,
+  );
 
   const hitZoneRule = css.match(/#hitZone\s*\{([^}]*)\}/)?.[1] ?? '';
   assert.match(hitZoneRule, /left:\s*17%\s*;/);
