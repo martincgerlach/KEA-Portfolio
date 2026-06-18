@@ -12,18 +12,27 @@
 
   <main class="game-shell">
     <header class="game-header">
-      <p class="eyebrow">JavaScript game</p>
+      <p class="eyebrow" lang="en">JavaScript game</p>
       <h1 id="gameTitle">
         <img id="titleIcon" src="favicon.png" alt="">
         Blade Rhythm
       </h1>
-      <p class="game-intro">Angrib, når fjenden rammer den grønne zone, og heal mellem angrebene.</p>
+      <p class="game-intro">Angrib, når fjenden rammer den grønne zone, og helbred dig mellem angrebene.</p>
     </header>
 
     <section class="status-panel" aria-label="Spilstatus">
-      <p id="healthDisplay">Health: 100</p>
-      <p id="enemyHealth">Enemy: 100</p>
-      <p id="levelDisplay">Difficulty: 1</p>
+      <p>
+        <span>Liv</span>
+        <strong id="healthDisplay">100</strong>
+      </p>
+      <p>
+        <span>Fjende</span>
+        <strong id="enemyHealth">100</strong>
+      </p>
+      <p>
+        <span>Sværhedsgrad</span>
+        <strong id="levelDisplay">1</strong>
+      </p>
       <div id="hpContainer" aria-hidden="true">
         <div id="hpBar"></div>
       </div>
@@ -40,9 +49,9 @@
     <p id="actionFeedback" aria-live="polite"></p>
 
     <div class="game-controls" aria-label="Spilkontroller">
-      <button id="attackBtn" type="button">Attack <kbd>Space</kbd></button>
-      <button id="healBtn" type="button">Heal <kbd>H</kbd></button>
-      <button id="restartBtn" type="button">Restart <kbd>R</kbd></button>
+      <button id="attackBtn" type="button"><span lang="en">Attack</span> <kbd>Space</kbd></button>
+      <button id="healBtn" type="button"><span lang="en">Heal</span> <kbd>H</kbd></button>
+      <button id="restartBtn" type="button"><span lang="en">Restart</span> <kbd>R</kbd></button>
     </div>
   </main>
 
