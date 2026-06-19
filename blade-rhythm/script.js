@@ -55,11 +55,12 @@ function gameTick() {
 
   enemyX -= enemySpeed;
 
-  if (enemyX < 80) {
-    if (!enemyBlocked) {
-      enemyAttack();
-    }
+  if (enemyX < 80 && !enemyBlocked) {
+    enemyAttack();
+    enemyBlocked = true;
+  }
 
+  if (enemyX < 50) {
     enemyBlocked = false;
     enemyX = 600;
   }
@@ -189,8 +190,8 @@ function updateUI() {
     enemyEl.src = "human.png";
   }
 
-  const enemyPosition = Math.min(100, Math.max(0, (enemyX / 700) * 100));
-  enemyEl.style.setProperty("--enemy-x", enemyPosition + "%");
+  const enemyPercent = Math.max(0, Math.min(78, (enemyX / 600) * 78));
+  enemyEl.style.setProperty("--enemy-x", enemyPercent + "%");
 
   healthText.textContent = player.health;
   hpBar.style.width = player.health + "%";
