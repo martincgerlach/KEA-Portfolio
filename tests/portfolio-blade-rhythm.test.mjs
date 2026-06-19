@@ -20,7 +20,7 @@ test('Blade Rhythm appears between Forni Pizza and Stream Deck', () => {
 });
 
 test('Blade Rhythm card presents the playable JavaScript project', async () => {
-  const articles = html.match(/<article class="project-card">[\s\S]*?<\/article>/g) ?? [];
+  const articles = html.match(/<article class="[^"]*\bproject-card\b[^"]*">[\s\S]*?<\/article>/g) ?? [];
   const article = articles.find((item) => item.includes('<h3>Blade Rhythm</h3>')) ?? '';
   const cta = article.match(/<a\b[^>]*>\s*Spil Blade Rhythm\s*<\/a>/i)?.[0] ?? '';
   const preview = article.match(/<img\b[^>]*blade-rhythm-preview\.webp[^>]*>/i)?.[0] ?? '';
