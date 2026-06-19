@@ -1,16 +1,20 @@
 // State
+const ENEMY_START_X = 600;
+const HIT_ZONE_X = 140;
+const PERFECT_ZONE_X = 70;
+const ENEMY_ATTACK_X = 80;
+const ENEMY_RESET_X = 50;
+
 let player = { health: 100 };
 let playerDamage = 20;
 let isAlive = true;
 let canAttack = true;
 let canHeal = true;
 let target;
-let enemyX = 200;
+let enemyX = ENEMY_START_X;
 let enemyDamage = 5;
 let attackSpeed = 50;
 let enemySpeed = 5;
-let hitZone = 140;
-let perfectZone = 70;
 let enemyBlocked = false;
 let difficulty = 1;
 let combo = 0;
@@ -55,14 +59,14 @@ function gameTick() {
 
   enemyX -= enemySpeed;
 
-  if (enemyX < 80 && !enemyBlocked) {
+  if (enemyX < ENEMY_ATTACK_X && !enemyBlocked) {
     enemyAttack();
     enemyBlocked = true;
   }
 
-  if (enemyX < 50) {
+  if (enemyX < ENEMY_RESET_X) {
     enemyBlocked = false;
-    enemyX = 600;
+    enemyX = ENEMY_START_X;
   }
 
   updateUI();
@@ -92,7 +96,7 @@ function enemyAttack() {
 function attackEnemy(amount) {
   if (!target || target.health <= 0) return;
 
-  if (enemyX > hitZone) {
+  if (enemyX > HIT_ZONE_X) {
     showFeedback("❌ TOO EARLY");
     combo = 0;
     return;
@@ -101,7 +105,7 @@ function attackEnemy(amount) {
   enemyBlocked = true;
   let damage = amount;
 
-  if (enemyX <= perfectZone) {
+  if (enemyX <= PERFECT_ZONE_X) {
     damage *= 1.5;
     showFeedback("🔥 PERFECT");
     combo++;
@@ -136,7 +140,8 @@ function spawnEnemy() {
   let enemy = targets[index];
 
   target = { ...enemy };
-  enemyX = 600;
+  enemyBlocked = false;
+  enemyX = ENEMY_START_X;
 
   showNotification("👾 " + target.name + " has spawned!");
 }
@@ -180,6 +185,7 @@ function updateUI() {
   const healthText = document.getElementById("healthDisplay");
   const restartHint = document.getElementById("restartHint");
   const hpBar = document.getElementById("hpBar");
+  const gameArea = document.getElementById("gameArea");
   const enemyEl = document.getElementById("enemy");
 
   if (target.race === "Orc") {
@@ -190,8 +196,12 @@ function updateUI() {
     enemyEl.src = "human.png";
   }
 
-  const enemyPercent = Math.max(0, Math.min(78, (enemyX / 600) * 78));
-  enemyEl.style.setProperty("--enemy-x", enemyPercent + "%");
+  const maxEnemyLeft = Math.max(
+    0,
+    gameArea.clientWidth - enemyEl.offsetWidth,
+  );
+  const progress = Math.max(0, Math.min(1, enemyX / ENEMY_START_X));
+  enemyEl.style.setProperty("--enemy-x", progress * maxEnemyLeft + "px");
 
   healthText.textContent = player.health;
   hpBar.style.width = player.health + "%";

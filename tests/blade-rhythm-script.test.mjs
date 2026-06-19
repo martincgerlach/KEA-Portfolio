@@ -24,6 +24,8 @@ function createElement() {
   };
 
   return {
+    clientWidth: 0,
+    offsetWidth: 0,
     textContent: '',
     src: '',
     style,
@@ -49,6 +51,9 @@ function createGameHarness() {
   const documentListeners = new Map();
   const timers = new Map();
   let nextTimerId = 1;
+
+  elements.gameArea.clientWidth = 354;
+  elements.enemy.offsetWidth = 96;
 
   const context = {
     console: { log() {} },
@@ -89,6 +94,18 @@ function dispatchKey(harness, event) {
 
 function runNextGameTick(harness) {
   const [timerId, timer] = timersWithDelay(harness, 50)[0];
+  harness.timers.delete(timerId);
+  timer.callback();
+}
+
+function runGameTicks(harness, count) {
+  for (let tick = 0; tick < count; tick++) {
+    runNextGameTick(harness);
+  }
+}
+
+function runTimerWithDelay(harness, delay) {
+  const [timerId, timer] = timersWithDelay(harness, delay)[0];
   harness.timers.delete(timerId);
   timer.callback();
 }
@@ -215,13 +232,22 @@ test('restart clears the old timer and starts one fresh loop after reset', () =>
 });
 
 test('UI uses responsive enemy position and numeric status values', () => {
+  assert.match(script, /const\s+ENEMY_START_X\s*=\s*600\s*;/);
+  assert.match(script, /const\s+HIT_ZONE_X\s*=\s*140\s*;/);
+  assert.match(script, /const\s+PERFECT_ZONE_X\s*=\s*70\s*;/);
+  assert.match(script, /const\s+ENEMY_ATTACK_X\s*=\s*80\s*;/);
+  assert.match(script, /const\s+ENEMY_RESET_X\s*=\s*50\s*;/);
   assert.match(
     script,
-    /const\s+enemyPercent\s*=\s*Math\.max\(0,\s*Math\.min\(78,\s*\(enemyX\s*\/\s*600\)\s*\*\s*78\)\)\s*;/,
+    /const\s+maxEnemyLeft\s*=\s*Math\.max\(\s*0,\s*gameArea\.clientWidth\s*-\s*enemyEl\.offsetWidth,?\s*\)\s*;/,
   );
   assert.match(
     script,
-    /enemyEl\.style\.setProperty\(["']--enemy-x["'],\s*enemyPercent\s*\+\s*["']%["']\)\s*;/,
+    /const\s+progress\s*=\s*Math\.max\(0,\s*Math\.min\(1,\s*enemyX\s*\/\s*ENEMY_START_X\)\)\s*;/,
+  );
+  assert.match(
+    script,
+    /enemyEl\.style\.setProperty\(["']--enemy-x["'],\s*progress\s*\*\s*maxEnemyLeft\s*\+\s*["']px["']\)\s*;/,
   );
   assert.match(script, /healthText\.textContent\s*=\s*player\.health\s*;/);
   assert.match(script, /hpBar\.style\.width\s*=\s*player\.health\s*\+\s*["']%["']\s*;/);
@@ -240,11 +266,37 @@ test('UI uses responsive enemy position and numeric status values', () => {
 
 test('initial enemy position stays within the arena', () => {
   const harness = createGameHarness();
-  const enemyPosition = Number.parseFloat(
-    harness.elements.enemy.style['--enemy-x'],
-  );
+  const enemyStyle = harness.elements.enemy.style['--enemy-x'];
+  const enemyPosition = Number.parseFloat(enemyStyle);
 
-  assert.ok(enemyPosition <= 78);
+  assert.match(enemyStyle, /px$/);
+  assert.ok(
+    enemyPosition + harness.elements.enemy.offsetWidth <=
+      harness.elements.gameArea.clientWidth,
+  );
+});
+
+test('a defeated enemy does not block the next enemy attack', () => {
+  const harness = createGameHarness();
+
+  runGameTicks(harness, 105);
+  for (let hit = 0; hit < 4; hit++) {
+    if (hit > 0) runGameTicks(harness, 111);
+    click(harness, 'attackBtn');
+    runTimerWithDelay(harness, 300);
+  }
+
+  runGameTicks(harness, 105);
+
+  assert.equal(harness.elements.healthDisplay.textContent, 95);
+});
+
+test('one enemy cycle damages the player at most once before reset', () => {
+  const harness = createGameHarness();
+
+  runGameTicks(harness, 111);
+
+  assert.equal(harness.elements.healthDisplay.textContent, 95);
 });
 
 test('legacy controls and helpers are removed', () => {
@@ -260,8 +312,15 @@ test('legacy controls and helpers are removed', () => {
 });
 
 test('core combat and progression behavior remains present', () => {
-  assert.match(script, /if\s*\(enemyX\s*>\s*hitZone\)/);
-  assert.match(script, /if\s*\(enemyX\s*<=\s*perfectZone\)/);
+  assert.match(script, /let\s+enemyX\s*=\s*ENEMY_START_X\s*;/);
+  assert.match(script, /if\s*\(enemyX\s*<\s*ENEMY_ATTACK_X/);
+  assert.match(script, /if\s*\(enemyX\s*<\s*ENEMY_RESET_X\)/);
+  assert.match(script, /if\s*\(enemyX\s*>\s*HIT_ZONE_X\)/);
+  assert.match(script, /if\s*\(enemyX\s*<=\s*PERFECT_ZONE_X\)/);
+  assert.match(
+    script,
+    /enemyBlocked\s*=\s*false;\s*enemyX\s*=\s*ENEMY_START_X;/s,
+  );
   assert.match(script, /damage\s*\*=\s*1\.5/);
   assert.match(script, /combo\+\+/);
   assert.match(script, /if\s*\(combo\s*>=\s*comboGoal\)/);
@@ -273,9 +332,7 @@ test('core combat and progression behavior remains present', () => {
 test('perfect timing zone is reachable before the enemy resets', () => {
   const harness = createGameHarness();
 
-  for (let tick = 0; tick < 105; tick++) {
-    runNextGameTick(harness);
-  }
+  runGameTicks(harness, 105);
 
   click(harness, 'attackBtn');
 
