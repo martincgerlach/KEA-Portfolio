@@ -87,6 +87,12 @@ function dispatchKey(harness, event) {
   harness.documentListeners.get('keydown')(event);
 }
 
+function runNextGameTick(harness) {
+  const [timerId, timer] = timersWithDelay(harness, 50)[0];
+  harness.timers.delete(timerId);
+  timer.callback();
+}
+
 test('initial load schedules exactly one game-loop timer', () => {
   const harness = createGameHarness();
 
@@ -211,11 +217,11 @@ test('restart clears the old timer and starts one fresh loop after reset', () =>
 test('UI uses responsive enemy position and numeric status values', () => {
   assert.match(
     script,
-    /const\s+enemyPosition\s*=\s*Math\.min\(100,\s*Math\.max\(0,\s*\(enemyX\s*\/\s*700\)\s*\*\s*100\)\)\s*;/,
+    /const\s+enemyPercent\s*=\s*Math\.max\(0,\s*Math\.min\(78,\s*\(enemyX\s*\/\s*600\)\s*\*\s*78\)\)\s*;/,
   );
   assert.match(
     script,
-    /enemyEl\.style\.setProperty\(["']--enemy-x["'],\s*enemyPosition\s*\+\s*["']%["']\)\s*;/,
+    /enemyEl\.style\.setProperty\(["']--enemy-x["'],\s*enemyPercent\s*\+\s*["']%["']\)\s*;/,
   );
   assert.match(script, /healthText\.textContent\s*=\s*player\.health\s*;/);
   assert.match(script, /hpBar\.style\.width\s*=\s*player\.health\s*\+\s*["']%["']\s*;/);
@@ -230,6 +236,15 @@ test('UI uses responsive enemy position and numeric status values', () => {
   assert.match(script, /target\.race\s*===\s*["']Orc["']/);
   assert.match(script, /target\.race\s*===\s*["']Blood Elf["']/);
   assert.match(script, /target\.race\s*===\s*["']Human["']/);
+});
+
+test('initial enemy position stays within the arena', () => {
+  const harness = createGameHarness();
+  const enemyPosition = Number.parseFloat(
+    harness.elements.enemy.style['--enemy-x'],
+  );
+
+  assert.ok(enemyPosition <= 78);
 });
 
 test('legacy controls and helpers are removed', () => {
@@ -253,4 +268,16 @@ test('core combat and progression behavior remains present', () => {
   assert.match(script, /increaseDifficulty\(\);\s*spawnEnemy\(\);/s);
   assert.match(script, /if\s*\(player\.health\s*<=\s*0\)/);
   assert.match(script, /isAlive\s*=\s*false\s*;/);
+});
+
+test('perfect timing zone is reachable before the enemy resets', () => {
+  const harness = createGameHarness();
+
+  for (let tick = 0; tick < 105; tick++) {
+    runNextGameTick(harness);
+  }
+
+  click(harness, 'attackBtn');
+
+  assert.equal(harness.elements.actionFeedback.textContent, '🔥 PERFECT');
 });
