@@ -42,6 +42,7 @@ html.light-mode {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   background: var(--page);
   overflow-x: hidden;
 }
@@ -399,6 +400,7 @@ body.light-mode .contact-panel {
 }
 
 .section {
+  scroll-margin-top: 5.5rem;
   padding: clamp(4rem, 8vw, 7rem) 0;
   border-top: 1px solid var(--line);
 }
@@ -688,6 +690,10 @@ body.light-mode .contact-panel {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
