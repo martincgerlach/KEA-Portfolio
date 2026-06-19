@@ -1,8 +1,6 @@
-// =======================
-// 🟢 STATE
-// =======================
+// State
 let player = { health: 100 };
-let playerDamage = 20; 
+let playerDamage = 20;
 let isAlive = true;
 let canAttack = true;
 let canHeal = true;
@@ -15,18 +13,25 @@ let hitZone = 140;
 let perfectZone = 70;
 let enemyBlocked = false;
 let difficulty = 1;
-let combo = 0; 
+let combo = 0;
 let comboHeal = 20;
-let comboGoal = 4; 
-
+let comboGoal = 4;
+let gameTimer = null;
 
 let targets = [
   { name: "Gorak", race: "Orc", health: 100 },
   { name: "Lytha", race: "Blood Elf", health: 100 },
-  { name: "Thorin", race: "Human", health: 100 }
+  { name: "Thorin", race: "Human", health: 100 },
 ];
-document.addEventListener("keydown", function(event) {
+
+// Controls
+document.getElementById("attackBtn").addEventListener("click", handleAttack);
+document.getElementById("healBtn").addEventListener("click", handleHeal);
+document.getElementById("restartBtn").addEventListener("click", restartGame);
+
+document.addEventListener("keydown", function (event) {
   if (event.code === "Space") {
+    event.preventDefault();
     handleAttack();
   }
 
@@ -39,45 +44,31 @@ document.addEventListener("keydown", function(event) {
   }
 });
 
-// =======================
-// 🟡 INIT
-// =======================
-
+// Start game
 spawnEnemy();
 updateUI();
 gameTick();
 
-
-// =======================
-// 🔵 GAME LOOP
-// =======================
-
+// Game loop
 function gameTick() {
   if (!isAlive) return;
 
-  // Move enemy
   enemyX -= enemySpeed;
 
-  // Collision (enemy reaches player)
   if (enemyX < 80) {
     if (!enemyBlocked) {
       enemyAttack();
     }
 
     enemyBlocked = false;
-    enemyX = 600; 
+    enemyX = 600;
   }
 
   updateUI();
-
-  setTimeout(gameTick, attackSpeed);
+  gameTimer = setTimeout(gameTick, attackSpeed);
 }
 
-
-// =======================
-// 🔴 GAME LOGIC
-// =======================
-
+// Game logic
 function takeDamage(amount) {
   if (!isAlive) return;
 
@@ -98,177 +89,159 @@ function enemyAttack() {
 }
 
 function attackEnemy(amount) {
-  if(!target || target.health <= 0) return;
+  if (!target || target.health <= 0) return;
 
-  if(enemyX > hitZone) {
-  showFeedback("❌ TOO EARLY")
-  combo = 0; 
-  return;
+  if (enemyX > hitZone) {
+    showFeedback("❌ TOO EARLY");
+    combo = 0;
+    return;
   }
-enemyBlocked = true
 
-let damage = amount
+  enemyBlocked = true;
+  let damage = amount;
 
-if(enemyX <= perfectZone){
-  damage *= 1.5
-  showFeedback("🔥 PERFECT");
-  combo++; 
-} else {
-showFeedback("⚔️ HIT");
-combo++;
-}
-target.health -= damage; 
+  if (enemyX <= perfectZone) {
+    damage *= 1.5;
+    showFeedback("🔥 PERFECT");
+    combo++;
+  } else {
+    showFeedback("⚔️ HIT");
+    combo++;
+  }
 
-if(combo >= comboGoal) {
-player.health += comboHeal; 
+  target.health -= damage;
 
-if(player.health > 100) player.health = 100; 
-showNotification("💚 +" + comboHeal + " HP");
-combo = 0; 
-}
+  if (combo >= comboGoal) {
+    player.health += comboHeal;
 
-if (target.health <= 0) {
-target.health = 0;  
+    if (player.health > 100) player.health = 100;
 
+    showNotification("💚 +" + comboHeal + " HP");
+    combo = 0;
+  }
 
-console.log("💀 Enemy defeated!"); 
+  if (target.health <= 0) {
+    target.health = 0;
+    console.log("💀 Enemy defeated!");
+    increaseDifficulty();
+    spawnEnemy();
+  }
 
-increaseDifficulty();
-spawnEnemy();
-
-}
   console.log("Enemy health:", target.health);
-}   
+}
 
 function spawnEnemy() {
-  let i = Math.floor(Math.random() * targets.length);
-  let e = targets[i];
+  let index = Math.floor(Math.random() * targets.length);
+  let enemy = targets[index];
 
-  target = { ...e }; 
-
+  target = { ...enemy };
   enemyX = 600;
 
-showNotification("👾 " + target.name + " has spawned!");  
+  showNotification("👾 " + target.name + " has spawned!");
 }
 
 function increaseDifficulty() {
   difficulty++;
+
   if (difficulty < 5) {
-  enemySpeed = 5;
-} 
-else if (difficulty < 10) {
-  enemySpeed = 5 + (difficulty - 5) * 0.5;
-} 
-else {
-  enemySpeed = 7.5 + (difficulty - 10) * 0.7;
-}
-if (enemySpeed > 11) enemySpeed = 11;
-  // Combo heal change
+    enemySpeed = 5;
+  } else if (difficulty < 10) {
+    enemySpeed = 5 + (difficulty - 5) * 0.5;
+  } else {
+    enemySpeed = 7.5 + (difficulty - 10) * 0.7;
+  }
+
+  if (enemySpeed > 11) enemySpeed = 11;
+
   if (difficulty >= 10) {
     comboHeal = 10;
   }
 
-  // Player damage scaling
   playerDamage += 2;
   if (playerDamage > 50) playerDamage = 50;
 
-  console.log("🔥 Difficulty:", difficulty, "Speed:", enemySpeed, "Heal:", comboHeal, "DMG:", playerDamage);
+  console.log(
+    "🔥 Difficulty:",
+    difficulty,
+    "Speed:",
+    enemySpeed,
+    "Heal:",
+    comboHeal,
+    "DMG:",
+    playerDamage,
+  );
 }
 
-
-// =======================
-// 🟣 UI
-// =======================
-
+// UI
 function updateUI() {
   if (!target) return;
 
   const healthText = document.getElementById("healthDisplay");
-  const reviveBtn = document.getElementById("reviveBtn");
-  const restartBtn = document.getElementById("restartBtn");
   const restartHint = document.getElementById("restartHint");
   const hpBar = document.getElementById("hpBar");
   const enemyEl = document.getElementById("enemy");
+
   if (target.race === "Orc") {
-  enemyEl.src = "orc.png";
-} else if (target.race === "Blood Elf") {
-  enemyEl.src = "blood-elf.png";
-} else if (target.race === "Human") {
-  enemyEl.src = "human.png";
-}
+    enemyEl.src = "orc.png";
+  } else if (target.race === "Blood Elf") {
+    enemyEl.src = "blood-elf.png";
+  } else if (target.race === "Human") {
+    enemyEl.src = "human.png";
+  }
+
+  const enemyPosition = Math.min(100, Math.max(0, (enemyX / 700) * 100));
+  enemyEl.style.setProperty("--enemy-x", enemyPosition + "%");
+
+  healthText.textContent = player.health;
+  hpBar.style.width = player.health + "%";
+  document.getElementById("levelDisplay").textContent = difficulty;
+  document.getElementById("enemyHealth").textContent =
+    target.name + ": " + target.health + " HP";
 
   if (!isAlive) {
-  healthText.textContent = "💀 DEAD";
-  hpBar.style.width = "0%";
+    restartHint.style.display = "block";
+    restartHint.classList.add("flash");
+    return;
+  }
 
-  restartHint.style.display = "block";
-  restartHint.classList.add("flash");
-
-  return;
-}
-
-  // Enemy movement
-  enemyEl.style.left = enemyX + "px";
-
-  // Player UI
-  healthText.textContent = "Health: " + player.health;
-  hpBar.style.width = player.health + "%";
-  document.getElementById("levelDisplay").textContent =
-  "difficulty: " + difficulty;
-  // Enemy UI
-  document.getElementById("enemyHealth").textContent =
-    target.name + " ( " + target.race + " ) - HP: " + target.health;
-
-  reviveBtn.style.display = "none";
+  restartHint.style.display = "none";
+  restartHint.classList.remove("flash");
 }
 
 function showFeedback(text) {
-  const el = document.getElementById("actionFeedback");
-  if (!el) return;
-  el.textContent = text;
+  const feedback = document.getElementById("actionFeedback");
+  if (!feedback) return;
+
+  feedback.textContent = text;
 
   setTimeout(() => {
-    el.textContent = "";
+    feedback.textContent = "";
   }, 500);
 }
 
 function showNotification(text) {
-  const el = document.getElementById("notification");
-  if (!el) return;
+  const notification = document.getElementById("notification");
+  if (!notification) return;
 
-  el.textContent = text;
-
-  // 🎨 Color based on type
-  if (text.includes("💚")) {
-    el.style.color = "lightgreen";
-  } else {
-    el.style.color = "#ccc";
-  }
-
-  el.style.opacity = 1;
+  notification.textContent = text;
+  notification.style.color = text.includes("💚") ? "lightgreen" : "#ccc";
+  notification.style.opacity = 1;
 
   setTimeout(() => {
-    el.style.opacity = 0;
+    notification.style.opacity = 0;
   }, 1200);
 }
 
-
-// =======================
-// 🟠 INPUT HANDLERS
-// =======================
-
+// Input handlers
 function handleAttack() {
-  if(!canAttack) return;
+  if (!canAttack) return;
+
   canAttack = false;
   attackEnemy(playerDamage);
 
   setTimeout(() => {
     canAttack = true;
   }, 300);
-}
-
-function handleDamage() {
-  takeDamage(getInputValue());
 }
 
 function handleHeal() {
@@ -295,52 +268,26 @@ function handleHeal() {
   updateUI();
 }
 
-
-// =======================
-// 🟤 UTIL
-// =======================
-
-function getInputValue() {
-  return Number(document.getElementById("amountInput").value);
-}
-
-
-// =======================
-// ⚫ SYSTEM
-// =======================
-
+// System
 function restartGame() {
+  if (gameTimer !== null) {
+    clearTimeout(gameTimer);
+    gameTimer = null;
+  }
+
   player.health = 100;
   isAlive = true;
-
-  // 🔥 RESET ALL GAME STATE
+  canAttack = true;
+  canHeal = true;
+  enemyBlocked = false;
   difficulty = 1;
   combo = 0;
-
   playerDamage = 20;
   comboHeal = 20;
-
   enemyDamage = 5;
   enemySpeed = 5;
 
   spawnEnemy();
-
-  const restartHint = document.getElementById("restartHint");
-  restartHint.style.display = "none";
-  restartHint.classList.remove("flash");
-
   updateUI();
-
-  gameTick(); // restart loop
-}
-
-function revive() {
-  if (isAlive) return;
-
-  player.health = 100;
-  isAlive = true;
-
-  console.log("✨ Player revived");
-
-  updateUI();
+  gameTick();
 }
