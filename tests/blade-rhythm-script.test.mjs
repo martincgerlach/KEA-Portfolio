@@ -1,40 +1,179 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import vm from 'node:vm';
 
 const script = readFileSync(
   new URL('../blade-rhythm/script.js', import.meta.url),
   'utf8',
 );
+const page = readFileSync(
+  new URL('../blade-rhythm/index.html', import.meta.url),
+  'utf8',
+);
+const elementIds = [...page.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
 
-test('control buttons use the shared game handlers', () => {
-  assert.match(
-    script,
-    /document\.getElementById\(["']attackBtn["']\)\.addEventListener\(["']click["'],\s*handleAttack\)/,
+function createElement() {
+  const listeners = new Map();
+  const classes = new Set();
+  const style = {
+    width: '',
+    setProperty(name, value) {
+      this[name] = value;
+    },
+  };
+
+  return {
+    textContent: '',
+    src: '',
+    style,
+    listeners,
+    classList: {
+      add(name) {
+        classes.add(name);
+      },
+      remove(name) {
+        classes.delete(name);
+      },
+    },
+    addEventListener(type, handler) {
+      listeners.set(type, handler);
+    },
+  };
+}
+
+function createGameHarness() {
+  const elements = Object.fromEntries(
+    elementIds.map((id) => [id, createElement()]),
   );
-  assert.match(
-    script,
-    /document\.getElementById\(["']healBtn["']\)\.addEventListener\(["']click["'],\s*handleHeal\)/,
+  const documentListeners = new Map();
+  const timers = new Map();
+  let nextTimerId = 1;
+
+  const context = {
+    console: { log() {} },
+    document: {
+      getElementById(id) {
+        return elements[id];
+      },
+      addEventListener(type, handler) {
+        documentListeners.set(type, handler);
+      },
+    },
+    setTimeout(callback, delay) {
+      const id = nextTimerId++;
+      timers.set(id, { callback, delay });
+      return id;
+    },
+    clearTimeout(id) {
+      timers.delete(id);
+    },
+  };
+
+  vm.runInNewContext(script, context, { filename: 'blade-rhythm/script.js' });
+
+  return { documentListeners, elements, timers };
+}
+
+function timersWithDelay(harness, delay) {
+  return [...harness.timers.entries()].filter(([, timer]) => timer.delay === delay);
+}
+
+function click(harness, elementId) {
+  harness.elements[elementId].listeners.get('click')();
+}
+
+function dispatchKey(harness, event) {
+  harness.documentListeners.get('keydown')(event);
+}
+
+test('initial load schedules exactly one game-loop timer', () => {
+  const harness = createGameHarness();
+
+  assert.equal(timersWithDelay(harness, 50).length, 1);
+  assert.equal(timersWithDelay(harness, 1200).length, 1);
+});
+
+test('repeated restart clicks replace the active game-loop timer', () => {
+  const harness = createGameHarness();
+  let previousTimerId = timersWithDelay(harness, 50)[0][0];
+
+  for (let restart = 0; restart < 4; restart++) {
+    click(harness, 'restartBtn');
+
+    const gameTimers = timersWithDelay(harness, 50);
+    assert.equal(gameTimers.length, 1);
+    assert.equal(harness.timers.has(previousTimerId), false);
+    previousTimerId = gameTimers[0][0];
+  }
+});
+
+test('space prevents scrolling and attacks like the attack button', () => {
+  const keyboardHarness = createGameHarness();
+  const buttonHarness = createGameHarness();
+  let prevented = false;
+
+  dispatchKey(keyboardHarness, {
+    code: 'Space',
+    key: ' ',
+    preventDefault() {
+      prevented = true;
+    },
+  });
+  click(buttonHarness, 'attackBtn');
+
+  assert.equal(prevented, true);
+  assert.equal(
+    keyboardHarness.elements.actionFeedback.textContent,
+    '❌ TOO EARLY',
   );
-  assert.match(
-    script,
-    /document\.getElementById\(["']restartBtn["']\)\.addEventListener\(["']click["'],\s*restartGame\)/,
+  assert.equal(
+    keyboardHarness.elements.actionFeedback.textContent,
+    buttonHarness.elements.actionFeedback.textContent,
   );
 });
 
-test('keyboard controls prevent space scrolling and retain H and R', () => {
-  assert.match(
-    script,
-    /if\s*\(event\.code\s*===\s*["']Space["']\)\s*\{\s*event\.preventDefault\(\);\s*handleAttack\(\);\s*\}/s,
+test('H heals like the heal button at full health', () => {
+  const keyboardHarness = createGameHarness();
+  const buttonHarness = createGameHarness();
+
+  dispatchKey(keyboardHarness, {
+    code: 'KeyH',
+    key: 'h',
+    preventDefault() {},
+  });
+  click(buttonHarness, 'healBtn');
+
+  assert.equal(
+    keyboardHarness.elements.actionFeedback.textContent,
+    '✨ ALREADY FULL',
   );
-  assert.match(
-    script,
-    /if\s*\(event\.key\.toLowerCase\(\)\s*===\s*["']h["']\)\s*\{\s*handleHeal\(\);\s*\}/s,
+  assert.equal(
+    keyboardHarness.elements.actionFeedback.textContent,
+    buttonHarness.elements.actionFeedback.textContent,
   );
-  assert.match(
-    script,
-    /if\s*\(event\.key\.toLowerCase\(\)\s*===\s*["']r["']\)\s*\{\s*restartGame\(\);\s*\}/s,
-  );
+});
+
+test('R replaces the active game-loop timer', () => {
+  const harness = createGameHarness();
+  const previousTimerId = timersWithDelay(harness, 50)[0][0];
+
+  dispatchKey(harness, {
+    code: 'KeyR',
+    key: 'r',
+    preventDefault() {},
+  });
+
+  assert.equal(harness.timers.has(previousTimerId), false);
+  assert.equal(timersWithDelay(harness, 50).length, 1);
+});
+
+test('all control buttons register click listeners', () => {
+  const harness = createGameHarness();
+
+  for (const id of ['attackBtn', 'healBtn', 'restartBtn']) {
+    assert.equal(typeof harness.elements[id].listeners.get('click'), 'function');
+  }
 });
 
 test('game loop stores its timer handle', () => {
