@@ -1,547 +1,405 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" class="dark-mode">
 <head>
-  <link rel="icon" type="image/png" href="favicon.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Martin Gerlach – Portfolio | Multimediadesign & IT-support</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Skills section styling */
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 1.5rem;
-    }
-    
-    .skill-category {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #007bff;
-    }
-    
-    .skill-category h3 {
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    
-    .skill-item {
-      margin-bottom: 1rem;
-    }
-    
-    .skill-item span {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    
-    .skill-bar {
-      background: #e9ecef;
-      height: 8px;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    
-    .skill-progress {
-      background: linear-gradient(90deg, #007bff, #0056b3);
-      height: 100%;
-      border-radius: 4px;
-      transition: width 2s ease-in-out;
-    }
-    
-    /* Project grid styling */
-    .project-grid {
-      display: grid;
-      gap: 2rem;
-      margin-top: 1.5rem;
-    }
-    
-    .project-card {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      background: #f8f9fa;
-      padding: 2rem;
-      border-radius: 12px;
-      border-left: 4px solid #28a745;
-      align-items: center;
-    }
-    
-    .project-content h3 {
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    
-    .project-content p {
-      margin-bottom: 0.8rem;
-      line-height: 1.6;
-    }
-    
-    .project-link {
-      display: inline-block;
-      background: #007bff;
-      color: white;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-    }
-    
-    .project-link:hover {
-      background: #0056b3;
-    }
-    
-    .project-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
-    /* Dark mode adjustments */
-    body.dark-mode .skill-category,
-    body.dark-mode .project-card {
-      background: #2d3748;
-      color: #e2e8f0;
-    }
-    
-    body.dark-mode .skill-category h3,
-    body.dark-mode .project-content h3 {
-      color: #e2e8f0;
-    }
-    
-    body.dark-mode .skill-bar {
-      background: #4a5568;
-    }
-    
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .project-card {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      
-      .skills-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .interest-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    /* Personal interests styling */
-    .interest-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .interest-item {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #17a2b8;
-    }
-    
-    .interest-item h3 {
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    
-    .interest-item p {
-      line-height: 1.6;
-      color: #555;
-    }
-    
-    /* Dark mode for interests */
-    body.dark-mode .interest-item {
-      background: #2d3748;
-      color: #e2e8f0;
-    }
-    
-    body.dark-mode .interest-item h3 {
-      color: #e2e8f0;
-    }
-    
-    body.dark-mode .interest-item p {
-      color: #cbd5e0;
-    }
-    
-    /* Contact section styling - simplified */
-    .contact-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-    }
-    
-    .contact-card {
-      background: #f8f9fa;
-      padding: 2rem;
-      border-radius: 8px;
-      border-left: 4px solid #6f42c1;
-      text-align: center;
-    }
-    
-    .contact-card h3 {
-      margin-bottom: 1rem;
-      color: #333;
-      font-size: 1.2rem;
-    }
-    
-    .contact-card p {
-      margin: 0;
-      color: #555;
-    }
-    
-    .contact-card a {
-      color: #6f42c1;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    
-    .contact-card a:hover {
-      text-decoration: underline;
-    }
-    
-    .contact-message {
-      text-align: center;
-      margin-top: 2rem;
-      padding: 1rem;
-      background: #e9ecef;
-      border-radius: 8px;
-    }
-    
-    .contact-message p {
-      margin: 0;
-      color: #6c757d;
-    }
-    
-    /* Dark mode for contact */
-    body.dark-mode .contact-card {
-      background: #2d3748;
-      color: #e2e8f0;
-    }
-    
-    body.dark-mode .contact-card h3 {
-      color: #e2e8f0;
-    }
-    
-    body.dark-mode .contact-card p {
-      color: #cbd5e0;
-    }
-    
-    body.dark-mode .contact-card a {
-      color: #9f7aea;
-    }
-    
-    body.dark-mode .contact-message {
-      background: #374151;
-    }
-    
-    body.dark-mode .contact-message p {
-      color: #9ca3af;
-    }
-  </style>
+  <meta name="description" content="Martin Gerlach portfolio med webdesign, UX, frontend, IT-support og projekter med teknisk retning." />
+  <title>Martin Gerlach - Portfolio | Webdesign, UX & Frontend</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="style.css?v=clean-tech-swe" />
 </head>
-<body>
+<body class="dark-mode">
+  <a class="skip-link" href="#main-content">Spring til indhold</a>
 
-  <nav class="main-nav">
-  <ul>
-    <li><a href="#om-mig">Om mig</a></li>
-    <li><a href="#interesser">Interesser</a></li>
-    <li><a href="#downloads">Downloads</a></li>
-    <li><a href="#faerdigheder">Færdigheder</a></li>
-    <li><a href="#projekter">Projekter</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-    <li><button id="toggle-theme">🌘 Dark Mode</button></li>
-  </ul>
-</nav>
-  <header class="top-header">
-  <div class="title-container">
-    <img src="Gerlach Design.svg" alt="Gerlach Design logo" style="max-height: 120px; margin-bottom: 10px;">
-    <h1>🎓 Martin Gerlach – Portfolio</h1>
-  <p class="subtitle"><em>Kreativ og teknisk portfolio til multimediedesign</em></p>
-  </div>
-  <img src="Martin G.jpg" alt="Portræt af Martin Gerlach" class="profile-img-top" />
-</header>
-<hr />
+  <nav class="main-nav" aria-label="Primær navigation">
+    <a class="nav-brand" href="#top" aria-label="Martin Gerlach forside">
+      <img src="Gerlach Design.svg" alt="Gerlach Design logo" />
+    </a>
+    <ul>
+      <li><a href="#projekter">Projekter</a></li>
+      <li><a href="#om-mig">Om mig</a></li>
+      <li><a href="#faerdigheder">Skills</a></li>
+      <li><a href="#materiale">CV</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button id="toggle-theme" class="theme-toggle" type="button" aria-pressed="true">Light mode</button>
+  </nav>
 
-<main>
-    <section id="om-mig">
-      <h2>👤 Om mig</h2>
-      <p>
-    Hej, jeg hedder Martin. Jeg er 22 år gammel, uddannet IT-supporter og brænder for design, teknik og brugeroplevelser. 
-    Min interesse for IT startede tidligt, og jeg har altid elsket at forstå, hvordan ting virker  både teknisk og visuelt. 
-    Under min uddannelse fandt jeg ud af, hvor vigtigt det er, at løsninger ikke kun virker, men også er nemme og behagelige at bruge.
-    Jeg bruger min fritid på håndbold, teknologi og kreative ting, og jeg elsker at lære nyt  både på computeren og i virkeligheden.
-  </p>
-
-  <p>
-    Derfor vil jeg gerne læse multimediedesign, så jeg kan bruge både min tekniske viden og min kreative side.
-    Jeg arbejder selvstændigt og struktureret og går op i at gøre tingene ordentligt  både når jeg koder og designer.
-    </section>
-    <hr />
-
-    <section id="interesser">
-      <h2>🎯 Personlige interesser</h2>
-      <p>Udover mit fokus på IT og design har jeg flere interesser, der former min kreative tilgang og samarbejdsevner:</p>
-      
-      <div class="interest-grid">
-        <div class="interest-item">
-          <h3>🤾‍♂️ Håndbold</h3>
-          <p>Jeg har spillet håndbold i mange år og elsker teamwork og strategisk tænkning. Sporten har lært mig at arbejde under pres, kommunikere effektivt og altid stræbe efter forbedring.</p>
-        </div>
-        
-        <div class="interest-item">
-          <h3>🎨 Kreative projekter</h3>
-          <p>I min fritid arbejder jeg på forskellige kreative projekter - fra webdesign til små DIY-projekter. Det giver mig mulighed for at udforske nye ideer og holde min kreativitet skarp.</p>
-        </div>
-        
-        <div class="interest-item">
-          <h3>💻 Teknologi & Innovation</h3>
-          <p>Jeg følger altid med i de nyeste teknologiske trends og elsker at eksperimentere med nye værktøjer. Fra hardware til software - jeg brænder for at forstå, hvordan teknologi kan forbedre hverdagen.</p>
-        </div>
-        
-        <div class="interest-item">
-          <h3>📖 Læring & Udvikling</h3>
-          <p>Jeg elsker at lære nye ting og udvikle mine færdigheder. Jeg bruger tid på at se tutorials, læse om nye teknologier og prøve nye måder at løse problemer på.</p>
-        </div>
+  <header id="top" class="hero">
+    <div class="hero-copy">
+      <p class="section-label">Portfolio / Web / UX / Frontend</p>
+      <h1>Web, UX og frontend med teknisk baggrund</h1>
+      <p class="hero-lede">
+        Jeg laver websites, hvor indholdet er nemt at forstå, layoutet er roligt, og teknikken ikke står i vejen.
+        Min IT-supportbaggrund gør, at jeg tænker praktisk: hvad skal brugeren kunne, og hvordan får vi det til at virke ordentligt?
+      </p>
+      <div class="hero-actions" aria-label="Primære handlinger">
+        <a class="button button-primary" href="#projekter">Se projekter</a>
+        <a class="button button-secondary" href="#kontakt">Kontakt mig</a>
       </div>
-    </section>
-    <hr />
-    
-    <section id="downloads" class="download-cards">
-    <h2>📁 Downloads</h2>
-    <p class="subtitle">Her kan du se, hvad jeg har lavet og dykket ned i.</p>
-  <div class="download-item">
-  <div class="card">
-    <h3>📄 Motiveret Ansøgning</h3>
-    <p>Læs hvorfor jeg brænder for Multimediadesign.</p>
-    <a href="Motiveret ansøgning til Multimediedesigner på KEA.pdf" class="download-button" download>Download PDF</a>
-  </div>
-   <div class="card-image large-image">
-    <img src="billede af motiveret ansøgning.png" alt="Uddrag af ansøgning">
-  </div>
-</div>
-
-<div class="download-item">
-  <div class="card">
-    <h3>📋 CV</h3>
-    <p>Se min uddannelse, erfaring og kompetencer.</p>
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-      <a href="CV_Martin_Gerlach_DA.pdf" class="download-button" download>Download dansk CV</a>
-      <a href="CV_Martin_Gerlach_EN.pdf" class="download-button" download>Download English CV</a>
-    </div>
-  </div>
-   <div class="card-image large-image">
-    <img src="cv-preview.png" alt="Forhåndsvisning af CV">
-  </div>
-</div>
-
-<div class="download-item">
-  <div class="card">
-    <h3>🖥️ Beskrivelse af optagelsescase</h3>
-    <p>Se mit redesign af Elgato Stream Deck og mine tanker bag det.</p>
-    <a href="Martin G – Personligt UI_UX-projekt (Stream Deck).pdf" class="download-button" download>Download PDF</a>
-  </div>
- <div class="card-image large-image">    
-  <img src="efter-redesign.png" alt="Billede af redesign">
-  </div>
-</div>
-
-<div class="download-item">
-  <div class="card">
-    <h3>📜 Svendebrev</h3>
-    <p>Bevis på min afsluttede IT-supporteruddannelse.</p>
-    <a href="Uddannelsesbevis.pdf" class="download-button" download>Download PDF</a>
-  </div>
-   <div class="card-image large-image">
-    <img src="billede af svendebrev.jpg" alt="Billede af svendebrev eller projekt">
-  </div>
-</div>
-</section>
-  <hr />
-
-<section id="faerdigheder">
-  <h2>💡 Færdigheder</h2>
-  <p>Mine tekniske og kreative kompetencer inden for IT og design:</p>
-  
-  <div class="skills-container">
-    <div class="skill-category">
-      <h3>🖥️ Frontend Development</h3>
-      <div class="skill-item">
-        <span>HTML & CSS</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 50%"></div>
+      <dl class="hero-facts" aria-label="Kort om Martins profil">
+        <div>
+          <dt>Fokus</dt>
+          <dd>Bygge enkle websites der er lette at bruge</dd>
         </div>
-      </div>
-      <div class="skill-item">
-        <span>JavaScript</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 30%"></div>
+        <div>
+          <dt>Baggrund</dt>
+          <dd>Uddannet IT-supporter</dd>
         </div>
-      </div>
-      <div class="skill-item">
-        <span>Responsive Design</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 50%"></div>
+        <div>
+          <dt>Retning</dt>
+          <dd>Mere kode, bedre frontend og stærkere cases</dd>
         </div>
-      </div>
+      </dl>
     </div>
 
-    <div class="skill-category">
-      <h3>🎨 Design & UX</h3>
-      <div class="skill-item">
-        <span>UI/UX Design</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 50%"></div>
-        </div>
+    <div class="hero-visual" aria-label="Portræt og identitet">
+      <div class="portrait-card">
+        <img src="profile-picture.jpg" alt="Portræt af Martin Gerlach" />
       </div>
-      <div class="skill-item">
-        <span>Prototyping</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 30%"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <span>Brugercentreret design</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 50%"></div>
-        </div>
+      <div class="identity-card">
+        <img src="Gerlach Design.svg" alt="Gerlach Design logo" />
+        <p>Jeg går efter løsninger, der føles tydelige, brugbare og nemme at forklare.</p>
       </div>
     </div>
+  </header>
 
-    <div class="skill-category">
-      <h3>🔧 IT-Support</h3>
-      <div class="skill-item">
-        <span>Fejlfinding & Support</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 70%"></div>
-        </div>
+  <main id="main-content">
+    <section id="projekter" class="section section-projects">
+      <div class="section-heading">
+        <p class="section-label">Udvalgte projekter</p>
+        <h2>Projekter med noget på spil</h2>
+        <p>
+          Her samler jeg de projekter, der bedst viser hvordan jeg tænker: først forstå opgaven,
+          så gøre løsningen tydelig, og bagefter få detaljerne til at fungere.
+        </p>
       </div>
-      <div class="skill-item">
-        <span>Netværk & Hardware</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 65%"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <span>Brugeroplevelse</span>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 80%"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<hr />
 
-<section id="projekter">
-  <h2>🚀 Projekter</h2>
-  <p>Her finder du et udvalg af mine kreative og tekniske projekter, som viser min tilgang til problemløsning, design og udvikling. Hvert projekt demonstrerer forskellige aspekter af mine færdigheder inden for frontend-udvikling, UX/UI-design og brugercentreret tænkning.</p>
-     
-  <div class="project-grid">
-    <section id="case" class="project-card">
-      <div class="project-content">
-        <h3>🎛️ Min optagelses-case</h3>
-        <p><strong>Teknologier:</strong> HTML, CSS, JavaScript, Responsive Design</p>
-        <p>Et redesign af Elgato Stream Deck's interface med fokus på forbedret brugeroplevelse og moderne design. Projektet demonstrerer min evne til at analysere eksisterende interfaces og skabe mere intuitive løsninger.</p>
-        <p><strong>Udfordringer løst:</strong> Kompleks navigation simplificeret, bedre visuel hierarki, forbedret accessibility</p>
-        <p><a href="https://martincgerlach.github.io/KEA-multimedia/" target="_blank" class="project-link">Se projektet →</a></p>
-      </div>
-      <div class="project-image">
-        <img src="efter-redesign.png" alt="Forhåndsvisning af optagelses-case" style="max-width:100%; border-radius:8px;">
-      </div>
-    </section>
-   
-    <section id="todo-list" class="project-card">
-      <div class="project-content">
-        <h3>📝 Min Todo-liste</h3>
-        <p><strong>Teknologier:</strong> HTML, CSS, JavaScript, Local Storage</p>
-        <p>En interaktiv todo-liste app med drag and drop funktionalitet og persistent data storage. Fokus på ren kode og intuitiv brugeroplevelse.</p>
-        <p><strong>Udfordringer løst:</strong> State management, data persistering, responsive layout, smooth animationer</p>
-        <p><a href="https://martincgerlach.github.io/eksperimenter/" target="_blank" rel="noopener noreferrer" class="project-link">Åben Todo-liste →</a></p>
-      </div>
-      <div class="project-image">
-        <img src="todo-liste.png" alt="Forhåndsvisning af Todo-liste" style="max-width:100%; border-radius:8px;">
-      </div>
-    </section>
+      <div class="project-list">
+        <article class="project-card project-card-featured">
+          <div class="project-content">
+            <p class="project-type">Client website</p>
+            <h3>LG Bio Capital Partners</h3>
+            <p>
+              Et professionelt website for en rådgivningsvirksomhed inden for life science og investering.
+              Opgaven handler om at gøre et komplekst område mere roligt, troværdigt og nemt at forstå.
+            </p>
+            <div class="project-meta">
+              <div>
+                <span>Problem</span>
+                <p>Virksomheden skulle fremstå professionel og klar online.</p>
+              </div>
+              <div>
+                <span>Løsning</span>
+                <p>Et enkelt site med tydelig struktur, rolig visuel retning og klar navigation.</p>
+              </div>
+            </div>
+            <ul class="tag-list" aria-label="Teknologier brugt i LG Bio Capital Partners">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>UX</li>
+              <li>Content structure</li>
+            </ul>
+            <a class="button button-primary" href="https://lgbiocapitalpartners.com/" target="_blank" rel="noopener noreferrer">Se projekt</a>
+          </div>
+          <figure class="project-media">
+            <img src="lg-biocapital-preview.png" alt="Screenshot af LG Bio Capital Partners website" />
+          </figure>
+        </article>
 
-    <section id="cafe-chatbot" class="project-card">
-      <div class="project-content">
-        <h3>☕ Café – Chat og Klik & Hent</h3>
-        <p><strong>Teknologier:</strong> HTML, CSS, JavaScript, API integration, Chatbot logic</p>
-        <p>En interaktiv webapp med chatbot til en fiktiv café. Brugeren kan chatte, se menuen, tilføje varer til kurven og få kontaktinformation. Projektet viser integration mellem forskellige funktionaliteter i en sammenhængende brugeroplevelse.</p>
-        <p><strong>Udfordringer løst:</strong> Chatbot conversation flow, shopping cart funktionalitet, responsive mobile-first design</p>
-        <p><a href="https://martincgerlach.github.io/Coastal-Brew/" target="_blank" rel="noopener noreferrer" class="project-link">Åben Café-projekt →</a></p>
-      </div>
-      <div class="project-image">
-        <img src="Coastal Brew.png" alt="Forhåndsvisning af Café chatbot" style="max-width:100%; border-radius:8px;">
+        <article class="project-card">
+          <div class="project-content">
+            <p class="project-type">Website under udvikling</p>
+            <h3>LifeScienceNextGen</h3>
+            <p>
+              Et kommende website med fokus på professionel præsentation, klar informationsarkitektur og en visuel identitet,
+              der kan vokse med projektet.
+            </p>
+            <div class="project-meta">
+              <div>
+                <span>Problem</span>
+                <p>Projektet har brug for en tydelig digital base fra starten.</p>
+              </div>
+              <div>
+                <span>Løsning</span>
+                <p>Planlagt website med struktur, visuel retning og responsive komponenter.</p>
+              </div>
+            </div>
+            <ul class="tag-list" aria-label="Teknologier planlagt til LifeScienceNextGen">
+              <li>Research</li>
+              <li>IA</li>
+              <li>Frontend plan</li>
+              <li>Responsive design</li>
+            </ul>
+            <a class="button button-secondary" href="#kontakt">Under opbygning</a>
+          </div>
+          <div class="project-placeholder" role="img" aria-label="Konceptkort for LifeScienceNextGen website">
+            <span>Upcoming build</span>
+            <strong>LifeScienceNextGen</strong>
+            <p>Website, brand structure og content architecture.</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-content">
+            <p class="project-type">Client website</p>
+            <h3>Forni Pizza Foodtrailer</h3>
+            <p>
+              Et website til en pizza foodtrailer med fokus på menu, kontakt og en enkel præsentation,
+              som fungerer godt på mobil.
+            </p>
+            <div class="project-meta">
+              <div>
+                <span>Problem</span>
+                <p>Kunden havde brug for en overskuelig online præsentation.</p>
+              </div>
+              <div>
+                <span>Løsning</span>
+                <p>Et simpelt website med tydelig struktur og kontaktmulighed.</p>
+              </div>
+            </div>
+            <ul class="tag-list" aria-label="Teknologier brugt i Forni Pizza">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>PHP</li>
+              <li>Mobile layout</li>
+            </ul>
+            <a class="button button-primary" href="https://forni.dk/" target="_blank" rel="noopener noreferrer">Se projekt</a>
+          </div>
+          <figure class="project-media">
+            <img src="fornipizza.png" alt="Screenshot af Forni Pizza Foodtrailer website" />
+          </figure>
+        </article>
+
+        <article class="project-card">
+          <div class="project-content">
+            <p class="project-type">UI/UX case</p>
+            <h3>Stream Deck UI redesign</h3>
+            <p>
+              Et personligt interface-redesign med fokus på bedre hierarki, mere rolig navigation og en tydeligere brugeroplevelse.
+            </p>
+            <div class="project-meta">
+              <div>
+                <span>Problem</span>
+                <p>Interfacet kunne blive lettere at scanne og forstå.</p>
+              </div>
+              <div>
+                <span>Løsning</span>
+                <p>Redesign med mere struktur, klarere flow og bedre visuel prioritering.</p>
+              </div>
+            </div>
+            <ul class="tag-list" aria-label="Teknologier brugt i Stream Deck redesign">
+              <li>UI analyse</li>
+              <li>UX</li>
+              <li>HTML</li>
+              <li>CSS</li>
+            </ul>
+            <a class="button button-secondary" href="Martin G – Personligt UI_UX-projekt (Stream Deck).pdf" download>Læs case</a>
+          </div>
+          <figure class="project-media">
+            <img src="efter-redesign.png" alt="Screenshot af Stream Deck UI redesign" />
+          </figure>
+        </article>
+
+        <article class="project-card">
+          <div class="project-content">
+            <p class="project-type">Frontend exercise</p>
+            <h3>Todo-liste webapp</h3>
+            <p>
+              En lille JavaScript webapp, hvor fokus er interaktion, lokal datalagring og et simpelt brugerflow.
+            </p>
+            <div class="project-meta">
+              <div>
+                <span>Problem</span>
+                <p>Brugeren skal kunne gemme og styre små opgaver nemt.</p>
+              </div>
+              <div>
+                <span>Løsning</span>
+                <p>En overskuelig app med JavaScript-logik og local storage.</p>
+              </div>
+            </div>
+            <ul class="tag-list" aria-label="Teknologier brugt i Todo-liste webapp">
+              <li>JavaScript</li>
+              <li>Local Storage</li>
+              <li>DOM</li>
+              <li>Responsive UI</li>
+            </ul>
+            <a class="button button-primary" href="https://martincgerlach.github.io/eksperimenter/" target="_blank" rel="noopener noreferrer">Åbn webapp</a>
+          </div>
+          <figure class="project-media">
+            <img src="todo-liste.png" alt="Screenshot af Todo-liste webapp" />
+          </figure>
+        </article>
       </div>
     </section>
-  </div>
-</section>
 
-<section id="forni-pizza" class="project-card">
-  <div class="project-content">
-    <h3>🍕 Forni Pizza Foodtrailer – Hjemmeside</h3>
-    <p><strong>Teknologier:</strong> HTML, CSS, PHP</p>
-    <p>En enkel hjemmeside til en pizza foodtrailer med sektioner for koncept, menu og kontakt. Designet bruger virksomhedens farver og baggrund fra logoet.</p>
-    <p><strong>Udfordringer løst:</strong> Opsætning af kontaktformular i PHP, strukturering af indhold og mobilvenligt design.</p>
-    <p><a href="https://forni.dk/" target="_blank" rel="noopener noreferrer" class="project-link">Åben Forni Pizza-projekt →</a></p>
-  </div>
-  <div class="project-image">
-    <img src="fornipizza.png" alt="Forhåndsvisning af Forni Pizza Foodtrailer hjemmeside" style="max-width:100%; border-radius:8px;">
-  </div>
-</section>
+    <section id="om-mig" class="section section-about">
+      <div class="section-heading">
+        <p class="section-label">Om mig</p>
+        <h2>Jeg arbejder bedst, når design og teknik mødes</h2>
+        <p>
+          Hej, jeg hedder Martin. Jeg er 22 år og uddannet IT-supporter.
+          Jeg bruger den tekniske baggrund til at forstå problemerne bag et website, ikke kun hvordan det ser ud på overfladen.
+        </p>
+      </div>
 
-   <hr />
-    
-    <section id="kontakt">
-  <h2>📬 Kontakt</h2>
-  <p>Har du spørgsmål til mine projekter eller vil du gerne høre mere om mine kompetencer? Jeg vil meget gerne høre fra dig!</p>
-  
-  <div class="contact-cards">
-    <div class="contact-card">
-      <h3>📧 Email</h3>
-      <p><a href="mailto:martin.gerlach.2950@gmail.com">martin.gerlach.2950@gmail.com</a></p>
-    </div>
-    
-    <div class="contact-card">
-      <h3>💼 LinkedIn</h3>
-      <p><a href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank">Se min profil →</a></p>
-    </div>
-  </div>
-  
-  <div class="contact-message">
-    <p><em>Jeg er altid åben for nye muligheder og spændende projekter!</em></p>
-  </div>
-</section>
-    <hr />
+      <div class="about-grid">
+        <article class="text-panel">
+          <h3>Min retning</h3>
+          <p>
+            Lige nu bygger jeg portfolioen som støtte til job, praktik og projekter inden for web, UX og frontend.
+            Senere vil jeg gerne bruge den samme base til at bevæge mig mere mod software engineering.
+          </p>
+        </article>
+        <article class="text-panel">
+          <h3>Min måde at arbejde på</h3>
+          <p>
+            Jeg starter med at forstå behovet, rydder op i strukturen og bygger derefter en løsning, der er nem at bruge.
+            Jeg kan godt lide når ting føles enkle, men stadig er teknisk ordentlige.
+          </p>
+        </article>
+        <article class="text-panel">
+          <h3>Det jeg kan bidrage med</h3>
+          <p>
+            Jeg kan kombinere IT-support, fejlfinding, visuel sans og frontend. Det gør mig god til at bygge løsninger,
+            hvor både brugeroplevelse og teknisk drift giver mening.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="faerdigheder" class="section section-skills">
+      <div class="section-heading">
+        <p class="section-label">Skills</p>
+        <h2>Kompetencer uden procentbarer</h2>
+        <p>
+          Jeg vil hellere vise hvad jeg arbejder med, end sætte tilfældige procenter på mig selv.
+          Her er de områder, jeg bruger i projekter og gerne vil bygge videre på.
+        </p>
+      </div>
+
+      <div class="skill-grid">
+        <article class="skill-card">
+          <h3>Frontend</h3>
+          <ul class="tag-list">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Responsive Design</li>
+            <li>DOM</li>
+          </ul>
+        </article>
+        <article class="skill-card">
+          <h3>Design / UX</h3>
+          <ul class="tag-list">
+            <li>UI structure</li>
+            <li>Wireframes</li>
+            <li>Figma</li>
+            <li>Accessibility</li>
+            <li>Content hierarchy</li>
+          </ul>
+        </article>
+        <article class="skill-card">
+          <h3>IT-support</h3>
+          <ul class="tag-list">
+            <li>Fejlfinding</li>
+            <li>Hardware</li>
+            <li>Netværk</li>
+            <li>Brugersupport</li>
+            <li>Dokumentation</li>
+          </ul>
+        </article>
+        <article class="skill-card">
+          <h3>Tools og SWE-retning</h3>
+          <ul class="tag-list">
+            <li>Git / GitHub</li>
+            <li>APIs</li>
+            <li>VS Code</li>
+            <li>Testing mindset</li>
+            <li>Frontend architecture</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="materiale" class="section section-materials">
+      <div class="section-heading">
+        <p class="section-label">CV og materiale</p>
+        <h2>Materiale til ansøgninger og samtaler</h2>
+        <p>
+          Her ligger det materiale, der kan støtte mit CV, mine motiverede ansøgninger og samtaler om praktik, job eller projekter.
+        </p>
+      </div>
+
+      <div class="material-grid">
+        <article class="material-card">
+          <div>
+            <h3>CV</h3>
+            <p>Download mit CV på dansk eller engelsk.</p>
+          </div>
+          <div class="button-row">
+            <a class="button button-primary" href="CV_Martin_Gerlach_DA.pdf" download>Dansk CV</a>
+            <a class="button button-secondary" href="CV_Martin_Gerlach_EN.pdf" download>English CV</a>
+          </div>
+        </article>
+        <article class="material-card">
+          <div>
+            <h3>UI/UX case</h3>
+            <p>Læs min Stream Deck case som eksempel på analyse, redesign og brugerflow.</p>
+          </div>
+          <a class="button button-secondary" href="Martin G – Personligt UI_UX-projekt (Stream Deck).pdf" download>Download case</a>
+        </article>
+        <article class="material-card">
+          <div>
+            <h3>Svendebrev</h3>
+            <p>Dokumentation for min afsluttede IT-supporteruddannelse.</p>
+          </div>
+          <a class="button button-secondary" href="Uddannelsesbevis.pdf" download>Download bevis</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section section-contact">
+      <div class="contact-panel">
+        <div>
+          <p class="section-label">Kontakt</p>
+          <h2>Skal vi tage en snak?</h2>
+          <p>
+            Jeg er åben for praktik, juniorroller og projekter, hvor jeg kan kombinere IT, design og webudvikling.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="button button-primary" href="mailto:martin.gerlach.2950@gmail.com">Send email</a>
+          <a class="button button-secondary" href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-<footer style="text-align: center; margin-top: 3rem; font-style: italic; color: #666;">
-  <p>Tak fordi du besøgte min portfolio kontakt mig gerne for spørgsmål.</p>
-  <p>© 2025 Gerlachdesign</p>
-</footer>
+  <footer class="site-footer">
+    <p>Tak fordi du besøgte min portfolio.</p>
+    <p>© 2026 Gerlachdesign</p>
+  </footer>
 
-<script>
-  const button = document.getElementById("toggle-theme");
+  <script>
+    const button = document.getElementById("toggle-theme");
+    const root = document.documentElement;
 
-  button.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
+    const updateThemeLabel = () => {
+      const isDark = document.body.classList.contains("dark-mode");
+      button.textContent = isDark ? "Light mode" : "Dark mode";
+      button.setAttribute("aria-pressed", String(isDark));
+    };
 
-    if (document.body.classList.contains("dark-mode")) {
-      button.textContent = "☀️Light Mode";
-    } else {
-      button.textContent = "🌘 Dark Mode";
-    }
-  });
-</script>
+    button.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+      root.classList.toggle("dark-mode");
+      root.classList.toggle("light-mode");
+      updateThemeLabel();
+    });
+
+    updateThemeLabel();
+  </script>
 </body>
 </html>
