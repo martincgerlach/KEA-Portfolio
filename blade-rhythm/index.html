@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,13 @@
   <link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
-  <a class="back-link" href="../index.html#projekter">Tilbage til portfolio</a>
+  <div class="game-toolbar">
+    <a class="back-link" href="../index.html#projekter" data-i18n="game.back">Back to portfolio</a>
+    <div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:language.label">
+      <button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button>
+      <button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button>
+    </div>
+  </div>
 
   <main class="game-shell">
     <header class="game-header">
@@ -17,20 +23,20 @@
         <img id="titleIcon" src="favicon.png" alt="">
         Blade Rhythm
       </h1>
-      <p class="game-intro">Angrib, når fjenden rammer den grønne zone, og helbred dig mellem angrebene.</p>
+      <p class="game-intro" data-i18n="game.intro">Attack when the enemy reaches the green zone, and heal between attacks.</p>
     </header>
 
-    <section class="status-panel" aria-label="Spilstatus">
+    <section class="status-panel" aria-label="Game status" data-i18n-attr="aria-label:game.statusLabel">
       <p>
-        <span>Liv</span>
+        <span data-i18n="game.health">Health</span>
         <strong id="healthDisplay">100</strong>
       </p>
       <p>
-        <span>Fjende</span>
+        <span data-i18n="game.enemy">Enemy</span>
         <strong id="enemyHealth">100</strong>
       </p>
       <p>
-        <span>Sværhedsgrad</span>
+        <span data-i18n="game.difficulty">Difficulty</span>
         <strong id="levelDisplay">1</strong>
       </p>
       <div id="hpContainer" aria-hidden="true">
@@ -38,23 +44,25 @@
       </div>
     </section>
 
-    <section id="gameArea" aria-label="Kamparena">
+    <section id="gameArea" aria-label="Combat arena" data-i18n-attr="aria-label:game.arenaLabel">
       <p id="notification" aria-live="polite"></p>
-      <img id="player" src="player.png" alt="Spillerens kriger">
-      <img id="enemy" src="orc.png" alt="Fjendtlig kriger">
+      <img id="player" src="player.png" alt="The player's warrior" data-i18n-attr="alt:game.playerAlt">
+      <img id="enemy" src="orc.png" alt="Enemy warrior" data-i18n-attr="alt:game.enemyAlt">
       <div id="hitZone" aria-hidden="true"></div>
-      <p id="restartHint">Tryk R for at starte igen</p>
+      <p id="restartHint" data-i18n="game.restartHint">Press R to restart</p>
     </section>
 
     <p id="actionFeedback" aria-live="polite"></p>
 
-    <div class="game-controls" aria-label="Spilkontroller">
-      <button id="attackBtn" type="button"><span lang="en">Attack</span> <kbd lang="en">Space</kbd></button>
-      <button id="healBtn" type="button"><span lang="en">Heal</span> <kbd>H</kbd></button>
-      <button id="restartBtn" type="button"><span lang="en">Restart</span> <kbd>R</kbd></button>
+    <div class="game-controls" aria-label="Game controls" data-i18n-attr="aria-label:game.controlsLabel">
+      <button id="attackBtn" type="button"><span data-i18n="game.attack">Attack</span> <kbd>Space</kbd></button>
+      <button id="healBtn" type="button"><span data-i18n="game.heal">Heal</span> <kbd>H</kbd></button>
+      <button id="restartBtn" type="button"><span data-i18n="game.restart">Restart</span> <kbd>R</kbd></button>
     </div>
   </main>
 
+  <script src="translations.js"></script>
+  <script src="../language.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
