@@ -20,10 +20,12 @@ The portfolio and Blade Rhythm open in English by default. Visitors can switch b
 
 ## Language Control
 
-Use a compact segmented control with two visible options: `EN` and `DA`.
+Use a compact segmented control with two visible options: `🇬🇧 EN` and `🇩🇰 DA`.
 
 - On the portfolio, place it in the main navigation beside the theme control.
 - On Blade Rhythm, place it in the game header near the back link.
+- The flags are decorative country cues; the visible `EN` and `DA` codes identify the actual languages.
+- The English copy uses neutral international English suitable for Danish, Canadian, and other international employers.
 - The active option has a clear visual state in dark and light mode.
 - Each option has a minimum touch target of `44px`.
 - The control remains usable at `320px` without forcing horizontal overflow.
