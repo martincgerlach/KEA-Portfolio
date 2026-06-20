@@ -37,6 +37,26 @@ test("portfolio dictionary contains the approved core copy", () => {
   assert.equal(translations.en["facts.backgroundValue"], "Qualified IT support specialist and currently studying Multimedia Design");
 });
 
+test("every project card translates its visible type and supporting copy", () => {
+  const typeKeys = [...html.matchAll(/<p class="project-type"(?: data-i18n="([^"]+)")?>/g)]
+    .map((match) => match[1]);
+
+  assert.deepEqual(typeKeys, [
+    "lg.type",
+    "life.type",
+    "forni.type",
+    "blade.type",
+    "stream.type",
+    "todo.type",
+  ]);
+  assert.match(html, /data-i18n="life\.placeholderLabel">Upcoming build</);
+  assert.equal(translations.da["lg.type"], "Kundewebsite");
+  assert.equal(translations.da["lg.role"], "Webdesign, frontend og indholdsstruktur");
+  assert.equal(translations.da["blade.type"], "JavaScript-spil");
+  assert.equal(translations.da["blade.role"], "Spillogik og frontend");
+  assert.equal(translations.da["todo.type"], "Frontend-øvelse");
+});
+
 test("mobile navigation keeps language and theme controls compact", () => {
   const mobile = css.slice(css.indexOf("@media (max-width: 680px)"));
   assert.match(mobile, /\.nav-actions\s*\{[^}]*grid-column:\s*2/s);
