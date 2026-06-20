@@ -89,7 +89,7 @@ function takeDamage(amount) {
 }
 
 function enemyAttack() {
-  showFeedback("💥 HIT BY ENEMY");
+  showFeedback(GerlachLanguage.t("game.feedback.enemyHit"));
   takeDamage(enemyDamage);
 }
 
@@ -97,7 +97,7 @@ function attackEnemy(amount) {
   if (!target || target.health <= 0) return;
 
   if (enemyX > HIT_ZONE_X) {
-    showFeedback("❌ TOO EARLY");
+    showFeedback(GerlachLanguage.t("game.feedback.tooEarly"));
     combo = 0;
     return;
   }
@@ -107,10 +107,10 @@ function attackEnemy(amount) {
 
   if (enemyX <= PERFECT_ZONE_X) {
     damage *= 1.5;
-    showFeedback("🔥 PERFECT");
+    showFeedback(GerlachLanguage.t("game.feedback.perfect"));
     combo++;
   } else {
-    showFeedback("⚔️ HIT");
+    showFeedback(GerlachLanguage.t("game.feedback.hit"));
     combo++;
   }
 
@@ -121,7 +121,7 @@ function attackEnemy(amount) {
 
     if (player.health > 100) player.health = 100;
 
-    showNotification("💚 +" + comboHeal + " HP");
+    showNotification(GerlachLanguage.t("game.notification.comboHeal", { amount: comboHeal }));
     combo = 0;
   }
 
@@ -143,7 +143,7 @@ function spawnEnemy() {
   enemyBlocked = false;
   enemyX = ENEMY_START_X;
 
-  showNotification("👾 " + target.name + " has spawned!");
+  showNotification(GerlachLanguage.t("game.notification.spawn", { name: target.name }));
 }
 
 function increaseDifficulty() {
@@ -260,7 +260,7 @@ function handleHeal() {
 
   if (player.health >= 100) {
     console.log("already full hp");
-    showFeedback("✨ ALREADY FULL");
+    showFeedback(GerlachLanguage.t("game.feedback.fullHealth"));
     return;
   }
 
@@ -270,7 +270,7 @@ function handleHeal() {
 
   if (player.health > 100) player.health = 100;
 
-  showFeedback("✨ HEAL!");
+  showFeedback(GerlachLanguage.t("game.feedback.heal"));
 
   setTimeout(() => {
     canHeal = true;
