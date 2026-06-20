@@ -49,7 +49,9 @@ test("every project card translates its visible type and supporting copy", () =>
     "stream.type",
     "todo.type",
   ]);
-  assert.match(html, /data-i18n="life\.placeholderLabel">Upcoming build</);
+  assert.match(html, /data-i18n="life\.placeholderLabel">In development</);
+  assert.equal(translations.en["life.placeholderLabel"], "In development");
+  assert.equal(translations.da["life.placeholderLabel"], "Under udvikling");
   assert.equal(translations.da["lg.type"], "Kundewebsite");
   assert.equal(translations.da["lg.role"], "Webdesign, frontend og indholdsstruktur");
   assert.equal(translations.da["blade.type"], "JavaScript-spil");
