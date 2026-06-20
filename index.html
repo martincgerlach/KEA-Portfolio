@@ -6,7 +6,7 @@
   <meta name="description" content="Martin Gerlach's portfolio featuring web design, UX, frontend development and technical problem-solving." data-i18n-attr="content:meta.description" />
   <title data-i18n="meta.title">Martin Gerlach - Portfolio | Web Design, UX & Frontend</title>
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="style.css?v=clean-tech-swe" />
+  <link rel="stylesheet" href="style.css?v=bilingual" />
 </head>
 <body class="dark-mode">
   <a class="skip-link" href="#main-content" data-i18n="skip.content">Skip to content</a>
@@ -207,7 +207,7 @@
               </div>
             </div>
             <ul class="tag-list" aria-label="Technologies used for the Stream Deck redesign" data-i18n-attr="aria-label:stream.techAria">
-              <li>UI analyse</li>
+              <li data-i18n="tag.uiAnalysis">UI analysis</li>
               <li>UX</li>
               <li>HTML</li>
               <li>CSS</li>
@@ -326,11 +326,11 @@
         <article class="skill-card">
           <h3>IT-support</h3>
           <ul class="tag-list">
-            <li>Fejlfinding</li>
+            <li data-i18n="tag.troubleshooting">Troubleshooting</li>
             <li>Hardware</li>
-            <li>Netværk</li>
-            <li>Brugersupport</li>
-            <li>Dokumentation</li>
+            <li data-i18n="tag.networking">Networking</li>
+            <li data-i18n="tag.userSupport">User support</li>
+            <li data-i18n="tag.documentation">Documentation</li>
           </ul>
         </article>
         <article class="skill-card">
@@ -409,7 +409,9 @@
 
     const updateThemeLabel = () => {
       const isDark = document.body.classList.contains("dark-mode");
-      button.querySelector(".theme-label").textContent = GerlachLanguage.t(isDark ? "theme.light" : "theme.dark");
+      const label = GerlachLanguage.t(isDark ? "theme.light" : "theme.dark");
+      button.querySelector(".theme-label").textContent = label;
+      button.setAttribute("aria-label", label);
       button.querySelector(".theme-icon").textContent = isDark ? "☀" : "☾";
       button.setAttribute("aria-pressed", String(isDark));
     };
