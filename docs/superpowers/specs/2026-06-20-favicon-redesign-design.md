@@ -1,8 +1,8 @@
-# Favicon Redesign Design
+# Favicon And Logo Treatment Redesign
 
 ## Goal
 
-Replace the current gradient `MG` favicon with a simpler mark that matches the clean Gerlach Design portfolio and stays recognizable in a browser tab.
+Replace the current gradient `MG` favicon with a simpler mark and tighten the existing Gerlach Design wordmark treatment in the navigation and hero identity card.
 
 ## Approved Direction
 
@@ -26,8 +26,21 @@ Canva master: [Three Bold G Logo Designs for Gerlach Design](https://www.canva.c
 
 - Replace the existing `favicon.png` asset.
 - Keep the existing `<link rel="icon" type="image/png" href="favicon.png">` integration.
-- Do not change the navigation logo, hero logo, portfolio palette or other branding assets.
+- Keep the original Gerlach Design wordmark paths, typography and black/white composition.
+- Crop the existing `Gerlach Design.svg` canvas closely around the wordmark.
+- Keep a white field behind `DESIGN` and a narrow, even white edge around the full wordmark.
+- Remove the large white CSS tile around the logo in both the navigation and hero identity card.
+- Use the approved compact treatment in both placements for consistency.
+- Do not change the portfolio palette or other branding assets.
 - Keep the source Canva design editable for future brand refinements.
+
+## Approved Wordmark Preview
+
+- The proposed compact crop shown on 20 June 2026 is approved.
+- Preserve the existing vector paths; this is a crop and background treatment, not a new logo drawing.
+- Use a compact SVG viewBox around the current artwork instead of scaling the large empty canvas.
+- Keep only a small white margin around the wordmark and no rounded white card behind it.
+- The navigation and hero identity card must use the same compact source asset.
 
 ## Export
 
@@ -42,10 +55,12 @@ Canva master: [Three Bold G Logo Designs for Gerlach Design](https://www.canva.c
 - Check the icon in light and dark browser chrome.
 - Inspect at 16 x 16 px, 32 x 32 px and the 512 x 512 px source size.
 - Confirm there is no stray text, excessive white margin, blur or clipping.
+- Confirm the compact wordmark is readable in the navigation and identity card in both themes.
 - Run the existing automated portfolio tests and `git diff --check` before commit.
 
 ## Out Of Scope
 
 - A complete Gerlach Design logo redesign.
-- Changes to typography, colors or layout on the portfolio itself.
+- Changes to the Gerlach Design wordmark typography or letterforms.
+- Broader changes to typography, colors or layout on the portfolio itself.
 - Animated favicons or separate light/dark favicon files.
