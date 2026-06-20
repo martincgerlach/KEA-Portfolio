@@ -860,7 +860,11 @@ body.light-mode .contact-panel {
     grid-column: 1;
     grid-row: 1;
     justify-self: start;
-    width: 104px;
+    width: 88px;
+  }
+
+  .nav-brand img {
+    width: 76px;
   }
 
   .main-nav ul {
@@ -888,8 +892,8 @@ body.light-mode .contact-panel {
   }
 
   .language-switcher button {
-    min-width: 46px;
-    padding-inline: 0.35rem;
+    min-width: 44px;
+    padding-inline: 0.25rem;
   }
 
   .theme-toggle {
