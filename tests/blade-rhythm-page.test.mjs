@@ -14,21 +14,21 @@ test('Blade Rhythm page has standalone navigation and accessible controls', asyn
   assert.match(html, /<button\b[^>]*\bid=["']healBtn["'][^>]*>/i);
   assert.match(html, /<button\b[^>]*\bid=["']restartBtn["'][^>]*>/i);
   assert.match(html, /<p\s+class=["']eyebrow["']\s+lang=["']en["']>JavaScript game<\/p>/i);
-  assert.match(html, /<span\s+lang=["']en["']>Attack<\/span>/i);
-  assert.match(html, /<span\s+lang=["']en["']>Heal<\/span>/i);
-  assert.match(html, /<span\s+lang=["']en["']>Restart<\/span>/i);
-  assert.match(html, /<kbd\s+lang=["']en["']>Space<\/kbd>/i);
-  assert.match(html, /helbred dig mellem angrebene/i);
+  assert.match(html, /<span\s+data-i18n=["']game\.attack["']>Attack<\/span>/i);
+  assert.match(html, /<span\s+data-i18n=["']game\.heal["']>Heal<\/span>/i);
+  assert.match(html, /<span\s+data-i18n=["']game\.restart["']>Restart<\/span>/i);
+  assert.match(html, /<kbd>Space<\/kbd>/i);
+  assert.match(html, /Attack when the enemy reaches the green zone/i);
   assert.match(html, /aria-live=["']polite["']/);
   assert.doesNotMatch(html, /onclick\s*=/i);
 });
 
-test('Blade Rhythm status items separate Danish labels from dynamic values', async () => {
+test('Blade Rhythm status items separate translated labels from dynamic values', async () => {
   const html = await readFile(pageUrl, 'utf8');
 
-  assert.match(html, /<p[^>]*>\s*<span>Liv<\/span>\s*<strong\s+id=["']healthDisplay["'][^>]*>/i);
-  assert.match(html, /<p[^>]*>\s*<span>Fjende<\/span>\s*<strong\s+id=["']enemyHealth["'][^>]*>/i);
-  assert.match(html, /<p[^>]*>\s*<span>Sværhedsgrad<\/span>\s*<strong\s+id=["']levelDisplay["'][^>]*>/i);
+  assert.match(html, /<p[^>]*>\s*<span[^>]*data-i18n=["']game\.health["'][^>]*>Health<\/span>\s*<strong\s+id=["']healthDisplay["'][^>]*>/i);
+  assert.match(html, /<p[^>]*>\s*<span[^>]*data-i18n=["']game\.enemy["'][^>]*>Enemy<\/span>\s*<strong\s+id=["']enemyHealth["'][^>]*>/i);
+  assert.match(html, /<p[^>]*>\s*<span[^>]*data-i18n=["']game\.difficulty["'][^>]*>Difficulty<\/span>\s*<strong\s+id=["']levelDisplay["'][^>]*>/i);
 });
 
 test('Blade Rhythm styles support responsive and accessible interaction', async () => {

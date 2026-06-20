@@ -12,14 +12,14 @@ function cssRule(selector, source = css) {
 
 test("the four portfolio sections use the approved compact copy", () => {
   const expected = [
-    ["Portfolio", "Udvalgte projekter", "Et udvalg af websites, frontend-projekter og designcases, der viser hvordan jeg arbejder med struktur, brugeroplevelse og kode."],
-    ["Profil", "Om mig", "Hej, jeg hedder Martin. Jeg er 22 år og uddannet IT-supporter."],
-    ["Det arbejder jeg med", "Kompetencer", "De områder og værktøjer jeg bruger i mine projekter og gerne vil udvikle videre."],
-    ["Ansøgning", "CV og materiale", "Dokumenter og cases, der supplerer mit CV og mine ansøgninger."],
+    ["Portfolio", "Selected projects", "A selection of websites, frontend projects and design cases showing how I work with structure, user experience and code."],
+    ["Profile", "About me", "Hi, I'm Martin. I'm 22 and a qualified IT support specialist."],
+    ["What I work with", "Skills", "The areas and tools I use in my projects and want to keep developing."],
+    ["Applications", "CV and material", "Documents and cases that support my CV and applications."],
   ];
 
   for (const [label, title, copy] of expected) {
-    assert.match(html, new RegExp(`<p class="section-label">${label}</p>\\s*<h2>${title}</h2>`, "s"));
+    assert.match(html, new RegExp(`<p class="section-label"[^>]*>${label}</p>\\s*<h2[^>]*>${title}</h2>`, "s"));
     assert.match(html, new RegExp(copy.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 });

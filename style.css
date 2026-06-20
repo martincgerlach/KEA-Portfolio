@@ -189,6 +189,56 @@ body.light-mode .main-nav {
   text-decoration: none;
 }
 
+.nav-actions,
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.language-switcher {
+  padding: 0.2rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.language-switcher button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: 48px;
+  min-height: 44px;
+  padding: 0 0.55rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-switcher button[aria-pressed="true"] {
+  background: var(--accent);
+  color: #06100e;
+}
+
+.language-switcher button:hover,
+.language-switcher button:focus-visible {
+  color: var(--ink);
+}
+
+.language-switcher button[aria-pressed="true"]:hover,
+.language-switcher button[aria-pressed="true"]:focus-visible {
+  color: #06100e;
+}
+
+.theme-toggle {
+  gap: 0.4rem;
+}
+
 .main-nav a:not(.nav-brand):hover,
 .theme-toggle:hover {
   background: var(--accent-soft);
@@ -797,6 +847,7 @@ body.light-mode .contact-panel {
 
   .main-nav {
     grid-template-columns: 1fr auto;
+    gap: 0.35rem;
     justify-items: stretch;
     min-height: auto;
     top: 8px;
@@ -809,7 +860,11 @@ body.light-mode .contact-panel {
     grid-column: 1;
     grid-row: 1;
     justify-self: start;
-    width: 104px;
+    width: 88px;
+  }
+
+  .nav-brand img {
+    width: 76px;
   }
 
   .main-nav ul {
@@ -826,12 +881,29 @@ body.light-mode .contact-panel {
     padding-inline: 0.55rem;
   }
 
-  .theme-toggle {
+  .nav-actions {
     grid-column: 2;
     grid-row: 1;
     justify-self: end;
-    width: auto;
-    min-width: 112px;
+  }
+
+  .language-switcher {
+    gap: 0;
+  }
+
+  .language-switcher button {
+    min-width: 44px;
+    padding-inline: 0.25rem;
+  }
+
+  .theme-toggle {
+    width: 44px;
+    min-width: 44px;
+    padding: 0;
+  }
+
+  .theme-label {
+    display: none;
   }
 
   .hero {
