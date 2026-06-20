@@ -25,7 +25,7 @@ test('Blade Rhythm card presents the playable JavaScript project', async () => {
   const cta = article.match(/<a\b[^>]*>\s*Play Blade Rhythm\s*<\/a>/i)?.[0] ?? '';
   const preview = article.match(/<img\b[^>]*blade-rhythm-preview\.webp[^>]*>/i)?.[0] ?? '';
 
-  assert.match(article, /<p class="project-type">JavaScript game<\/p>/);
+  assert.match(article, /<p class="project-type" data-i18n="blade\.type">JavaScript game<\/p>/);
   assert.match(article, /Game logic and frontend/);
   assert.match(article, /dynamic difficulty/);
   assert.equal(getAttribute(cta, 'href'), 'blade-rhythm/index.html');
@@ -41,7 +41,7 @@ test('Blade Rhythm card presents the playable JavaScript project', async () => {
   assert.equal(getAttribute(preview, 'height'), '900');
 
   for (const term of ['JavaScript', 'Game loop', 'DOM', 'Keyboard input']) {
-    assert.match(article, new RegExp(`<li>${term}</li>`));
+    assert.match(article, new RegExp(`<li(?:\\s+[^>]*)?>${term}</li>`));
   }
 
   await assert.doesNotReject(
