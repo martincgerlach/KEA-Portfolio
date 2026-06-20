@@ -68,6 +68,13 @@ test("translations interpolate and fall back to English", async () => {
   app.api.setLanguage("da");
   assert.equal(app.api.t("greeting", { name: "Martin" }), "Hej Martin");
   assert.equal(app.api.t("fallback"), "English fallback");
+  assert.equal(app.api.t("missing.key"), null);
+});
+
+test("initialization applies the stored language without dispatching a change event", async () => {
+  const app = await runLanguageEngine({ stored: "da" });
+  assert.equal(app.document.documentElement.lang, "da");
+  assert.equal(app.events.length, 0);
 });
 
 test("storage failures do not stop current-page switching", async () => {

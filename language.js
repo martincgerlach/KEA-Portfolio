@@ -30,7 +30,7 @@
     const value = findTranslation(key);
     if (typeof value !== "string") {
       console.warn(`Missing translation: ${key}`);
-      return key;
+      return null;
     }
     return interpolate(value, values);
   }
@@ -72,16 +72,18 @@
     }
 
     applyTranslations();
-    document.dispatchEvent(new CustomEvent("languagechange", {
-      detail: { language: currentLanguage },
-    }));
+    if (options.emit !== false) {
+      document.dispatchEvent(new CustomEvent("languagechange", {
+        detail: { language: currentLanguage },
+      }));
+    }
   }
 
   function init() {
     document.querySelectorAll("[data-language]").forEach((button) => {
       button.addEventListener("click", () => setLanguage(button.dataset.language));
     });
-    setLanguage(currentLanguage, { persist: false });
+    setLanguage(currentLanguage, { persist: false, emit: false });
   }
 
   window.GerlachLanguage = {
