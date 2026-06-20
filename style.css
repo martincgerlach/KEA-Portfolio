@@ -154,7 +154,7 @@ body.light-mode .main-nav {
   padding: 0.35rem 0.5rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.94);
+  background: transparent;
 }
 
 .nav-brand img {
@@ -442,10 +442,10 @@ body.light-mode .contact-panel {
 
 .identity-card img {
   width: 132px;
-  padding: 0.55rem 0.65rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.94);
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
 }
 
 .identity-card p {
