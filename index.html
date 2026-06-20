@@ -1,51 +1,54 @@
 <!DOCTYPE html>
-<html lang="da" class="dark-mode">
+<html lang="en" class="dark-mode">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Martin Gerlach portfolio med webdesign, UX, frontend, IT-support og projekter med teknisk retning." />
-  <title>Martin Gerlach - Portfolio | Webdesign, UX & Frontend</title>
+  <meta name="description" content="Martin Gerlach's portfolio featuring web design, UX, frontend development and technical problem-solving." data-i18n-attr="content:meta.description" />
+  <title data-i18n="meta.title">Martin Gerlach - Portfolio | Web Design, UX & Frontend</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css?v=clean-tech-swe" />
 </head>
 <body class="dark-mode">
-  <a class="skip-link" href="#main-content">Spring til indhold</a>
+  <a class="skip-link" href="#main-content" data-i18n="skip.content">Skip to content</a>
 
-  <nav class="main-nav" aria-label="Primær navigation">
-    <a class="nav-brand" href="#top" aria-label="Martin Gerlach forside">
+  <nav class="main-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
+    <a class="nav-brand" href="#top" aria-label="Martin Gerlach home" data-i18n-attr="aria-label:nav.home">
       <img src="Gerlach Design.svg" alt="Gerlach Design logo" />
     </a>
     <ul>
-      <li><a href="#projekter">Projekter</a></li>
-      <li><a href="#om-mig">Om mig</a></li>
-      <li><a href="#faerdigheder">Skills</a></li>
+      <li><a href="#projekter" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#om-mig" data-i18n="nav.about">About</a></li>
+      <li><a href="#faerdigheder" data-i18n="nav.skills">Skills</a></li>
       <li><a href="#materiale">CV</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="#kontakt" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <button id="toggle-theme" class="theme-toggle" type="button" aria-pressed="true">Light mode</button>
+    <div class="nav-actions">
+      <div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:language.label">
+        <button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button>
+        <button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button>
+      </div>
+      <button id="toggle-theme" class="theme-toggle" type="button" aria-pressed="true"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button>
+    </div>
   </nav>
 
   <header id="top" class="hero">
     <div class="hero-copy">
       <p class="section-label">Portfolio / Web / UX / Frontend</p>
-      <h1>Web, UX og frontend med teknisk baggrund</h1>
-      <p class="hero-lede">
-        Jeg laver websites, hvor indholdet er nemt at forstå, layoutet er roligt, og teknikken ikke står i vejen.
-        Min IT-supportbaggrund gør, at jeg tænker praktisk: hvad skal brugeren kunne, og hvordan får vi det til at virke ordentligt?
-      </p>
-      <div class="hero-actions" aria-label="Primære handlinger">
-        <a class="button button-primary" href="#projekter">Se projekter</a>
-        <a class="button button-secondary" href="#kontakt">Kontakt mig</a>
+      <h1 data-i18n="hero.heading">Web, UX and frontend with a technical background</h1>
+      <p class="hero-lede" data-i18n="hero.intro">I build websites where the content is easy to understand, the layout feels calm and the technology stays out of the way. My IT support background makes me think practically: what does the user need to do, and how do we make it work properly?</p>
+      <div class="hero-actions" aria-label="Primary actions" data-i18n-attr="aria-label:hero.actionsLabel">
+        <a class="button button-primary" href="#projekter" data-i18n="hero.projectsCta">View projects</a>
+        <a class="button button-secondary" href="#kontakt" data-i18n="hero.contactCta">Contact me</a>
       </div>
     </div>
 
-    <div class="hero-visual" aria-label="Portræt og identitet">
+    <div class="hero-visual" aria-label="Portrait and visual identity" data-i18n-attr="aria-label:hero.visualLabel">
       <div class="portrait-card">
-        <img src="profile-picture.jpg" alt="Portræt af Martin Gerlach" />
+        <img src="profile-picture.jpg" alt="Portrait of Martin Gerlach" data-i18n-attr="alt:hero.portraitAlt" />
       </div>
       <div class="identity-card">
         <img src="Gerlach Design.svg" alt="Gerlach Design logo" />
-        <p>Jeg går efter løsninger, der føles tydelige, brugbare og nemme at forklare.</p>
+        <p data-i18n="hero.identity">I aim for solutions that feel clear, useful and easy to explain.</p>
       </div>
     </div>
   </header>
@@ -54,79 +57,73 @@
     <section id="projekter" class="section section-projects">
       <div class="section-heading">
         <p class="section-label">Portfolio</p>
-        <h2>Udvalgte projekter</h2>
-        <p>Et udvalg af websites, frontend-projekter og designcases, der viser hvordan jeg arbejder med struktur, brugeroplevelse og kode.</p>
+        <h2 data-i18n="projects.heading">Selected projects</h2>
+        <p data-i18n="projects.intro">A selection of websites, frontend projects and design cases showing how I work with structure, user experience and code.</p>
       </div>
 
       <div class="project-list">
         <article class="project-card project-card-featured project-card--lg">
           <div class="project-content">
-            <p class="project-type">Client website</p>
+            <p class="project-type" data-i18n="lg.type">Client website</p>
             <h3>LG Bio Capital Partners</h3>
-            <p>
-              Et professionelt website for en rådgivningsvirksomhed inden for life science og investering.
-              Opgaven handler om at gøre et komplekst område mere roligt, troværdigt og nemt at forstå.
-            </p>
-            <p class="project-role"><strong>Min rolle:</strong> Webdesign, frontend og content structure</p>
+            <p data-i18n="lg.description">A professional website for an advisory company working with life science and investment. The task was to make a complex field feel calm, credible and easy to understand.</p>
+            <p class="project-role"><strong data-i18n="project.role">My role:</strong> <span data-i18n="lg.role">Web design, frontend and content structure</span></p>
             <div class="project-meta">
               <div>
-                <span>Problem</span>
-                <p>Virksomheden skulle fremstå professionel og klar online.</p>
+                <span data-i18n="project.problem">Problem</span>
+                <p data-i18n="lg.problem">The company needed a clear and professional online presence.</p>
               </div>
               <div>
-                <span>Løsning</span>
-                <p>Et enkelt site med tydelig struktur, rolig visuel retning og klar navigation.</p>
+                <span data-i18n="project.solution">Solution</span>
+                <p data-i18n="lg.solution">A focused website with clear structure, calm visual direction and straightforward navigation.</p>
               </div>
             </div>
-            <ul class="tag-list" aria-label="Teknologier brugt i LG Bio Capital Partners">
+            <ul class="tag-list" aria-label="Technologies used for LG Bio Capital Partners" data-i18n-attr="aria-label:lg.techAria">
               <li>HTML</li>
               <li>CSS</li>
               <li>UX</li>
               <li>Content structure</li>
             </ul>
             <div class="project-actions">
-              <a class="button button-primary" href="https://lgbiocapitalpartners.com/" target="_blank" rel="noopener noreferrer">Se projekt</a>
+              <a class="button button-primary" href="https://lgbiocapitalpartners.com/" target="_blank" rel="noopener noreferrer" data-i18n="project.view">View project</a>
             </div>
           </div>
           <figure class="project-media">
-            <img src="lg-biocapital-preview.png" alt="Screenshot af LG Bio Capital Partners website" />
+            <img src="lg-biocapital-preview.png" alt="Screenshot of the LG Bio Capital Partners website" data-i18n-attr="alt:lg.imageAlt" />
           </figure>
         </article>
 
         <article class="project-card project-card--lifescience">
           <div class="project-content">
-            <p class="project-type">Website under udvikling</p>
+            <p class="project-type" data-i18n="life.type">Website in development</p>
             <h3>LifeScienceNextGen</h3>
-            <p>
-              Et kommende website med fokus på professionel præsentation, klar informationsarkitektur og en visuel identitet,
-              der kan vokse med projektet.
-            </p>
-            <p class="project-role"><strong>Min rolle:</strong> Informationsarkitektur, frontend og signup-flow</p>
+            <p data-i18n="life.description">An upcoming website focused on professional presentation, clear information architecture and a visual identity that can grow with the project.</p>
+            <p class="project-role"><strong data-i18n="project.role">My role:</strong> <span data-i18n="life.role">Information architecture, frontend and signup flow</span></p>
             <div class="project-meta">
               <div>
-                <span>Problem</span>
-                <p>Projektet har brug for en tydelig digital base fra starten.</p>
+                <span data-i18n="project.problem">Problem</span>
+                <p data-i18n="life.problem">The project needs a clear digital foundation from the start.</p>
               </div>
               <div>
-                <span>Løsning</span>
-                <p>Planlagt website med struktur, visuel retning og responsive komponenter.</p>
+                <span data-i18n="project.solution">Solution</span>
+                <p data-i18n="life.solution">A planned website with structure, visual direction and responsive components.</p>
               </div>
             </div>
-            <ul class="tag-list" aria-label="Teknologier planlagt til LifeScienceNextGen">
+            <ul class="tag-list" aria-label="Technologies planned for LifeScienceNextGen" data-i18n-attr="aria-label:life.techAria">
               <li>Research</li>
               <li>IA</li>
               <li>Frontend plan</li>
               <li>Responsive design</li>
             </ul>
             <div class="project-actions">
-              <a class="button button-secondary" href="#kontakt">Under opbygning</a>
-              <a class="button button-secondary" href="https://github.com/martincgerlach/life-science-nextgen" target="_blank" rel="noopener noreferrer">Se kode</a>
+              <a class="button button-secondary" href="#kontakt" data-i18n="project.building">In development</a>
+              <a class="button button-secondary" href="https://github.com/martincgerlach/life-science-nextgen" target="_blank" rel="noopener noreferrer" data-i18n="project.code">View code</a>
             </div>
           </div>
-          <div class="project-placeholder" role="img" aria-label="Konceptkort for LifeScienceNextGen website">
+          <div class="project-placeholder" role="img" aria-label="Concept card for the LifeScienceNextGen website" data-i18n-attr="aria-label:life.conceptAlt">
             <span>Upcoming build</span>
             <strong>LifeScienceNextGen</strong>
-            <p>Website, brand structure og content architecture.</p>
+            <p data-i18n="life.placeholderText">Website, brand structure and content architecture.</p>
           </div>
         </article>
 
@@ -134,33 +131,30 @@
           <div class="project-content">
             <p class="project-type">Client website</p>
             <h3>Forni Pizza Foodtrailer</h3>
-            <p>
-              Et website til en pizza foodtrailer med fokus på menu, kontakt og en enkel præsentation,
-              som fungerer godt på mobil.
-            </p>
-            <p class="project-role"><strong>Min rolle:</strong> Webdesign og frontend</p>
+            <p data-i18n="forni.description">A website for a pizza food trailer focused on the menu, contact details and a simple presentation that works well on mobile.</p>
+            <p class="project-role"><strong data-i18n="project.role">My role:</strong> <span data-i18n="forni.role">Web design and frontend</span></p>
             <div class="project-meta">
               <div>
-                <span>Problem</span>
-                <p>Kunden havde brug for en overskuelig online præsentation.</p>
+                <span data-i18n="project.problem">Problem</span>
+                <p data-i18n="forni.problem">The client needed a clear online presentation.</p>
               </div>
               <div>
-                <span>Løsning</span>
-                <p>Et simpelt website med tydelig struktur og kontaktmulighed.</p>
+                <span data-i18n="project.solution">Solution</span>
+                <p data-i18n="forni.solution">A simple website with clear structure and an easy way to get in touch.</p>
               </div>
             </div>
-            <ul class="tag-list" aria-label="Teknologier brugt i Forni Pizza">
+            <ul class="tag-list" aria-label="Technologies used for Forni Pizza" data-i18n-attr="aria-label:forni.techAria">
               <li>HTML</li>
               <li>CSS</li>
               <li>PHP</li>
               <li>Mobile layout</li>
             </ul>
             <div class="project-actions">
-              <a class="button button-primary" href="https://forni.dk/" target="_blank" rel="noopener noreferrer">Se projekt</a>
+              <a class="button button-primary" href="https://forni.dk/" target="_blank" rel="noopener noreferrer" data-i18n="project.view">View project</a>
             </div>
           </div>
           <figure class="project-media">
-            <img src="fornipizza.png" alt="Screenshot af Forni Pizza Foodtrailer website" />
+            <img src="fornipizza.png" alt="Screenshot of the Forni Pizza Food Trailer website" data-i18n-attr="alt:forni.imageAlt" />
           </figure>
         </article>
 
@@ -168,34 +162,31 @@
           <div class="project-content">
             <p class="project-type">JavaScript game</p>
             <h3>Blade Rhythm</h3>
-            <p>
-              Et timing-baseret browsergame, hvor spilleren angriber, healer og møder hurtigere fjender,
-              efterhånden som sværhedsgraden stiger.
-            </p>
-            <p class="project-role"><strong>Min rolle:</strong> Game logic og frontend</p>
+            <p data-i18n="blade.description">A timing-based browser game where the player attacks, heals and faces faster enemies as the difficulty increases.</p>
+            <p class="project-role"><strong data-i18n="project.role">My role:</strong> <span data-i18n="blade.role">Game logic and frontend</span></p>
             <div class="project-meta">
               <div>
-                <span>Udfordring</span>
-                <p>At få input, timing og game state til at fungere som ét samlet system.</p>
+                <span data-i18n="project.challenge">Challenge</span>
+                <p data-i18n="blade.challenge">Making input, timing and game state work as one system.</p>
               </div>
               <div>
-                <span>Min løsning</span>
-                <p>Et vanilla JavaScript game loop med hit zones, combos, health og dynamisk sværhedsgrad.</p>
+                <span data-i18n="project.mySolution">My solution</span>
+                <p data-i18n="blade.solution">A vanilla JavaScript game loop with hit zones, combos, health and dynamic difficulty.</p>
               </div>
             </div>
-            <ul class="tag-list" aria-label="Teknologier brugt i Blade Rhythm">
+            <ul class="tag-list" aria-label="Technologies used for Blade Rhythm" data-i18n-attr="aria-label:blade.techAria">
               <li>JavaScript</li>
               <li>Game loop</li>
               <li>DOM</li>
               <li>Keyboard input</li>
             </ul>
             <div class="project-actions">
-              <a class="button button-primary" href="blade-rhythm/index.html">Spil Blade Rhythm</a>
-              <a class="button button-secondary" href="https://github.com/martincgerlach/Blade-Rhythm" target="_blank" rel="noopener noreferrer">Se kode</a>
+              <a class="button button-primary" href="blade-rhythm/index.html" data-i18n="project.play">Play Blade Rhythm</a>
+              <a class="button button-secondary" href="https://github.com/martincgerlach/Blade-Rhythm" target="_blank" rel="noopener noreferrer" data-i18n="project.code">View code</a>
             </div>
           </div>
           <figure class="project-media">
-            <img src="blade-rhythm-preview.webp" alt="Gameplay fra Blade Rhythm med spiller, fjende og grøn timing-zone i arenaen" loading="lazy" decoding="async" width="1440" height="900" />
+            <img src="blade-rhythm-preview.webp" alt="Blade Rhythm gameplay showing the player, enemy and green timing zone" data-i18n-attr="alt:blade.imageAlt" loading="lazy" decoding="async" width="1440" height="900" />
           </figure>
         </article>
 
@@ -203,32 +194,30 @@
           <div class="project-content">
             <p class="project-type">UI/UX case</p>
             <h3>Stream Deck UI redesign</h3>
-            <p>
-              Et personligt interface-redesign med fokus på bedre hierarki, mere rolig navigation og en tydeligere brugeroplevelse.
-            </p>
-            <p class="project-role"><strong>Min rolle:</strong> UI-analyse og redesign</p>
+            <p data-i18n="stream.description">A personal interface redesign focused on stronger hierarchy, calmer navigation and a clearer user experience.</p>
+            <p class="project-role"><strong data-i18n="project.role">My role:</strong> <span data-i18n="stream.role">UI analysis and redesign</span></p>
             <div class="project-meta">
               <div>
-                <span>Problem</span>
-                <p>Interfacet kunne blive lettere at scanne og forstå.</p>
+                <span data-i18n="project.problem">Problem</span>
+                <p data-i18n="stream.problem">The interface could be easier to scan and understand.</p>
               </div>
               <div>
-                <span>Løsning</span>
-                <p>Redesign med mere struktur, klarere flow og bedre visuel prioritering.</p>
+                <span data-i18n="project.solution">Solution</span>
+                <p data-i18n="stream.solution">A redesign with more structure, a clearer flow and stronger visual priorities.</p>
               </div>
             </div>
-            <ul class="tag-list" aria-label="Teknologier brugt i Stream Deck redesign">
+            <ul class="tag-list" aria-label="Technologies used for the Stream Deck redesign" data-i18n-attr="aria-label:stream.techAria">
               <li>UI analyse</li>
               <li>UX</li>
               <li>HTML</li>
               <li>CSS</li>
             </ul>
             <div class="project-actions">
-              <a class="button button-secondary" href="Martin G – Personligt UI_UX-projekt (Stream Deck).pdf" download>Læs case</a>
+              <a class="button button-secondary" href="Martin G – Personligt UI_UX-projekt (Stream Deck).pdf" download data-i18n="project.case">Read case</a>
             </div>
           </div>
           <figure class="project-media">
-            <img src="efter-redesign.png" alt="Screenshot af Stream Deck UI redesign" />
+            <img src="efter-redesign.png" alt="Screenshot of the Stream Deck UI redesign" data-i18n-attr="alt:stream.imageAlt" />
           </figure>
         </article>
 
@@ -236,95 +225,81 @@
           <div class="project-content">
             <p class="project-type">Frontend exercise</p>
             <h3>Todo-liste webapp</h3>
-            <p>
-              En lille JavaScript webapp, hvor fokus er interaktion, lokal datalagring og et simpelt brugerflow.
-            </p>
-            <p class="project-role"><strong>Min rolle:</strong> JavaScript og frontend</p>
+            <p data-i18n="todo.description">A small JavaScript web app focused on interaction, local data storage and a simple user flow.</p>
+            <p class="project-role"><strong data-i18n="project.role">My role:</strong> <span data-i18n="todo.role">JavaScript and frontend</span></p>
             <div class="project-meta">
               <div>
-                <span>Problem</span>
-                <p>Brugeren skal kunne gemme og styre små opgaver nemt.</p>
+                <span data-i18n="project.problem">Problem</span>
+                <p data-i18n="todo.problem">The user needs a simple way to save and manage small tasks.</p>
               </div>
               <div>
-                <span>Løsning</span>
-                <p>En overskuelig app med JavaScript-logik og local storage.</p>
+                <span data-i18n="project.solution">Solution</span>
+                <p data-i18n="todo.solution">A clear app with JavaScript logic and local storage.</p>
               </div>
             </div>
-            <ul class="tag-list" aria-label="Teknologier brugt i Todo-liste webapp">
+            <ul class="tag-list" aria-label="Technologies used for the todo web app" data-i18n-attr="aria-label:todo.techAria">
               <li>JavaScript</li>
               <li>Local Storage</li>
               <li>DOM</li>
               <li>Responsive UI</li>
             </ul>
             <div class="project-actions">
-              <a class="button button-primary" href="https://martincgerlach.github.io/eksperimenter/" target="_blank" rel="noopener noreferrer">Åbn webapp</a>
-              <a class="button button-secondary" href="https://github.com/martincgerlach/eksperimenter" target="_blank" rel="noopener noreferrer">Se kode</a>
+              <a class="button button-primary" href="https://martincgerlach.github.io/eksperimenter/" target="_blank" rel="noopener noreferrer" data-i18n="project.openApp">Open web app</a>
+              <a class="button button-secondary" href="https://github.com/martincgerlach/eksperimenter" target="_blank" rel="noopener noreferrer" data-i18n="project.code">View code</a>
             </div>
           </div>
           <figure class="project-media">
-            <img src="todo-liste.png" alt="Screenshot af Todo-liste webapp" />
+            <img src="todo-liste.png" alt="Screenshot of the todo web app" data-i18n-attr="alt:todo.imageAlt" />
           </figure>
         </article>
       </div>
     </section>
 
-    <aside class="profile-facts" aria-label="Kort om Martins profil">
+    <aside class="profile-facts" aria-label="A short profile of Martin" data-i18n-attr="aria-label:facts.label">
       <dl class="profile-facts-grid">
         <div>
-          <dt>Fokus</dt>
-          <dd>Bygge enkle websites der er lette at bruge</dd>
+          <dt data-i18n="facts.focus">Focus</dt>
+          <dd data-i18n="facts.focusValue">Building clear websites that are easy to use</dd>
         </div>
         <div>
-          <dt>Baggrund</dt>
-          <dd>Uddannet IT-supporter og studerer til multimediedesigner</dd>
+          <dt data-i18n="facts.background">Background</dt>
+          <dd data-i18n="facts.backgroundValue">Qualified IT support specialist and currently studying Multimedia Design</dd>
         </div>
         <div>
-          <dt>Retning</dt>
-          <dd>Mere kode, bedre frontend og stærkere cases</dd>
+          <dt data-i18n="facts.direction">Direction</dt>
+          <dd data-i18n="facts.directionValue">More code, stronger frontend and better case studies</dd>
         </div>
       </dl>
     </aside>
 
     <section id="om-mig" class="section section-about">
       <div class="section-heading">
-        <p class="section-label">Profil</p>
-        <h2>Om mig</h2>
-        <p>
-          Hej, jeg hedder Martin. Jeg er 22 år og uddannet IT-supporter.
-          Jeg bruger den tekniske baggrund til at forstå problemerne bag et website, ikke kun hvordan det ser ud på overfladen.
-        </p>
+        <p class="section-label" data-i18n="about.label">Profile</p>
+        <h2 data-i18n="about.heading">About me</h2>
+        <p data-i18n="about.intro">Hi, I'm Martin. I'm 22 and a qualified IT support specialist. I use my technical background to understand the problems behind a website, not only how it looks on the surface.</p>
       </div>
 
       <div class="about-grid">
         <article class="text-panel">
-          <h3>Min retning</h3>
-          <p>
-            Lige nu bygger jeg portfolioen som støtte til job, praktik og projekter inden for web, UX og frontend.
-            Senere vil jeg gerne bruge den samme base til at bevæge mig mere mod software engineering.
-          </p>
+          <h3 data-i18n="about.directionHeading">My direction</h3>
+          <p data-i18n="about.directionText">Right now, I use this portfolio to support applications for internships, jobs and projects within web, UX and frontend. Later, I want to use the same foundation to move further towards software engineering.</p>
         </article>
         <article class="text-panel">
-          <h3>Min måde at arbejde på</h3>
-          <p>
-            Jeg starter med at forstå behovet, rydder op i strukturen og bygger derefter en løsning, der er nem at bruge.
-            Jeg kan godt lide når ting føles enkle, men stadig er teknisk ordentlige.
-          </p>
+          <h3 data-i18n="about.processHeading">How I work</h3>
+          <p data-i18n="about.processText">I start by understanding the need, clean up the structure and then build a solution that is easy to use. I like things to feel simple while still being technically sound.</p>
         </article>
         <article class="text-panel">
-          <h3>Det jeg kan bidrage med</h3>
-          <p>
-            Jeg kan kombinere IT-support, fejlfinding, visuel sans og frontend. Det gør mig god til at bygge løsninger,
-            hvor både brugeroplevelse og teknisk drift giver mening.
-          </p>
+          <h3 data-i18n="about.valueHeading">What I can contribute</h3>
+          <p data-i18n="about.valueText">I combine IT support, troubleshooting, visual awareness and frontend development. That helps me build solutions where both user experience and technical operation make sense.</p>
         </article>
       </div>
     </section>
 
     <section id="faerdigheder" class="section section-skills">
       <div class="section-heading">
-        <p class="section-label">Det arbejder jeg med</p>
-        <h2>Kompetencer</h2>
-        <p>De områder og værktøjer jeg bruger i mine projekter og gerne vil udvikle videre.</p>
+        <p class="section-label" data-i18n="skills.label">What I work with</p>
+        <h2 data-i18n="skills.heading">Skills</h2>
+        <p data-i18n="skills.intro">The areas and tools I use in my projects and want to keep developing.</p>
       </div>
 
       <div class="skill-grid">
@@ -359,7 +334,7 @@
           </ul>
         </article>
         <article class="skill-card">
-          <h3>Tools og SWE-retning</h3>
+          <h3 data-i18n="skills.toolsHeading">Tools and SWE direction</h3>
           <ul class="tag-list">
             <li>Git / GitHub</li>
             <li>APIs</li>
@@ -373,35 +348,35 @@
 
     <section id="materiale" class="section section-materials">
       <div class="section-heading">
-        <p class="section-label">Ansøgning</p>
-        <h2>CV og materiale</h2>
-        <p>Dokumenter og cases, der supplerer mit CV og mine ansøgninger.</p>
+        <p class="section-label" data-i18n="materials.label">Applications</p>
+        <h2 data-i18n="materials.heading">CV and material</h2>
+        <p data-i18n="materials.intro">Documents and cases that support my CV and applications.</p>
       </div>
 
       <div class="material-grid">
         <article class="material-card">
           <div>
             <h3>CV</h3>
-            <p>Download mit CV på dansk eller engelsk.</p>
+            <p data-i18n="materials.cvText">Download my CV in Danish or English.</p>
           </div>
           <div class="button-row">
-            <a class="button button-primary" href="CV_Martin_Gerlach_DA.pdf" download>Dansk CV</a>
-            <a class="button button-secondary" href="CV_Martin_Gerlach_EN.pdf" download>English CV</a>
+            <a class="button button-primary" href="CV_Martin_Gerlach_DA.pdf" download data-i18n="materials.danishCv">Danish CV</a>
+            <a class="button button-secondary" href="CV_Martin_Gerlach_EN.pdf" download data-i18n="materials.englishCv">English CV</a>
           </div>
         </article>
         <article class="material-card">
           <div>
             <h3>UI/UX case</h3>
-            <p>Læs min Stream Deck case som eksempel på analyse, redesign og brugerflow.</p>
+            <p data-i18n="materials.caseText">Read my Stream Deck case as an example of analysis, redesign and user flow.</p>
           </div>
-          <a class="button button-secondary" href="Martin G – Personligt UI_UX-projekt (Stream Deck).pdf" download>Download case</a>
+          <a class="button button-secondary" href="Martin G – Personligt UI_UX-projekt (Stream Deck).pdf" download data-i18n="materials.downloadCase">Download case</a>
         </article>
         <article class="material-card">
           <div>
-            <h3>Svendebrev</h3>
-            <p>Dokumentation for min afsluttede IT-supporteruddannelse.</p>
+            <h3 data-i18n="materials.certificate">Trade certificate</h3>
+            <p data-i18n="materials.certificateText">Documentation of my completed IT support education.</p>
           </div>
-          <a class="button button-secondary" href="Uddannelsesbevis.pdf" download>Download bevis</a>
+          <a class="button button-secondary" href="Uddannelsesbevis.pdf" download data-i18n="materials.downloadCertificate">Download certificate</a>
         </article>
       </div>
     </section>
@@ -410,13 +385,11 @@
       <div class="contact-panel">
         <div>
           <p class="section-label">Kontakt</p>
-          <h2>Skal vi tage en snak?</h2>
-          <p>
-            Jeg er åben for praktik, juniorroller og projekter, hvor jeg kan kombinere IT, design og webudvikling.
-          </p>
+          <h2 data-i18n="contact.heading">Let's have a chat</h2>
+          <p data-i18n="contact.text">I'm open to internships, junior roles and projects where I can combine IT, design and web development.</p>
         </div>
         <div class="contact-actions">
-          <a class="button button-primary" href="mailto:martin.gerlach.2950@gmail.com">Send email</a>
+          <a class="button button-primary" href="mailto:martin.gerlach.2950@gmail.com" data-i18n="contact.email">Send email</a>
           <a class="button button-secondary" href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
@@ -424,17 +397,20 @@
   </main>
 
   <footer class="site-footer">
-    <p>Tak fordi du besøgte min portfolio.</p>
-    <p>© 2026 Gerlachdesign</p>
+    <p data-i18n="footer.thanks">Thanks for visiting my portfolio.</p>
+    <p data-i18n="footer.copyright">© 2026 Gerlachdesign</p>
   </footer>
 
+  <script src="portfolio-translations.js"></script>
+  <script src="language.js"></script>
   <script>
     const button = document.getElementById("toggle-theme");
     const root = document.documentElement;
 
     const updateThemeLabel = () => {
       const isDark = document.body.classList.contains("dark-mode");
-      button.textContent = isDark ? "Light mode" : "Dark mode";
+      button.querySelector(".theme-label").textContent = GerlachLanguage.t(isDark ? "theme.light" : "theme.dark");
+      button.querySelector(".theme-icon").textContent = isDark ? "☀" : "☾";
       button.setAttribute("aria-pressed", String(isDark));
     };
 
@@ -447,6 +423,7 @@
     });
 
     updateThemeLabel();
+    document.addEventListener("languagechange", updateThemeLabel);
   </script>
 </body>
 </html>
