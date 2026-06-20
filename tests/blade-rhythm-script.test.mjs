@@ -57,6 +57,16 @@ function createGameHarness() {
 
   const context = {
     console: { log() {} },
+    GerlachLanguage: {
+      t(key, values = {}) {
+        const messages = {
+          "game.feedback.tooEarly": "❌ TOO EARLY",
+          "game.feedback.fullHealth": "✨ ALREADY FULL",
+          "game.feedback.perfect": "🔥 PERFECT",
+        };
+        return (messages[key] ?? key).replace(/\{(\w+)\}/g, (match, name) => values[name] ?? match);
+      },
+    },
     document: {
       getElementById(id) {
         return elements[id];
