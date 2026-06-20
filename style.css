@@ -411,30 +411,23 @@ body.light-mode .contact-panel {
 }
 
 .section-heading {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.46fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 5vw, 4rem);
-  align-items: start;
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
-}
-
-.section-heading .section-label {
-  grid-column: 1;
+  max-width: 760px;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .section-heading h2 {
-  grid-column: 2;
+  margin-top: 0.65rem;
   color: var(--ink);
-  font-size: clamp(2.35rem, 5vw, 4.7rem);
-  line-height: 0.98;
+  font-size: clamp(3rem, 5vw, 3.75rem);
+  line-height: 1.02;
 }
 
 .section-heading p:not(.section-label) {
-  grid-column: 2;
-  max-width: 720px;
+  max-width: 700px;
+  margin-top: 1.125rem;
   color: var(--muted);
-  font-size: 1.04rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 .project-list {
@@ -770,15 +763,8 @@ body.light-mode .contact-panel {
   .hero,
   .project-card,
   .project-card-featured,
-  .section-heading,
   .contact-panel {
     grid-template-columns: 1fr;
-  }
-
-  .section-heading .section-label,
-  .section-heading h2,
-  .section-heading p:not(.section-label) {
-    grid-column: auto;
   }
 
   .hero {
@@ -868,6 +854,10 @@ body.light-mode .contact-panel {
     max-width: 330px;
     font-size: 1rem;
     line-height: 1.68;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(2.125rem, 9vw, 2.375rem);
   }
 
   .profile-facts-grid,
