@@ -48,6 +48,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.game-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: min(100%, 860px);
+  margin: 0 auto;
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -55,6 +64,44 @@ body {
   color: var(--text);
   font-weight: 700;
   text-underline-offset: 4px;
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  background: var(--panel-bg);
+}
+
+.language-switcher button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 54px;
+  min-height: 44px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-switcher button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--arena-black);
+}
+
+.language-switcher button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 
 .back-link:hover {
@@ -295,6 +342,15 @@ kbd {
 }
 
 @media (max-width: 700px) {
+  .game-toolbar {
+    align-items: flex-start;
+  }
+
+  .language-switcher button {
+    min-width: 48px;
+    padding-inline: 6px;
+  }
+
   #gameTitle {
     font-size: 2.25rem;
   }

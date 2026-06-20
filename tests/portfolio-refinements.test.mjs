@@ -21,17 +21,17 @@ test("profile facts appear after projects and before the about section", () => {
 
   assert.ok(projects < facts && facts < about);
   assert.doesNotMatch(html.slice(0, html.indexOf("</header>")), /hero-facts/);
-  assert.match(html, /Uddannet IT-supporter og studerer til multimediedesigner/);
+  assert.match(html, /Qualified IT support specialist and currently studying Multimedia Design/);
 });
 
 test("every project has its agreed role and accent class", () => {
   const projects = [
-    ["LG Bio Capital Partners", "project-card--lg", "Webdesign, frontend og content structure"],
-    ["LifeScienceNextGen", "project-card--lifescience", "Informationsarkitektur, frontend og signup-flow"],
-    ["Forni Pizza Foodtrailer", "project-card--forni", "Webdesign og frontend"],
-    ["Blade Rhythm", "project-card--blade", "Game logic og frontend"],
-    ["Stream Deck UI redesign", "project-card--stream", "UI-analyse og redesign"],
-    ["Todo-liste webapp", "project-card--todo", "JavaScript og frontend"],
+    ["LG Bio Capital Partners", "project-card--lg", "Web design, frontend and content structure"],
+    ["LifeScienceNextGen", "project-card--lifescience", "Information architecture, frontend and signup flow"],
+    ["Forni Pizza Foodtrailer", "project-card--forni", "Web design and frontend"],
+    ["Blade Rhythm", "project-card--blade", "Game logic and frontend"],
+    ["Stream Deck UI redesign", "project-card--stream", "UI analysis and redesign"],
+    ["Todo-liste webapp", "project-card--todo", "JavaScript and frontend"],
   ];
 
   for (const [title, className, role] of projects) {
@@ -51,15 +51,15 @@ test("only the three technical projects expose verified GitHub links", () => {
 
   for (const [title, href] of links) {
     const article = projectArticle(title);
-    const anchor = article.match(new RegExp(`<a[^>]*href="${href}"[^>]*>Se kode</a>`))?.[0];
+    const anchor = article.match(new RegExp(`<a[^>]*href="${href}"[^>]*>View code</a>`))?.[0];
     assert.ok(anchor, `${title} GitHub link is missing`);
     assert.match(anchor, /target="_blank"/);
     assert.match(anchor, /rel="noopener noreferrer"/);
   }
 
-  assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), />Se kode</);
-  assert.doesNotMatch(projectArticle("Forni Pizza Foodtrailer"), />Se kode</);
-  assert.doesNotMatch(projectArticle("Stream Deck UI redesign"), />Se kode</);
+  assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), />View code</);
+  assert.doesNotMatch(projectArticle("Forni Pizza Foodtrailer"), />View code</);
+  assert.doesNotMatch(projectArticle("Stream Deck UI redesign"), />View code</);
 });
 
 test("case accent and action hooks are defined without a new layout system", () => {
