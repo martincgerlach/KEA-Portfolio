@@ -8,15 +8,15 @@ function getAttribute(tag, name) {
   return tag.match(new RegExp(`\\b${name}\\s*=\\s*["']([^"']*)["']`, 'i'))?.[1] ?? null;
 }
 
-test('Blade Rhythm appears between Forni Pizza and Stream Deck', () => {
+test('Blade Rhythm appears between Forni Pizza and AquaShield', () => {
   const forni = html.indexOf('Forni Pizza Foodtrailer');
   const blade = html.indexOf('Blade Rhythm');
-  const streamDeck = html.indexOf('Stream Deck UI redesign');
+  const aquashield = html.indexOf('AquaShield');
 
   assert.ok(forni !== -1, 'Forni Pizza card is missing');
   assert.ok(blade !== -1, 'Blade Rhythm card is missing');
-  assert.ok(streamDeck !== -1, 'Stream Deck card is missing');
-  assert.ok(forni < blade && blade < streamDeck);
+  assert.ok(aquashield !== -1, 'AquaShield card is missing');
+  assert.ok(forni < blade && blade < aquashield);
 });
 
 test('Blade Rhythm card presents the playable JavaScript project', async () => {
