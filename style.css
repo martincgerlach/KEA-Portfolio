@@ -520,7 +520,7 @@ body.light-mode .project-card {
   --project-accent-light: #8a5b00;
 }
 
-.project-card--stream {
+.project-card--aquashield {
   --project-accent: #83b9ff;
   --project-accent-light: #2b64a7;
 }
@@ -654,6 +654,16 @@ body.light-mode .project-meta div {
   min-height: 310px;
   object-fit: cover;
   object-position: top center;
+}
+
+.project-media--screenshot {
+  align-self: center;
+  aspect-ratio: 16 / 10;
+}
+
+.project-media--screenshot img {
+  min-height: 0;
+  object-fit: contain;
 }
 
 .project-placeholder {
