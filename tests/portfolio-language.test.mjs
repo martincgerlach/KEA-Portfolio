@@ -46,7 +46,7 @@ test("every project card translates its visible type and supporting copy", () =>
     "life.type",
     "forni.type",
     "blade.type",
-    "stream.type",
+    "aquashield.type",
     "todo.type",
   ]);
   assert.match(html, /data-i18n="life\.placeholderLabel">In development</);
@@ -56,6 +56,11 @@ test("every project card translates its visible type and supporting copy", () =>
   assert.equal(translations.da["lg.role"], "Webdesign, frontend og indholdsstruktur");
   assert.equal(translations.da["blade.type"], "JavaScript-spil");
   assert.equal(translations.da["blade.role"], "Spillogik og frontend");
+  assert.equal(translations.en["aquashield.type"], "School project");
+  assert.equal(translations.da["aquashield.type"], "Skoleprojekt");
+  assert.equal(translations.da["aquashield.role"], "Frontendudvikling, interaktionsdesign og UX-writing");
+  assert.equal(translations.en["materials.schoolCase"], "School case");
+  assert.equal(translations.da["materials.schoolCase"], "Skolecase");
   assert.equal(translations.da["todo.type"], "Frontend-øvelse");
 });
 
