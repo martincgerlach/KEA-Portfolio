@@ -30,7 +30,7 @@ test("every project has its agreed role and accent class", () => {
     ["LifeScienceNextGen", "project-card--lifescience", "Information architecture, frontend and signup flow"],
     ["Forni Pizza Foodtrailer", "project-card--forni", "Web design and frontend"],
     ["Blade Rhythm", "project-card--blade", "Game logic and frontend"],
-    ["Stream Deck UI redesign", "project-card--stream", "UI analysis and redesign"],
+    ["AquaShield", "project-card--aquashield", "Frontend development, interaction design and UX writing"],
     ["Todo-liste webapp", "project-card--todo", "JavaScript and frontend"],
   ];
 
@@ -42,11 +42,12 @@ test("every project has its agreed role and accent class", () => {
   }
 });
 
-test("only the three technical projects expose verified GitHub links", () => {
+test("the four technical projects expose verified GitHub links", () => {
   const links = [
     ["Blade Rhythm", "https://github.com/martincgerlach/Blade-Rhythm"],
     ["Todo-liste webapp", "https://github.com/martincgerlach/eksperimenter"],
     ["LifeScienceNextGen", "https://github.com/martincgerlach/life-science-nextgen"],
+    ["AquaShield", "https://github.com/martincgerlach/AquaShield"],
   ];
 
   for (const [title, href] of links) {
@@ -59,7 +60,6 @@ test("only the three technical projects expose verified GitHub links", () => {
 
   assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), />View code</);
   assert.doesNotMatch(projectArticle("Forni Pizza Foodtrailer"), />View code</);
-  assert.doesNotMatch(projectArticle("Stream Deck UI redesign"), />View code</);
 });
 
 test("case accent and action hooks are defined without a new layout system", () => {
@@ -67,9 +67,17 @@ test("case accent and action hooks are defined without a new layout system", () 
   assert.match(css, /\.project-role\s*\{/);
   assert.match(css, /\.project-actions\s*\{/);
 
-  for (const modifier of ["lg", "lifescience", "forni", "blade", "stream", "todo"]) {
+  for (const modifier of ["lg", "lifescience", "forni", "blade", "aquashield", "todo"]) {
     assert.match(css, new RegExp(`\\.project-card--${modifier}\\s*\\{[^}]*--project-accent:`, "s"));
   }
+});
+
+test("AquaShield exposes live project and school case links", () => {
+  const article = projectArticle("AquaShield");
+  assert.match(article, /href="https:\/\/martincgerlach\.github\.io\/AquaShield\/"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+  assert.match(article, /href="https:\/\/github\.com\/martincgerlach\/AquaShield"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+  assert.match(html, /data-i18n="materials\.schoolCase">School case</);
+  assert.match(html, /href="https:\/\/martincgerlach\.github\.io\/portfolio-eksamen\/cases\/t04-aquashield\.html"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
 });
 
 test("mobile rules compact navigation and retain only the portrait visual", () => {
