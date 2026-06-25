@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study for Martin Gerlach's Blade Rhythm JavaScript game." />
+  <title>Blade Rhythm Case Study | Martin Gerlach</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="stylesheet" href="../style.css?v=bilingual" />
+</head>
+<body class="dark-mode">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <main id="main-content" class="case-shell">
+    <nav class="case-topline" aria-label="Case navigation">
+      <a class="button button-secondary" href="../index.html#projekter">Back to portfolio</a>
+      <span>Case study</span>
+    </nav>
+
+    <header class="case-hero">
+      <div class="case-hero-copy">
+        <p class="section-label">JavaScript game</p>
+        <h1>Blade Rhythm</h1>
+        <p>A timing-based browser game where the player attacks, heals and reacts to enemy movement. The project was mainly about connecting game logic, keyboard input and interface feedback.</p>
+        <div class="case-actions">
+          <a class="button button-primary" href="../blade-rhythm/index.html">Play game</a>
+          <a class="button button-secondary" href="https://github.com/martincgerlach/Blade-Rhythm" target="_blank" rel="noopener noreferrer">View code</a>
+        </div>
+      </div>
+      <figure class="case-visual">
+        <img src="../blade-rhythm-preview.webp" alt="Blade Rhythm gameplay with player, enemy and timing zone" width="1440" height="900" />
+      </figure>
+    </header>
+
+    <section class="case-summary" aria-label="Project summary">
+      <article>
+        <h2>Problem</h2>
+        <p>I wanted to build a small game that was more than a static interface: it needed timing, state changes and controls that felt understandable.</p>
+      </article>
+      <article>
+        <h2>Target group</h2>
+        <p>Visitors who want to see that I can build interactive JavaScript, not only static website layouts.</p>
+      </article>
+      <article>
+        <h2>My role</h2>
+        <p>Game concept, frontend, JavaScript logic, interface states and responsive adjustments.</p>
+      </article>
+      <article>
+        <h2>Tools</h2>
+        <p>HTML, CSS, vanilla JavaScript, DOM updates, keyboard input and simple automated tests.</p>
+      </article>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Process</p>
+        <h2>From simple idea to playable loop</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>1. Core loop</h3>
+          <p>I started with the basic loop: an enemy moves, the player reacts, and the game updates health, status and difficulty.</p>
+        </article>
+        <article>
+          <h3>2. Player feedback</h3>
+          <p>I added visible timing zones, button labels and status values so the player can understand what is happening while playing.</p>
+        </article>
+        <article>
+          <h3>3. Difficulty and reset</h3>
+          <p>The game increases pressure over time, while restart logic keeps the loop from duplicating timers or keeping old state alive.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Implementation</p>
+        <h2>Code and testing choices</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>JavaScript choice</h3>
+          <p>I used vanilla JavaScript because the project is small enough to understand without a framework. That also makes the game easier to present and explain.</p>
+        </article>
+        <article>
+          <h3>Interaction choice</h3>
+          <p>The game can be controlled with buttons and keyboard shortcuts. This made the interaction faster and helped the game feel less like a normal webpage.</p>
+        </article>
+        <article>
+          <h3>Testing and iteration</h3>
+          <p>I added automated checks for important behavior such as restart, keyboard controls and enemy attacks. I also tested the layout responsively so the arena does not break on smaller screens.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Result</p>
+        <h2>What the project shows</h2>
+      </div>
+      <div class="case-text-stack">
+        <p>The final result is a playable browser game with visible state changes, keyboard controls and a difficulty loop. In my portfolio, it shows that I can build interactive JavaScript and test important behavior instead of only styling static pages.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Reflection</p>
+        <h2>What I learned</h2>
+      </div>
+      <div class="case-text-stack">
+        <p>This project helped me understand how quickly small JavaScript projects need structure. Game state, timers and UI updates have to work together, otherwise the experience becomes confusing.</p>
+        <p><strong>Next step:</strong> I would improve the visual feedback, add clearer onboarding and make the difficulty curve easier to understand for first-time players.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
