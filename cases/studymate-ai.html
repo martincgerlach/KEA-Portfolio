@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study for Martin Gerlach's StudyMate AI prototype." />
+  <title>StudyMate AI Case Study | Martin Gerlach</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="stylesheet" href="../style.css?v=bilingual" />
+</head>
+<body class="dark-mode">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <main id="main-content" class="case-shell">
+    <nav class="case-topline" aria-label="Case navigation">
+      <a class="button button-secondary" href="../index.html#projekter">Back to portfolio</a>
+      <span>Case study</span>
+    </nav>
+
+    <header class="case-hero">
+      <div class="case-hero-copy">
+        <p class="section-label">AI prototype</p>
+        <h1>StudyMate AI</h1>
+        <p>StudyMate AI is an AI study platform prototype built to explore how students can use specialized AI assistants instead of one generic chatbot.</p>
+        <div class="case-actions">
+          <a class="button button-primary" href="https://martincgerlach.github.io/StudymateAI/" target="_blank" rel="noopener noreferrer">View prototype</a>
+          <a class="button button-secondary" href="https://github.com/martincgerlach/StudymateAI" target="_blank" rel="noopener noreferrer">View code</a>
+        </div>
+      </div>
+      <figure class="case-visual">
+        <div class="project-placeholder project-placeholder--studymate" role="img" aria-label="StudyMate AI prototype preview card">
+          <span>Almost ready</span>
+          <strong>StudyMate AI</strong>
+          <p>Specialized assistants, protected API flow and Cloudflare demo preparation.</p>
+        </div>
+      </figure>
+    </header>
+
+    <section class="case-summary" aria-label="Project summary">
+      <article>
+        <h2>Problem</h2>
+        <p>Students often use AI as one general chatbot, which can make answers feel generic and disconnected from the actual study task.</p>
+      </article>
+      <article>
+        <h2>Target group</h2>
+        <p>Multimedia Design students who need practical help with coding, design, UX, exams and project planning.</p>
+      </article>
+      <article>
+        <h2>My role</h2>
+        <p>Product idea, UI design, frontend, backend structure, prompt architecture, documentation and deployment preparation.</p>
+      </article>
+      <article>
+        <h2>Tools</h2>
+        <p>HTML, CSS, JavaScript, Node.js, Express, OpenAI API, Cloudflare Pages Functions and GitHub.</p>
+      </article>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Prototype status</p>
+        <h2>Almost live-demo ready</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>Portfolio case: ready</h3>
+          <p>The project is strong enough to show as a portfolio case because it demonstrates frontend, backend, AI architecture, security thinking and honest product reflection.</p>
+        </article>
+        <article>
+          <h3>Live AI demo: almost ready</h3>
+          <p>The GitHub Pages version is a static fallback demo. A Cloudflare Pages Functions version is prepared so the real OpenAI API call can run server-side.</p>
+        </article>
+        <article>
+          <h3>Production ready: no</h3>
+          <p>This is not a finished SaaS product. It still needs final Cloudflare deployment, real AI testing, stronger long-term usage protection and more user testing.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Process</p>
+        <h2>From chatbot idea to assistant system</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>1. Clear assistant roles</h3>
+          <p>I changed the idea from one general chatbot into six focused assistants: Study Coach, Coding Mentor, Design Critic, UX Researcher, Exam Coach and Project Manager.</p>
+        </article>
+        <article>
+          <h3>2. Product-like chat UI</h3>
+          <p>I built a dashboard and chat flow with assistant selection, prompt suggestions, loading states, error states, copy and retry actions.</p>
+        </article>
+        <article>
+          <h3>3. Honest portfolio scope</h3>
+          <p>I kept the project realistic by using vanilla frontend code and a simple backend instead of turning it into an over-engineered SaaS platform.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">AI architecture</p>
+        <h2>Protected API and assistant prompts</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>Frontend to backend</h3>
+          <p>The frontend sends the selected assistant and user message to `/api/chat`. The frontend never contains the OpenAI API key.</p>
+        </article>
+        <article>
+          <h3>Assistant data</h3>
+          <p>Each assistant has a role, description, example questions and internal skill stack. This makes the AI feel more focused than a random chatbot.</p>
+        </article>
+        <article>
+          <h3>Knowledge Base direction</h3>
+          <p>The local version can load Markdown knowledge files, so the assistant can become more relevant to school projects and personal notes over time.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Security</p>
+        <h2>Protecting the AI demo</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>API key protection</h3>
+          <p>The OpenAI key is only used on the server side. It is not stored in frontend JavaScript and should never be committed to GitHub.</p>
+        </article>
+        <article>
+          <h3>Usage limits</h3>
+          <p>The backend includes message length limits, token limits and basic rate limiting to make the public demo safer to share.</p>
+        </article>
+        <article>
+          <h3>Cloudflare preparation</h3>
+          <p>The Cloudflare version is prepared so the public portfolio demo can use server-side functions instead of exposing secrets in the browser.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Testing</p>
+        <h2>What has been checked</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>Interface testing</h3>
+          <p>I tested the main chat flow, assistant switching, empty states, loading states and responsive layout during development.</p>
+        </article>
+        <article>
+          <h3>API testing</h3>
+          <p>The local backend and Cloudflare Functions setup were tested with `/api/assistants` and `/api/chat`, including validation for empty messages and unknown assistants.</p>
+        </article>
+        <article>
+          <h3>What still needs testing</h3>
+          <p>The final Cloudflare deployment should be tested with a real OpenAI key before I present it as a live AI demo to employers.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Result</p>
+        <h2>What the project shows</h2>
+      </div>
+      <div class="case-text-stack">
+        <p>The result is a portfolio-ready AI study platform prototype. It shows that I can design a product idea, build a usable frontend, structure backend API routes and think about AI safety before publishing a demo.</p>
+        <p><strong>Next step:</strong> I would deploy the Cloudflare version, test `/api/chat` with a real OpenAI key, add a final screenshot and keep improving the Knowledge Base with more real project summaries.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

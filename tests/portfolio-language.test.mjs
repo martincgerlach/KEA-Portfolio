@@ -43,6 +43,7 @@ test("every project card translates its visible type and supporting copy", () =>
 
   assert.deepEqual(typeKeys, [
     "lg.type",
+    "studymate.type",
     "life.type",
     "forni.type",
     "blade.type",
@@ -52,6 +53,9 @@ test("every project card translates its visible type and supporting copy", () =>
   assert.match(html, /data-i18n="life\.placeholderLabel">In development</);
   assert.equal(translations.en["life.placeholderLabel"], "In development");
   assert.equal(translations.da["life.placeholderLabel"], "Under udvikling");
+  assert.equal(translations.en["studymate.type"], "AI prototype");
+  assert.equal(translations.da["studymate.type"], "AI-prototype");
+  assert.equal(translations.da["studymate.placeholderLabel"], "Næsten klar");
   assert.equal(translations.da["lg.type"], "Kundewebsite");
   assert.equal(translations.da["lg.role"], "Webdesign, frontend og indholdsstruktur");
   assert.equal(translations.da["blade.type"], "JavaScript-spil");

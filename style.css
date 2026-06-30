@@ -511,6 +511,11 @@ body.light-mode .project-card {
   --project-accent-light: #3f7f2c;
 }
 
+.project-card--studymate {
+  --project-accent: #9f7cff;
+  --project-accent-light: #5a35d6;
+}
+
 .project-card--forni {
   --project-accent: #ff8b6a;
   --project-accent-light: #b9492f;
@@ -739,6 +744,24 @@ body.light-mode .project-meta div {
 
 .project-placeholder--compact p {
   max-width: 280px;
+}
+
+.project-placeholder--studymate {
+  min-height: 300px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(159, 124, 255, 0.34), transparent 8rem),
+    radial-gradient(circle at 88% 18%, rgba(84, 240, 192, 0.16), transparent 9rem),
+    linear-gradient(135deg, rgba(159, 124, 255, 0.18), rgba(27, 39, 65, 0.88)),
+    var(--surface-raised);
+}
+
+.project-placeholder--studymate strong {
+  max-width: 100%;
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+}
+
+.project-placeholder--studymate p {
+  max-width: 330px;
 }
 
 .about-grid,
