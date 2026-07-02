@@ -8,6 +8,7 @@ const translations = await readFile(new URL("../portfolio-translations.js", impo
 
 const previews = [
   "lg-biocapital-preview.webp",
+  "studymate-preview.webp",
   "forni-preview.webp",
   "aquashield-preview.webp",
 ];
