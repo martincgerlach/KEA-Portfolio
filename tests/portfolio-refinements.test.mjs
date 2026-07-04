@@ -89,3 +89,61 @@ test("mobile rules compact navigation and retain only the portrait visual", () =
   assert.match(mobile, /\.portrait-card img\s*\{[^}]*aspect-ratio:\s*1/s);
   assert.match(mobile, /\.identity-card\s*\{[^}]*display:\s*none/s);
 });
+
+test("tech stack section uses honest levels and avoids fake skill scoring", () => {
+  const sectionStart = html.indexOf('<section id="faerdigheder"');
+  const sectionEnd = html.indexOf("</section>", sectionStart);
+  const section = html.slice(sectionStart, sectionEnd);
+
+  assert.match(section, /Tech Stack &amp; Tools|Tech Stack & Tools/);
+  assert.match(section, /Comfortable/);
+  assert.match(section, /Experience/);
+  assert.match(section, /Learning/);
+  assert.match(section, /Improving/);
+  assert.match(section, /Building with/);
+  assert.match(section, /StudyMate AI/);
+  assert.match(section, /Cloudflare - DNS, SSL and domain setup for personal web projects/);
+  assert.doesNotMatch(section, /expert/i);
+  assert.doesNotMatch(section, /progress/i);
+  assert.doesNotMatch(section, /\d+%/);
+  assert.doesNotMatch(section, /Vercel|Netlify/);
+});
+
+test("tech stack keeps project-connected technologies visible", () => {
+  const expected = [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "Responsive Design",
+    "DOM Manipulation",
+    "Fetch API",
+    "JSON",
+    "REST APIs",
+    "Node.js",
+    "Express.js",
+    "OpenAI API",
+    "Prompt Engineering",
+    "AI UX",
+    "Multi-Agent Architecture",
+    "Knowledge Base Systems",
+    "Figma",
+    "Adobe Photoshop",
+    "Adobe Premiere Pro",
+    "Git",
+    "GitHub",
+    "VS Code",
+    "npm",
+    "Thunder Client / Postman",
+    "Cloudflare",
+    "GitHub Pages",
+  ];
+
+  for (const item of expected) {
+    assert.match(html, new RegExp(item.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  assert.match(css, /\.tech-stack-grid\s*\{/);
+  assert.match(css, /\.tech-card\s*\{/);
+  assert.match(css, /\.tech-level\s*\{/);
+  assert.match(css, /\.tech-used\s*\{/);
+});
