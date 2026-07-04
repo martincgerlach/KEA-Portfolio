@@ -14,7 +14,7 @@ test("the four portfolio sections use the approved compact copy", () => {
   const expected = [
     ["Portfolio", "Selected projects", "A selection of websites, frontend projects and design cases showing how I work with structure, user experience and code."],
     ["Profile", "About me", "Hi, I'm Martin. I'm 22 and a qualified IT support specialist."],
-    ["What I work with", "Skills", "The areas and tools I use in my projects and want to keep developing."],
+    ["Tech stack", "Tech Stack &amp; Tools", "A practical overview of the technologies, tools and platforms I use when designing, building and testing digital products."],
     ["Applications", "CV and material", "Documents and cases that support my CV and applications."],
   ];
 
