@@ -74,6 +74,27 @@
 
     <section class="case-section">
       <div>
+        <p class="section-label">Research and test</p>
+        <h2>Testing the prototype as a new user</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>First-pass usability test</h3>
+          <p>I reviewed the prototype with five user tasks: understand the product, continue as demo, choose an assistant, send an MMD task and start a new chat. This was a self-review before asking external users.</p>
+        </article>
+        <article>
+          <h3>Main findings</h3>
+          <p>The product idea was clear, but the static GitHub Pages demo could sound like a technical error. Link-based questions were also confusing because the static demo cannot inspect external websites.</p>
+        </article>
+        <article>
+          <h3>Changes after testing</h3>
+          <p>I rewrote the fallback answer, added URL-aware guidance, made the user message bubble calmer and reduced the visual weight of copy actions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
         <p class="section-label">Process</p>
         <h2>From chatbot idea to assistant system</h2>
       </div>
@@ -84,7 +105,7 @@
         </article>
         <article>
           <h3>2. Product-like chat UI</h3>
-          <p>I built a dashboard and chat flow with assistant selection, prompt suggestions, loading states, error states, copy and retry actions.</p>
+          <p>I built a dashboard and chat flow with assistant selection, prompt suggestions, loading states, error states and calmer copy actions after testing the first version.</p>
         </article>
         <article>
           <h3>3. Honest portfolio scope</h3>
@@ -142,16 +163,16 @@
       </div>
       <div class="case-text-stack">
         <article>
-          <h3>Interface testing</h3>
-          <p>I tested the main chat flow, assistant switching, empty states, loading states and responsive layout during development.</p>
+          <h3>User flow testing</h3>
+          <p>I checked whether a new user can understand the product, enter the demo, choose an assistant, send a message and start a new chat on desktop and mobile.</p>
         </article>
         <article>
-          <h3>API testing</h3>
-          <p>The local backend and Cloudflare Functions setup were tested with `/api/assistants` and `/api/chat`, including validation for empty messages and unknown assistants.</p>
+          <h3>Interface testing</h3>
+          <p>I checked empty states, loading states, error states, static demo fallback text, copy actions, spacing and mobile layout so the prototype feels calmer and more product-like.</p>
         </article>
         <article>
           <h3>What still needs testing</h3>
-          <p>The final Cloudflare deployment should be tested with a real OpenAI key before I present it as a live AI demo to employers.</p>
+          <p>The final Cloudflare deployment should be tested with a real OpenAI key and 2-3 external users before I present it as a live AI demo to employers.</p>
         </article>
       </div>
     </section>
@@ -162,7 +183,7 @@
         <h2>What the project shows</h2>
       </div>
       <div class="case-text-stack">
-        <p>The result is a portfolio-ready AI study platform prototype. It shows that I can design a product idea, build a usable frontend, structure backend API routes and think about AI safety before publishing a demo.</p>
+        <p>The result is a portfolio-ready AI study platform prototype. It shows that I can design a product idea, test the main user flow, build a usable frontend, structure backend API routes and think about AI safety before publishing a demo.</p>
         <p><strong>Next step:</strong> I would deploy the Cloudflare version, test `/api/chat` with a real OpenAI key and keep improving the Knowledge Base with more real project summaries.</p>
       </div>
     </section>

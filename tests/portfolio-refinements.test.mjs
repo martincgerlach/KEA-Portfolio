@@ -26,6 +26,7 @@ test("profile facts appear after projects and before the about section", () => {
 
 test("every project has its agreed role and accent class", () => {
   const projects = [
+    ["StudyMate AI", "project-card--studymate", "Product idea, UI design, frontend, backend and AI architecture"],
     ["LG Bio Capital Partners", "project-card--lg", "Web design, frontend and content structure"],
     ["LifeScienceNextGen", "project-card--lifescience", "Information architecture, frontend and signup flow"],
     ["Forni Pizza Foodtrailer", "project-card--forni", "Web design and frontend"],
@@ -42,8 +43,9 @@ test("every project has its agreed role and accent class", () => {
   }
 });
 
-test("the four technical projects expose verified GitHub links", () => {
+test("the five technical projects expose verified GitHub links", () => {
   const links = [
+    ["StudyMate AI", "https://github.com/martincgerlach/StudymateAI"],
     ["Blade Rhythm", "https://github.com/martincgerlach/Blade-Rhythm"],
     ["Todo-liste webapp", "https://github.com/martincgerlach/eksperimenter"],
     ["LifeScienceNextGen", "https://github.com/martincgerlach/life-science-nextgen"],
@@ -67,7 +69,7 @@ test("case accent and action hooks are defined without a new layout system", () 
   assert.match(css, /\.project-role\s*\{/);
   assert.match(css, /\.project-actions\s*\{/);
 
-  for (const modifier of ["lg", "lifescience", "forni", "blade", "aquashield", "todo"]) {
+  for (const modifier of ["studymate", "lg", "lifescience", "forni", "blade", "aquashield", "todo"]) {
     assert.match(css, new RegExp(`\\.project-card--${modifier}\\s*\\{[^}]*--project-accent:`, "s"));
   }
 });

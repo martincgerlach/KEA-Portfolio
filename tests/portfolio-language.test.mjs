@@ -42,8 +42,8 @@ test("every project card translates its visible type and supporting copy", () =>
     .map((match) => match[1]);
 
   assert.deepEqual(typeKeys, [
-    "lg.type",
     "studymate.type",
+    "lg.type",
     "life.type",
     "forni.type",
     "blade.type",
