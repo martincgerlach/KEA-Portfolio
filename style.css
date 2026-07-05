@@ -539,13 +539,13 @@ body.light-mode .project-card {
 .project-card-featured {
   grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
   background:
-    linear-gradient(135deg, rgba(84, 240, 192, 0.12), rgba(131, 185, 255, 0.06)),
+    linear-gradient(135deg, color-mix(in srgb, var(--project-accent), transparent 86%), rgba(131, 185, 255, 0.06)),
     rgba(255, 255, 255, 0.052);
 }
 
 body.light-mode .project-card-featured {
   background:
-    linear-gradient(135deg, rgba(15, 126, 104, 0.09), rgba(29, 95, 174, 0.06)),
+    linear-gradient(135deg, color-mix(in srgb, var(--project-accent), transparent 90%), rgba(29, 95, 174, 0.05)),
     rgba(255, 255, 255, 0.9);
 }
 
