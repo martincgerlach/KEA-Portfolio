@@ -12,7 +12,7 @@ const translations = context.window.pageTranslations;
 
 test("portfolio defaults to English and loads translations before the engine", () => {
   assert.match(html, /<html lang="en"/);
-  assert.match(html, /<script src="portfolio-translations\.js\?v=20260711-2"><\/script>\s*<script src="language\.js\?v=20260711-2"><\/script>/s);
+  assert.match(html, /<script src="portfolio-translations\.js\?v=20260711-3"><\/script>\s*<script src="language\.js\?v=20260711-3"><\/script>/s);
 });
 
 test("portfolio exposes the approved flag controls", () => {
@@ -53,15 +53,20 @@ test("every project card translates its visible type and supporting copy", () =>
   assert.equal(translations.en["studymate.type"], "AI prototype");
   assert.equal(translations.da["studymate.type"], "AI-prototype");
   assert.equal(translations.da["lg.type"], "Kundewebsite");
-  assert.equal(translations.da["lg.role"], "Webdesign, frontend og indholdsstruktur");
   assert.equal(translations.da["blade.type"], "JavaScript-spil");
-  assert.equal(translations.da["blade.role"], "Spillogik og frontend");
   assert.equal(translations.en["aquashield.type"], "School project");
   assert.equal(translations.da["aquashield.type"], "Skoleprojekt");
-  assert.equal(translations.da["aquashield.role"], "Frontendudvikling, interaktionsdesign og UX-writing");
   assert.equal(translations.en["materials.schoolCase"], "School case");
   assert.equal(translations.da["materials.schoolCase"], "Skolecase");
   assert.doesNotMatch(html, /project-card--lifescience|project-card--todo/);
+});
+
+test("New Media and evidence groups are translated", () => {
+  assert.equal(translations.en["newMedia.heading"], "Why New Media");
+  assert.equal(translations.da["newMedia.heading"], "Hvorfor New Media");
+  assert.equal(translations.en["tech.liveHeading"], "Used in live projects");
+  assert.equal(translations.da["tech.prototypeHeading"], "Brugt i prototyper");
+  assert.equal(translations.en["tech.learningHeading"], "Currently learning");
 });
 
 test("mobile navigation keeps language and theme controls compact", () => {

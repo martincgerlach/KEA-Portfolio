@@ -24,19 +24,23 @@ test("profile facts appear after projects and before the about section", () => {
   assert.match(html, /Qualified IT support specialist and currently studying Multimedia Design/);
 });
 
-test("every project has its agreed role and accent class", () => {
+test("every featured project uses the compact evidence structure", () => {
   const projects = [
-    ["StudyMate AI", "project-card--studymate", "Product concept, UI design, frontend, backend and AI UX"],
-    ["LG Bio Capital Partners", "project-card--lg", "Web design, frontend and content structure"],
-    ["Blade Rhythm", "project-card--blade", "Game logic and frontend"],
-    ["AquaShield", "project-card--aquashield", "Frontend development, interaction design and UX writing"],
+    ["StudyMate AI", "project-card--studymate", "cases/studymate-ai.html"],
+    ["LG Bio Capital Partners", "project-card--lg", "cases/lg-bio-capital.html"],
+    ["Blade Rhythm", "project-card--blade", "cases/blade-rhythm.html"],
+    ["AquaShield", "project-card--aquashield", "cases/aquashield.html"],
   ];
 
-  for (const [title, className, role] of projects) {
+  for (const [title, className, caseHref] of projects) {
     const article = projectArticle(title);
     assert.match(article, new RegExp(className));
-    assert.match(article, /class="project-role"/);
-    assert.match(article, new RegExp(role));
+    assert.match(article, /data-i18n="[^"]+\.description"/);
+    assert.match(article, /class="project-proof"/);
+    assert.match(article, /class="tag-list"/);
+    assert.ok((article.match(/<li(?:\s[^>]*)?>/g) ?? []).length <= 4);
+    assert.match(article, new RegExp(`class="button button-primary" href="${caseHref.replace(".", "\\.")}"`));
+    assert.doesNotMatch(article, /project-role|project-meta/);
   }
 });
 
@@ -58,10 +62,14 @@ test("the three featured technical projects expose verified GitHub links", () =>
   assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), />View code</);
 });
 
-test("case accent and action hooks are defined without a new layout system", () => {
+test("project and evidence hooks are defined without a new layout system", () => {
   assert.match(css, /\.profile-facts\s*\{/);
-  assert.match(css, /\.project-role\s*\{/);
   assert.match(css, /\.project-actions\s*\{/);
+  assert.match(css, /\.tech-evidence-list\s*\{/);
+  assert.match(css, /\.tech-evidence-item\s*\{/);
+  assert.match(css, /\.tech-project-links\s*\{/);
+  assert.match(css, /\.new-media-note\s*\{/);
+  assert.doesNotMatch(css, /\.project-role\s*\{|\.project-meta\s*\{/);
 
   for (const modifier of ["studymate", "lg", "blade", "aquashield"]) {
     assert.match(css, new RegExp(`\\.project-card--${modifier}\\s*\\{[^}]*--project-accent:`, "s"));
@@ -86,22 +94,22 @@ test("mobile rules compact navigation and retain only the portrait visual", () =
   assert.match(mobile, /\.identity-card\s*\{[^}]*display:\s*none/s);
 });
 
-test("tech stack section uses honest levels and avoids fake skill scoring", () => {
+test("tech stack uses evidence groups instead of subjective levels", () => {
   const sectionStart = html.indexOf('<section id="faerdigheder"');
   const sectionEnd = html.indexOf("</section>", sectionStart);
   const section = html.slice(sectionStart, sectionEnd);
 
   assert.match(section, /Tech Stack &amp; Tools|Tech Stack & Tools/);
-  assert.match(section, /Comfortable/);
-  assert.match(section, /Experience/);
-  assert.match(section, /Learning/);
-  assert.match(section, /Improving/);
-  assert.match(section, /Building with/);
+  assert.match(section, /Used in live projects/);
+  assert.match(section, /Used in prototypes/);
+  assert.match(section, /Currently learning/);
   assert.match(section, /StudyMate AI/);
-  assert.match(section, /Cloudflare - DNS, SSL and domain setup for personal web projects/);
+  assert.match(section, /GerlachDesign\.dk — DNS, SSL and domain setup/);
   assert.doesNotMatch(section, /expert/i);
   assert.doesNotMatch(section, /progress/i);
   assert.doesNotMatch(section, /\d+%/);
+  assert.doesNotMatch(section, /Comfortable|Experience|Improving|Building with/);
+  assert.doesNotMatch(section, /Figma|Photoshop|Premiere Pro|VS Code|Thunder Client|Postman/);
   assert.doesNotMatch(section, /Vercel|Netlify/);
 });
 
@@ -122,15 +130,11 @@ test("tech stack keeps project-connected technologies visible", () => {
     "AI UX",
     "Role-based AI Assistants",
     "Knowledge Base Systems",
-    "Figma",
-    "Adobe Photoshop",
-    "Adobe Premiere Pro",
     "Git",
     "GitHub",
-    "VS Code",
     "npm",
-    "Thunder Client / Postman",
     "Cloudflare",
+    "Cloudflare Pages Functions",
     "GitHub Pages",
   ];
 
@@ -140,6 +144,7 @@ test("tech stack keeps project-connected technologies visible", () => {
 
   assert.match(css, /\.tech-stack-grid\s*\{/);
   assert.match(css, /\.tech-card\s*\{/);
-  assert.match(css, /\.tech-level\s*\{/);
-  assert.match(css, /\.tech-used\s*\{/);
+  assert.match(css, /\.tech-evidence-list\s*\{/);
+  assert.match(css, /\.tech-evidence-item\s*\{/);
+  assert.match(css, /\.tech-project-links\s*\{/);
 });
