@@ -12,7 +12,7 @@ const translations = context.window.pageTranslations;
 
 test("portfolio defaults to English and loads translations before the engine", () => {
   assert.match(html, /<html lang="en"/);
-  assert.match(html, /<script src="portfolio-translations\.js\?v=20260711"><\/script>\s*<script src="language\.js\?v=20260711"><\/script>/s);
+  assert.match(html, /<script src="portfolio-translations\.js\?v=20260711-2"><\/script>\s*<script src="language\.js\?v=20260711-2"><\/script>/s);
 });
 
 test("portfolio exposes the approved flag controls", () => {
@@ -32,8 +32,9 @@ test("every portfolio translation hook exists in both dictionaries", () => {
 });
 
 test("portfolio dictionary contains the approved core copy", () => {
-  assert.equal(translations.en["hero.heading"], "Multimedia Design student building clear, interactive digital products");
-  assert.equal(translations.da["hero.heading"], "Multimediedesignstuderende der bygger tydelige, interaktive digitale produkter");
+  assert.equal(translations.en["hero.heading"], "Martin Gerlach");
+  assert.equal(translations.da["hero.heading"], "Martin Gerlach");
+  assert.equal(translations.en["hero.role"], "Multimedia Design student focused on frontend, UX and creative technology.");
   assert.equal(translations.en["facts.backgroundValue"], "Qualified IT support specialist and currently studying Multimedia Design");
 });
 
