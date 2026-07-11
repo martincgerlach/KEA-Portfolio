@@ -8,15 +8,15 @@ function getAttribute(tag, name) {
   return tag.match(new RegExp(`\\b${name}\\s*=\\s*["']([^"']*)["']`, 'i'))?.[1] ?? null;
 }
 
-test('Blade Rhythm appears between Forni Pizza and AquaShield', () => {
-  const forni = html.indexOf('Forni Pizza Foodtrailer');
+test('Blade Rhythm appears between LG Bio Capital and AquaShield', () => {
+  const lg = html.indexOf('LG Bio Capital Partners');
   const blade = html.indexOf('Blade Rhythm');
   const aquashield = html.indexOf('AquaShield');
 
-  assert.ok(forni !== -1, 'Forni Pizza card is missing');
+  assert.ok(lg !== -1, 'LG Bio Capital card is missing');
   assert.ok(blade !== -1, 'Blade Rhythm card is missing');
   assert.ok(aquashield !== -1, 'AquaShield card is missing');
-  assert.ok(forni < blade && blade < aquashield);
+  assert.ok(lg < blade && blade < aquashield);
 });
 
 test('Blade Rhythm card presents the playable JavaScript project', async () => {
