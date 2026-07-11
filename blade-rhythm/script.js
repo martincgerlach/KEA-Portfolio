@@ -189,11 +189,11 @@ function updateUI() {
   const enemyEl = document.getElementById("enemy");
 
   if (target.race === "Orc") {
-    enemyEl.src = "orc.png";
+    enemyEl.src = "orc.webp";
   } else if (target.race === "Blood Elf") {
-    enemyEl.src = "blood-elf.png";
+    enemyEl.src = "blood-elf.webp";
   } else if (target.race === "Human") {
-    enemyEl.src = "human.png";
+    enemyEl.src = "human.webp";
   }
 
   const maxEnemyLeft = Math.max(

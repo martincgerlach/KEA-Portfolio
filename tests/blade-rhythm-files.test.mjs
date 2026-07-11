@@ -6,11 +6,11 @@ const files = [
   'index.html',
   'game.css',
   'script.js',
-  'arena.png',
-  'player.png',
-  'orc.png',
-  'blood-elf.png',
-  'human.png',
+  'arena.webp',
+  'player.webp',
+  'orc.webp',
+  'blood-elf.webp',
+  'human.webp',
   'favicon.png',
 ];
 
