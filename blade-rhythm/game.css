@@ -40,7 +40,7 @@ body {
   margin: 0;
   padding: clamp(18px, 4vw, 42px);
   background-color: var(--arena-black);
-  background-image: linear-gradient(rgba(16, 13, 11, 0.72), rgba(16, 13, 11, 0.9)), url("arena.png");
+  background-image: linear-gradient(rgba(16, 13, 11, 0.72), rgba(16, 13, 11, 0.9)), url("arena.webp");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;

@@ -13,7 +13,7 @@ const translations = context.window.pageTranslations;
 
 test("Blade Rhythm defaults to English and shares the language engine", () => {
   assert.match(html, /<html lang="en">/);
-  assert.match(html, /<script src="translations\.js"><\/script>\s*<script src="\.\.\/language\.js"><\/script>\s*<script src="script\.js"><\/script>/s);
+  assert.match(html, /<script src="translations\.js\?v=20260711"><\/script>\s*<script src="\.\.\/language\.js\?v=20260711"><\/script>\s*<script src="script\.js\?v=20260711"><\/script>/s);
 });
 
 test("Blade Rhythm exposes the approved flag controls", () => {
