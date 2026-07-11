@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Case study for Martin Gerlach's StudyMate AI prototype." />
+  <link rel="canonical" href="https://gerlachdesign.dk/cases/studymate-ai.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="StudyMate AI Case Study | Martin Gerlach" />
+  <meta property="og:description" content="An honest AI UX, frontend and backend prototype case with testing, implementation and current limitations." />
+  <meta property="og:image" content="https://gerlachdesign.dk/studymate-preview.webp" />
   <title>StudyMate AI Case Study | Martin Gerlach</title>
   <link rel="icon" type="image/png" href="../favicon.png" />
   <link rel="stylesheet" href="../style.css?v=bilingual" />
@@ -43,7 +48,7 @@
       </article>
       <article>
         <h2>My role</h2>
-        <p>Product idea, UI design, frontend, backend structure, prompt architecture, documentation and deployment preparation.</p>
+        <p>Product concept, UI design, frontend, backend structure, prompt design, documentation and deployment preparation.</p>
       </article>
       <article>
         <h2>Tools</h2>
@@ -54,15 +59,15 @@
     <section class="case-section">
       <div>
         <p class="section-label">Prototype status</p>
-        <h2>Almost live-demo ready</h2>
+        <h2>Current prototype status</h2>
       </div>
       <div class="case-text-stack">
         <article>
-          <h3>Portfolio case: ready</h3>
-          <p>The project is strong enough to show as a portfolio case because it demonstrates frontend, backend, AI architecture, security thinking and honest product reflection.</p>
+          <h3>Static portfolio demo</h3>
+          <p>The published GitHub Pages version demonstrates the interface, assistant selection and fallback states without pretending that the live AI backend is already deployed.</p>
         </article>
         <article>
-          <h3>Live AI demo: almost ready</h3>
+          <h3>Server-side version prepared</h3>
           <p>The GitHub Pages version is a static fallback demo. A Cloudflare Pages Functions version is prepared so the real OpenAI API call can run server-side.</p>
         </article>
         <article>
@@ -84,7 +89,7 @@
         </article>
         <article>
           <h3>Main findings</h3>
-          <p>The product idea was clear, but the static GitHub Pages demo could sound like a technical error. Link-based questions were also confusing because the static demo cannot inspect external websites.</p>
+          <p>The product concept was clear, but the static GitHub Pages demo could sound like a technical error. Link-based questions were also confusing because the static demo cannot inspect external websites.</p>
         </article>
         <article>
           <h3>Changes after testing</h3>
@@ -116,7 +121,39 @@
 
     <section class="case-section">
       <div>
-        <p class="section-label">AI architecture</p>
+        <p class="section-label">Implementation evidence</p>
+        <h2>How the prototype connects</h2>
+      </div>
+      <div>
+        <div class="case-evidence-flow" aria-label="StudyMate AI implementation flow">
+          <article class="case-evidence-step">
+            <span>Step 1</span>
+            <h3>Assistant choice</h3>
+            <p>The frontend stores the selected assistant role and presents matching prompt suggestions.</p>
+          </article>
+          <article class="case-evidence-step">
+            <span>Step 2</span>
+            <h3>API request</h3>
+            <p>The message and assistant ID are sent to <code>/api/chat</code> without exposing an API key.</p>
+          </article>
+          <article class="case-evidence-step">
+            <span>Step 3</span>
+            <h3>Prompt context</h3>
+            <p>The backend combines the assistant role, connected skills and relevant local knowledge.</p>
+          </article>
+          <article class="case-evidence-step">
+            <span>Step 4</span>
+            <h3>Response state</h3>
+            <p>The interface shows either a server response or an explicit static fallback with its limits.</p>
+          </article>
+        </div>
+        <p class="case-note"><strong>Evidence boundary:</strong> The flow is implemented in the repository. The public GitHub Pages demo remains static until the server-side Cloudflare deployment has been tested with a real key.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">AI implementation</p>
         <h2>Protected API and assistant prompts</h2>
       </div>
       <div class="case-text-stack">
@@ -183,7 +220,7 @@
         <h2>What the project shows</h2>
       </div>
       <div class="case-text-stack">
-        <p>The result is a portfolio-ready AI study platform prototype. It shows that I can design a product idea, test the main user flow, build a usable frontend, structure backend API routes and think about AI safety before publishing a demo.</p>
+        <p>The result is an AI study platform prototype with a usable frontend, structured backend routes and explicit deployment limits. The implementation shows how I connect product decisions, interface states and server-side API handling.</p>
         <p><strong>Next step:</strong> I would deploy the Cloudflare version, test `/api/chat` with a real OpenAI key and keep improving the Knowledge Base with more real project summaries.</p>
       </div>
     </section>

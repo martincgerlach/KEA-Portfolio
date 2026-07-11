@@ -26,13 +26,10 @@ test("profile facts appear after projects and before the about section", () => {
 
 test("every project has its agreed role and accent class", () => {
   const projects = [
-    ["StudyMate AI", "project-card--studymate", "Product idea, UI design, frontend, backend and AI architecture"],
+    ["StudyMate AI", "project-card--studymate", "Product concept, UI design, frontend, backend and AI UX"],
     ["LG Bio Capital Partners", "project-card--lg", "Web design, frontend and content structure"],
-    ["LifeScienceNextGen", "project-card--lifescience", "Information architecture, frontend and signup flow"],
-    ["Forni Pizza Foodtrailer", "project-card--forni", "Web design and frontend"],
     ["Blade Rhythm", "project-card--blade", "Game logic and frontend"],
     ["AquaShield", "project-card--aquashield", "Frontend development, interaction design and UX writing"],
-    ["Todo-liste webapp", "project-card--todo", "JavaScript and frontend"],
   ];
 
   for (const [title, className, role] of projects) {
@@ -43,12 +40,10 @@ test("every project has its agreed role and accent class", () => {
   }
 });
 
-test("the five technical projects expose verified GitHub links", () => {
+test("the three featured technical projects expose verified GitHub links", () => {
   const links = [
     ["StudyMate AI", "https://github.com/martincgerlach/StudymateAI"],
     ["Blade Rhythm", "https://github.com/martincgerlach/Blade-Rhythm"],
-    ["Todo-liste webapp", "https://github.com/martincgerlach/eksperimenter"],
-    ["LifeScienceNextGen", "https://github.com/martincgerlach/life-science-nextgen"],
     ["AquaShield", "https://github.com/martincgerlach/AquaShield"],
   ];
 
@@ -61,7 +56,6 @@ test("the five technical projects expose verified GitHub links", () => {
   }
 
   assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), />View code</);
-  assert.doesNotMatch(projectArticle("Forni Pizza Foodtrailer"), />View code</);
 });
 
 test("case accent and action hooks are defined without a new layout system", () => {
@@ -69,7 +63,7 @@ test("case accent and action hooks are defined without a new layout system", () 
   assert.match(css, /\.project-role\s*\{/);
   assert.match(css, /\.project-actions\s*\{/);
 
-  for (const modifier of ["studymate", "lg", "lifescience", "forni", "blade", "aquashield", "todo"]) {
+  for (const modifier of ["studymate", "lg", "blade", "aquashield"]) {
     assert.match(css, new RegExp(`\\.project-card--${modifier}\\s*\\{[^}]*--project-accent:`, "s"));
   }
 });
@@ -79,7 +73,7 @@ test("AquaShield exposes live project and school case links", () => {
   assert.match(article, /href="https:\/\/martincgerlach\.github\.io\/AquaShield\/"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
   assert.match(article, /href="https:\/\/github\.com\/martincgerlach\/AquaShield"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
   assert.match(html, /data-i18n="materials\.schoolCase">School case</);
-  assert.match(html, /href="https:\/\/martincgerlach\.github\.io\/portfolio-eksamen\/cases\/t04-aquashield\.html"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+  assert.match(html, /href="cases\/aquashield\.html"/);
 });
 
 test("mobile rules compact navigation and retain only the portrait visual", () => {
@@ -126,7 +120,7 @@ test("tech stack keeps project-connected technologies visible", () => {
     "OpenAI API",
     "Prompt Engineering",
     "AI UX",
-    "Multi-Agent Architecture",
+    "Role-based AI Assistants",
     "Knowledge Base Systems",
     "Figma",
     "Adobe Photoshop",

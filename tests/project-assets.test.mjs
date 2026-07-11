@@ -11,6 +11,7 @@ const previews = [
   "studymate-preview.webp",
   "forni-preview.webp",
   "aquashield-preview.webp",
+  "through-my-lens-preview.webp",
 ];
 
 test("project screenshots use optimized 1440 by 900 WebP assets", async () => {

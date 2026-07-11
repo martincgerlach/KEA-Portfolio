@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Case study for Martin Gerlach's Blade Rhythm JavaScript game." />
+  <link rel="canonical" href="https://gerlachdesign.dk/cases/blade-rhythm.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Blade Rhythm Case Study | Martin Gerlach" />
+  <meta property="og:description" content="A creative coding case about timing, game state, keyboard input and interface feedback in vanilla JavaScript." />
+  <meta property="og:image" content="https://gerlachdesign.dk/blade-rhythm-preview.webp" />
   <title>Blade Rhythm Case Study | Martin Gerlach</title>
   <link rel="icon" type="image/png" href="../favicon.png" />
   <link rel="stylesheet" href="../style.css?v=bilingual" />
@@ -39,7 +44,7 @@
       </article>
       <article>
         <h2>Target group</h2>
-        <p>Visitors who want to see that I can build interactive JavaScript, not only static website layouts.</p>
+        <p>People who enjoy short timing games, including portfolio visitors who want to try the interaction instead of only reading about the code.</p>
       </article>
       <article>
         <h2>My role</h2>
@@ -49,6 +54,38 @@
         <h2>Tools</h2>
         <p>HTML, CSS, vanilla JavaScript, DOM updates, keyboard input and simple automated tests.</p>
       </article>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Interaction evidence</p>
+        <h2>The game loop in four steps</h2>
+      </div>
+      <div>
+        <div class="case-evidence-flow" aria-label="Blade Rhythm game loop">
+          <article class="case-evidence-step">
+            <span>Step 1</span>
+            <h3>Enemy movement</h3>
+            <p>A timer updates the enemy position and creates the timing window for the player.</p>
+          </article>
+          <article class="case-evidence-step">
+            <span>Step 2</span>
+            <h3>Player input</h3>
+            <p>The attack button or Space key checks whether the enemy is inside a valid hit zone.</p>
+          </article>
+          <article class="case-evidence-step">
+            <span>Step 3</span>
+            <h3>State update</h3>
+            <p>Health, combo, difficulty and status values change according to the timing result.</p>
+          </article>
+          <article class="case-evidence-step">
+            <span>Step 4</span>
+            <h3>Visible feedback</h3>
+            <p>The interface reports the result and the next enemy cycle begins with the current state.</p>
+          </article>
+        </div>
+        <p class="case-note"><strong>Testing evidence:</strong> Automated checks cover restart timers, keyboard controls, enemy attacks and reachable timing zones. External playtesting is still a next step.</p>
+      </div>
     </section>
 
     <section class="case-section">

@@ -1,0 +1,51 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { access, readFile, stat } from "node:fs/promises";
+
+const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+
+test("homepage exposes the four featured projects only", () => {
+  const cards = html.match(/<article class="[^"]*\bproject-card\b[^"]*">/g) ?? [];
+  assert.equal(cards.length, 4);
+  for (const title of ["StudyMate AI", "LG Bio Capital Partners", "Blade Rhythm", "AquaShield"]) {
+    assert.match(html, new RegExp(`<h3>${title}</h3>`));
+  }
+  assert.doesNotMatch(html, /<h3>LifeScienceNextGen<\/h3>|<h3>Todo-liste webapp<\/h3>/);
+});
+
+test("submission metadata and indexability files are present", async () => {
+  assert.match(html, /<link rel="canonical" href="https:\/\/gerlachdesign\.dk\/"/);
+  assert.match(html, /<meta property="og:image" content="https:\/\/gerlachdesign\.dk\/social-preview\.png"/);
+  assert.match(html, /<meta name="twitter:card" content="summary_large_image"/);
+  for (const file of ["social-preview.png", "robots.txt", "sitemap.xml"]) {
+    await assert.doesNotReject(access(new URL(`../${file}`, import.meta.url)));
+  }
+});
+
+test("both current CV files are compact one-page application PDFs", async () => {
+  for (const name of ["CV_Martin_Gerlach_DA.pdf", "CV_Martin_Gerlach_EN.pdf"]) {
+    const file = new URL(`../${name}`, import.meta.url);
+    const bytes = await readFile(file);
+    const fileStat = await stat(file);
+    assert.equal(bytes.subarray(0, 4).toString("ascii"), "%PDF");
+    assert.ok(fileStat.size < 100 * 1024, `${name} should remain lightweight`);
+    assert.match(bytes.toString("latin1"), /\/Count 1\b/);
+  }
+});
+
+test("all four featured projects have evidence-led local case studies", async () => {
+  const names = ["studymate-ai", "lg-bio-capital", "blade-rhythm", "aquashield"];
+  for (const name of names) {
+    const source = await readFile(new URL(`../cases/${name}.html`, import.meta.url), "utf8");
+    assert.match(source, /<link rel="canonical"/);
+    assert.match(source, /Process|Implementation|Interaction flow|Game loop/);
+    assert.match(source, /Testing|Test evidence|Evidence boundary/);
+    assert.match(source, /Result|Reflection|What I learned/);
+  }
+});
+
+test("theme control persists a real theme without misusing pressed state", () => {
+  assert.match(html, /const THEME_KEY = "gerlach-theme"/);
+  assert.match(html, /window\.localStorage\.setItem\(THEME_KEY, nextTheme\)/);
+  assert.doesNotMatch(html.match(/<button id="toggle-theme"[^>]*>/)?.[0] ?? "", /aria-pressed/);
+});
