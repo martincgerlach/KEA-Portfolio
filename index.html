@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Martin Gerlach is a Multimedia Design student and qualified IT support specialist building frontend, UX and creative technology projects." data-i18n-attr="content:meta.description" />
-  <meta name="theme-color" content="#07100f" />
+  <meta name="theme-color" content="#0a0d10" />
   <link rel="canonical" href="https://gerlachdesign.dk/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gerlachdesign.dk/" />
@@ -20,50 +20,58 @@
   <meta name="twitter:image" content="https://gerlachdesign.dk/social-preview.png" />
   <title data-i18n="meta.title">Martin Gerlach | Frontend, UX & Creative Technology</title>
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="style.css?v=20260711-3" />
+  <link rel="stylesheet" href="style.css?v=20260727-4" />
 </head>
-<body class="dark-mode">
+<body class="home-page dark-mode">
   <a class="skip-link" href="#main-content" data-i18n="skip.content">Skip to content</a>
 
-  <nav class="main-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
-    <a class="nav-brand" href="#top" aria-label="Martin Gerlach home" data-i18n-attr="aria-label:nav.home">
-      <img src="Gerlach Design.svg" alt="Gerlach Design logo" />
-    </a>
-    <ul>
-      <li><a href="#projekter" data-i18n="nav.projects">Projects</a></li>
-      <li><a href="#om-mig" data-i18n="nav.about">About</a></li>
-      <li><a href="#faerdigheder" data-i18n="nav.skills">Tech Stack</a></li>
-      <li><a href="#materiale">CV</a></li>
-      <li><a href="#kontakt" data-i18n="nav.contact">Contact</a></li>
-    </ul>
-    <div class="nav-actions">
-      <div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:language.label">
-        <button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button>
-        <button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button>
-      </div>
-      <button id="toggle-theme" class="theme-toggle" type="button" aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button>
-    </div>
-  </nav>
-
   <header id="top" class="hero">
-    <div class="hero-copy">
-      <p class="section-label" data-i18n="hero.label">Portfolio</p>
-      <h1 data-i18n="hero.heading">Martin Gerlach</h1>
-      <p class="hero-role" data-i18n="hero.role">Multimedia Design student focused on frontend, UX and creative technology.</p>
-      <p class="hero-lede" data-i18n="hero.intro">I'm a Multimedia Design student and qualified IT support specialist. I combine UX, visual design and frontend development to build websites, prototypes and interactive experiences that are practical, accessible and easy to understand.</p>
-      <div class="hero-actions" aria-label="Primary actions" data-i18n-attr="aria-label:hero.actionsLabel">
-        <a class="button button-primary" href="#projekter" data-i18n="hero.projectsCta">View projects</a>
-        <a class="button button-secondary" href="#kontakt" data-i18n="hero.contactCta">Contact me</a>
+    <div class="hero-sticky">
+      <div class="hero-media" aria-hidden="true">
+        <div class="hero-video-fallback"></div>
+        <video id="hero-video" class="hero-video" autoplay muted playsinline preload="metadata" poster="videos/portfolio-hero-poster.jpg">
+          <source src="videos/portfolio-hero-web.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
       </div>
-    </div>
 
-    <div class="hero-visual" aria-label="Portrait and visual identity" data-i18n-attr="aria-label:hero.visualLabel">
-      <div class="portrait-card">
-        <img src="profile-picture.jpg" alt="Portrait of Martin Gerlach" data-i18n-attr="alt:hero.portraitAlt" />
+      <nav class="main-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
+        <a class="nav-brand" href="#top" aria-label="Martin Gerlach home" data-i18n-attr="aria-label:nav.home">MG</a>
+        <ul>
+          <li><a href="#projekter" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#om-mig" data-i18n="nav.about">About</a></li>
+          <li><a href="#faerdigheder" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#kontakt" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:language.label">
+            <button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button>
+            <button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button>
+          </div>
+          <button id="toggle-theme" class="theme-toggle" type="button" aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-copy">
+          <p class="hero-eyebrow" data-i18n="hero.label">Hi, I'm</p>
+          <h1 data-i18n="hero.heading">Martin Gerlach</h1>
+          <p class="hero-role" data-i18n="hero.role">SOFTWARE DEVELOPER • AI BUILDER • UX DESIGNER</p>
+          <p class="hero-lede" data-i18n="hero.intro">I build digital experiences that are intelligent, intuitive and impactful.</p>
+          <div class="hero-actions" aria-label="Primary actions" data-i18n-attr="aria-label:hero.actionsLabel">
+            <a class="button hero-cta" href="#projekter" data-i18n="hero.projectsCta">View my work</a>
+          </div>
+        </div>
       </div>
-      <div class="identity-card">
-        <img src="Gerlach Design.svg" alt="Gerlach Design logo" />
-        <p data-i18n="hero.identity">I am developing towards frontend, software and creative technology roles.</p>
+
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <span data-i18n="hero.scroll">Scroll to explore</span>
+        <span class="hero-scroll-arrow" aria-hidden="true">↓</span>
+      </div>
+
+      <div class="hero-transition" aria-hidden="true">
+        <p data-i18n="hero.discover">Discover my work</p>
+        <span aria-hidden="true">↓</span>
       </div>
     </div>
   </header>
@@ -72,8 +80,8 @@
     <section id="projekter" class="section section-projects">
       <div class="section-heading">
         <p class="section-label" data-i18n="projects.label">Featured work</p>
-        <h2 data-i18n="projects.heading">Featured projects &amp; products</h2>
-        <p data-i18n="projects.intro">Four projects showing how I combine user experience, visual decisions, frontend code and technical problem-solving.</p>
+        <h2 data-i18n="projects.heading">Featured projects</h2>
+        <p data-i18n="projects.intro">A focused selection of work combining design, code and practical problem-solving.</p>
       </div>
 
       <div class="project-list">
@@ -202,49 +210,54 @@
       </section>
     </section>
 
-    <aside class="profile-facts" aria-label="A short profile of Martin" data-i18n-attr="aria-label:facts.label">
-      <dl class="profile-facts-grid">
-        <div>
-          <dt data-i18n="facts.focus">Focus</dt>
-          <dd data-i18n="facts.focusValue">Building clear websites that are easy to use</dd>
-        </div>
-        <div>
-          <dt data-i18n="facts.background">Background</dt>
-          <dd data-i18n="facts.backgroundValue">Qualified IT support specialist and currently studying Multimedia Design</dd>
-        </div>
-        <div>
-          <dt data-i18n="facts.direction">Direction</dt>
-          <dd data-i18n="facts.directionValue">More code, stronger frontend and better case studies</dd>
-        </div>
-      </dl>
-    </aside>
-
     <section id="om-mig" class="section section-about">
-      <div class="section-heading">
-        <p class="section-label" data-i18n="about.label">Profile</p>
-        <h2 data-i18n="about.heading">About me</h2>
-        <p data-i18n="about.intro">Hi, I'm Martin. I study Multimedia Design and previously qualified as an IT support specialist. That combination helps me understand both how a digital product feels to use and how it works behind the interface.</p>
-      </div>
+      <div class="about-layout">
+        <div class="about-copy">
+          <div class="section-heading">
+            <p class="section-label" data-i18n="about.label">About me</p>
+            <h2 data-i18n="about.heading">Design, code and practical problem-solving</h2>
+            <p data-i18n="about.intro">Hi, I'm Martin. I study Multimedia Design and previously qualified as an IT support specialist. That combination helps me understand both how a digital product feels to use and how it works behind the interface.</p>
+          </div>
 
-      <div class="about-grid">
-        <article class="text-panel">
-          <h3 data-i18n="about.directionHeading">Professional direction</h3>
-          <p data-i18n="about.directionText">I am preparing for student frontend and software roles where I can contribute with JavaScript, responsive interfaces, UX and practical technical problem-solving.</p>
-        </article>
-        <article class="text-panel">
-          <h3 data-i18n="about.processHeading">How I work</h3>
-          <p data-i18n="about.processText">I start by understanding the need, clean up the structure and then build a solution that is easy to use. I like things to feel simple while still being technically sound.</p>
-        </article>
-        <article class="text-panel">
-          <h3 data-i18n="about.valueHeading">Academic direction</h3>
-          <p data-i18n="about.valueText">I want to explore creative coding, interaction design, AI UX and digital storytelling in an international learning environment while strengthening my frontend foundation.</p>
-        </article>
-      </div>
+          <aside class="profile-facts" aria-label="A short profile of Martin" data-i18n-attr="aria-label:facts.label">
+            <dl class="profile-facts-grid">
+              <div>
+                <dt data-i18n="facts.focus">Focus</dt>
+                <dd data-i18n="facts.focusValue">Building clear websites that are easy to use</dd>
+              </div>
+              <div>
+                <dt data-i18n="facts.background">Background</dt>
+                <dd data-i18n="facts.backgroundValue">Qualified IT support specialist and currently studying Multimedia Design</dd>
+              </div>
+              <div>
+                <dt data-i18n="facts.direction">Direction</dt>
+                <dd data-i18n="facts.directionValue">Frontend, software and creative technology</dd>
+              </div>
+            </dl>
+          </aside>
 
-      <aside class="new-media-note" aria-labelledby="new-media-heading">
-        <h3 id="new-media-heading" data-i18n="newMedia.heading">Why New Media</h3>
-        <p data-i18n="newMedia.text">I want to combine interactive design, creative coding and digital storytelling in an international academic environment. TMU’s New Media direction fits the way I want to connect creative ideas with technical implementation.</p>
-      </aside>
+        </div>
+
+        <figure class="about-portrait">
+          <img src="profile-picture.jpg" alt="Portrait of Martin Gerlach" data-i18n-attr="alt:about.imageAlt" loading="lazy" decoding="async" width="1200" height="1600" />
+        </figure>
+
+        <div class="about-grid">
+          <article class="text-panel">
+            <h3 data-i18n="about.directionHeading">Professional direction</h3>
+            <p data-i18n="about.directionText">I am preparing for student frontend and software roles where I can contribute with JavaScript, responsive interfaces, UX and practical technical problem-solving.</p>
+          </article>
+          <article class="text-panel">
+            <h3 data-i18n="about.processHeading">How I work</h3>
+            <p data-i18n="about.processText">I start by understanding the need, clean up the structure and then build a solution that is easy to use. I like things to feel simple while still being technically sound.</p>
+          </article>
+          <article class="text-panel">
+            <h3 data-i18n="about.valueHeading">Academic direction</h3>
+            <p data-i18n="about.valueText">I want to explore creative coding, interaction design, AI UX and digital storytelling in an international learning environment while strengthening my frontend foundation.</p>
+          </article>
+        </div>
+
+      </div>
     </section>
 
     <section id="faerdigheder" class="section section-skills">
@@ -346,7 +359,7 @@
       <div class="contact-panel">
         <div>
           <p class="section-label" data-i18n="contact.label">Contact</p>
-          <h2 data-i18n="contact.heading">Let's have a chat</h2>
+          <h2 data-i18n="contact.heading">Let's build something useful</h2>
           <p data-i18n="contact.text">I'm open to student frontend or software roles, AI UX projects and academic collaborations or exchange opportunities.</p>
         </div>
         <div class="contact-actions">
@@ -359,12 +372,18 @@
   </main>
 
   <footer class="site-footer">
-    <p data-i18n="footer.thanks">Thanks for visiting my portfolio.</p>
+    <a class="footer-brand" href="#top" aria-label="Back to top">MG</a>
     <p data-i18n="footer.copyright">© 2026 Gerlachdesign</p>
+    <nav class="footer-links" aria-label="Social links">
+      <a href="https://github.com/martincgerlach" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:martin.gerlach.2950@gmail.com">Email</a>
+    </nav>
   </footer>
 
-  <script src="portfolio-translations.js?v=20260711-3"></script>
-  <script src="language.js?v=20260711-3"></script>
+  <script src="portfolio-translations.js?v=20260727-1"></script>
+  <script src="language.js?v=20260727-1"></script>
+  <script src="hero-video.js?v=20260727-2"></script>
   <script>
     const button = document.getElementById("toggle-theme");
     const root = document.documentElement;
