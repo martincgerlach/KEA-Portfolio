@@ -12,7 +12,7 @@ const translations = context.window.pageTranslations;
 
 test("portfolio defaults to English and loads translations before the engine", () => {
   assert.match(html, /<html lang="en"/);
-  assert.match(html, /<script src="portfolio-translations\.js\?v=20260711-2"><\/script>\s*<script src="language\.js\?v=20260711-2"><\/script>/s);
+  assert.match(html, /<script src="portfolio-translations\.js\?v=20260727-1"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260727-2"><\/script>/s);
 });
 
 test("portfolio exposes the approved flag controls", () => {
@@ -34,7 +34,12 @@ test("every portfolio translation hook exists in both dictionaries", () => {
 test("portfolio dictionary contains the approved core copy", () => {
   assert.equal(translations.en["hero.heading"], "Martin Gerlach");
   assert.equal(translations.da["hero.heading"], "Martin Gerlach");
-  assert.equal(translations.en["hero.role"], "Multimedia Design student focused on frontend, UX and creative technology.");
+  assert.equal(translations.en["hero.role"], "SOFTWARE DEVELOPER • AI BUILDER • UX DESIGNER");
+  assert.equal(translations.en["hero.intro"], "I build digital experiences that are intelligent, intuitive and impactful.");
+  assert.equal(translations.en["hero.projectsCta"], "View my work");
+  assert.equal(translations.en["hero.discover"], "Discover my work");
+  assert.equal(translations.da["hero.scroll"], "Scroll for at udforske");
+  assert.equal(translations.da["hero.discover"], "Udforsk mit arbejde");
   assert.equal(translations.en["facts.backgroundValue"], "Qualified IT support specialist and currently studying Multimedia Design");
 });
 
@@ -53,20 +58,23 @@ test("every project card translates its visible type and supporting copy", () =>
   assert.equal(translations.en["studymate.type"], "AI prototype");
   assert.equal(translations.da["studymate.type"], "AI-prototype");
   assert.equal(translations.da["lg.type"], "Kundewebsite");
-  assert.equal(translations.da["lg.role"], "Webdesign, frontend og indholdsstruktur");
   assert.equal(translations.da["blade.type"], "JavaScript-spil");
-  assert.equal(translations.da["blade.role"], "Spillogik og frontend");
   assert.equal(translations.en["aquashield.type"], "School project");
   assert.equal(translations.da["aquashield.type"], "Skoleprojekt");
-  assert.equal(translations.da["aquashield.role"], "Frontendudvikling, interaktionsdesign og UX-writing");
   assert.equal(translations.en["materials.schoolCase"], "School case");
   assert.equal(translations.da["materials.schoolCase"], "Skolecase");
   assert.doesNotMatch(html, /project-card--lifescience|project-card--todo/);
 });
 
+test("technology evidence groups are translated", () => {
+  assert.equal(translations.en["tech.liveHeading"], "Used in live projects");
+  assert.equal(translations.da["tech.prototypeHeading"], "Brugt i prototyper");
+  assert.equal(translations.en["tech.learningHeading"], "Currently learning");
+});
+
 test("mobile navigation keeps language and theme controls compact", () => {
   const mobile = css.slice(css.indexOf("@media (max-width: 680px)"));
   assert.match(mobile, /\.nav-actions\s*\{[^}]*grid-column:\s*2/s);
-  assert.match(mobile, /\.theme-label\s*\{[^}]*display:\s*none/s);
   assert.match(mobile, /\.theme-toggle\s*\{[^}]*width:\s*44px/s);
+  assert.match(css, /\.main-nav \.theme-label\s*\{[^}]*clip-path:\s*inset\(50%\)/s);
 });

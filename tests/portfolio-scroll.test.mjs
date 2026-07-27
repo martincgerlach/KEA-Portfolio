@@ -39,17 +39,17 @@ function assertDeclaration(rule, property, value) {
   );
 }
 
-test('html enables smooth anchor scrolling with a fixed-header offset', () => {
+test('html enables smooth anchor scrolling with viewport breathing room', () => {
   const htmlRule = getRule(css, 'html');
 
   assertDeclaration(htmlRule, 'scroll-behavior', 'smooth');
   assertDeclaration(htmlRule, 'scroll-padding-top', '5.5rem');
 });
 
-test('portfolio sections preserve the fixed-header offset when targeted', () => {
+test('portfolio sections do not duplicate the global anchor offset', () => {
   const sectionRule = getRule(css, '.section');
 
-  assertDeclaration(sectionRule, 'scroll-margin-top', '5.5rem');
+  assert.doesNotMatch(sectionRule, /scroll-margin-top/);
 });
 
 test('reduced motion disables smooth scrolling on html', () => {
