@@ -20,46 +20,60 @@
   <meta name="twitter:image" content="https://gerlachdesign.dk/social-preview.png" />
   <title data-i18n="meta.title">Martin Gerlach | Frontend, UX & Creative Technology</title>
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="style.css?v=20260727-4" />
+  <link rel="stylesheet" href="style.css?v=20260731-1" />
 </head>
 <body class="home-page dark-mode">
   <a class="skip-link" href="#main-content" data-i18n="skip.content">Skip to content</a>
 
   <header id="top" class="hero">
+    <nav class="main-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
+      <a class="nav-brand" href="#top" aria-label="Martin Gerlach home" data-i18n-attr="aria-label:nav.home">MG</a>
+      <ul>
+        <li><a href="#projekter" data-nav-section="projekter" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#om-mig" data-nav-section="om-mig" data-i18n="nav.about">About</a></li>
+        <li><a href="#faerdigheder" data-nav-section="faerdigheder" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#kontakt" data-nav-section="kontakt" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:language.label">
+          <button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button>
+          <button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button>
+        </div>
+        <button id="toggle-theme" class="theme-toggle" type="button" aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button>
+      </div>
+    </nav>
+
     <div class="hero-sticky">
       <div class="hero-media" aria-hidden="true">
         <div class="hero-video-fallback"></div>
-        <video id="hero-video" class="hero-video" autoplay muted playsinline preload="metadata" poster="videos/portfolio-hero-poster.jpg">
-          <source src="videos/portfolio-hero-web.mp4" type="video/mp4" />
+        <video id="hero-video" class="hero-video hero-video--intro" autoplay muted loop playsinline preload="metadata" poster="videos/portfolio-hero-poster-20260729.jpg">
+          <source src="videos/portfolio-hero-intro-20260731.mp4" type="video/mp4" />
+        </video>
+        <video id="hero-work-video" class="hero-video hero-video--work" muted loop playsinline preload="metadata">
+          <source src="videos/portfolio-hero-work-20260731.mp4" type="video/mp4" />
         </video>
         <div class="hero-overlay"></div>
       </div>
 
-      <nav class="main-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
-        <a class="nav-brand" href="#top" aria-label="Martin Gerlach home" data-i18n-attr="aria-label:nav.home">MG</a>
-        <ul>
-          <li><a href="#projekter" data-i18n="nav.projects">Projects</a></li>
-          <li><a href="#om-mig" data-i18n="nav.about">About</a></li>
-          <li><a href="#faerdigheder" data-i18n="nav.skills">Skills</a></li>
-          <li><a href="#kontakt" data-i18n="nav.contact">Contact</a></li>
-        </ul>
-        <div class="nav-actions">
-          <div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:language.label">
-            <button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button>
-            <button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button>
-          </div>
-          <button id="toggle-theme" class="theme-toggle" type="button" aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button>
-        </div>
-      </nav>
-
       <div class="hero-content">
-        <div class="hero-copy">
+        <div class="hero-scene-copy hero-scene-copy--walking is-active" data-hero-copy="walking" aria-hidden="false">
           <p class="hero-eyebrow" data-i18n="hero.label">Hi, I'm</p>
-          <h1 data-i18n="hero.heading">Martin Gerlach</h1>
-          <p class="hero-role" data-i18n="hero.role">SOFTWARE DEVELOPER • AI BUILDER • UX DESIGNER</p>
-          <p class="hero-lede" data-i18n="hero.intro">I build digital experiences that are intelligent, intuitive and impactful.</p>
+          <h1 class="hero-scene-heading" data-i18n="hero.heading">Martin Gerlach</h1>
+          <div class="hero-scene-support">
+            <p class="hero-role" data-i18n="hero.role">SOFTWARE DEVELOPER • AI BUILDER • UX DESIGNER</p>
+            <p class="hero-lede" data-i18n="hero.intro">I build digital experiences that are intelligent, intuitive and impactful.</p>
+          </div>
           <div class="hero-actions" aria-label="Primary actions" data-i18n-attr="aria-label:hero.actionsLabel">
             <a class="button hero-cta" href="#projekter" data-i18n="hero.projectsCta">View my work</a>
+            <a class="button hero-secondary-cta" href="#om-mig" data-i18n="hero.aboutCta">About me</a>
+          </div>
+        </div>
+
+        <div class="hero-scene-copy hero-scene-copy--working" data-hero-copy="working" aria-hidden="true">
+          <p class="hero-eyebrow" data-i18n="hero.workingLabel">From idea to interface</p>
+          <h2 class="hero-scene-heading" data-i18n="hero.workingHeading">I turn ideas into working digital products.</h2>
+          <div class="hero-scene-support">
+            <p class="hero-lede" data-i18n="hero.workingText">Combining frontend development, thoughtful UX and practical AI to build experiences that solve real problems.</p>
           </div>
         </div>
       </div>
@@ -87,10 +101,10 @@
       <div class="project-list">
         <article class="project-card project-card-featured project-card--studymate">
           <div class="project-content">
-            <p class="project-type" data-i18n="studymate.type">AI prototype</p>
+            <p class="project-type" data-i18n="studymate.type">Featured AI Product</p>
             <h3>StudyMate AI</h3>
-            <p data-i18n="studymate.description">A study-platform prototype with focused AI assistant roles, a server-side API route and a clear chat flow.</p>
-            <p class="project-proof"><strong data-i18n="project.proof">What it shows:</strong> <span data-i18n="studymate.proof">Role-based assistant design, frontend and backend integration, and explicit deployment limits.</span></p>
+            <p data-i18n="studymate.description">An AI study workspace with specialized assistants, contextual project support and a protected server-side integration.</p>
+            <p class="project-contribution"><strong data-i18n="project.contribution">Contribution:</strong> <span data-i18n="studymate.contribution">Product concept, AI UX, interface design, frontend and backend integration.</span></p>
             <ul class="tag-list" aria-label="Technologies used for StudyMate AI" data-i18n-attr="aria-label:studymate.techAria">
               <li>AI UX</li>
               <li>JavaScript</li>
@@ -113,7 +127,6 @@
             <p class="project-type" data-i18n="lg.type">Client website</p>
             <h3>LG Bio Capital Partners</h3>
             <p data-i18n="lg.description">A live advisory website that makes specialist life-science and investment content feel clear and credible.</p>
-            <p class="project-proof"><strong data-i18n="project.proof">What it shows:</strong> <span data-i18n="lg.proof">Client work with a clear content hierarchy and responsive presentation.</span></p>
             <ul class="tag-list" aria-label="Technologies used for LG Bio Capital Partners" data-i18n-attr="aria-label:lg.techAria">
               <li>HTML</li>
               <li>CSS</li>
@@ -135,7 +148,6 @@
             <p class="project-type" data-i18n="blade.type">JavaScript game</p>
             <h3>Blade Rhythm</h3>
             <p data-i18n="blade.description">A timing-based browser game where the player attacks, heals and faces faster enemies as the difficulty increases.</p>
-            <p class="project-proof"><strong data-i18n="project.proof">What it shows:</strong> <span data-i18n="blade.proof">Playable JavaScript with state, timing and keyboard input.</span></p>
             <ul class="tag-list" aria-label="Technologies used for Blade Rhythm" data-i18n-attr="aria-label:blade.techAria">
               <li>JavaScript</li>
               <li data-i18n="tag.gameLoop">Game loop</li>
@@ -158,7 +170,6 @@
             <p class="project-type" data-i18n="aquashield.type">School project</p>
             <h3>AquaShield</h3>
             <p data-i18n="aquashield.description">A tsunami emergency guide designed to turn critical information into clear actions before, during and after a warning.</p>
-            <p class="project-proof"><strong data-i18n="project.proof">What it shows:</strong> <span data-i18n="aquashield.proof">UX writing, interaction and frontend around one clear task.</span></p>
             <ul class="tag-list" aria-label="Technologies used for AquaShield" data-i18n-attr="aria-label:aquashield.techAria">
               <li>HTML</li>
               <li>CSS</li>
@@ -215,27 +226,9 @@
         <div class="about-copy">
           <div class="section-heading">
             <p class="section-label" data-i18n="about.label">About me</p>
-            <h2 data-i18n="about.heading">Design, code and practical problem-solving</h2>
-            <p data-i18n="about.intro">Hi, I'm Martin. I study Multimedia Design and previously qualified as an IT support specialist. That combination helps me understand both how a digital product feels to use and how it works behind the interface.</p>
+            <h2 data-i18n="about.heading">I combine design thinking with technical problem-solving.</h2>
+            <p data-i18n="about.intro">I am a Multimedia Design student and qualified IT support specialist. My background helps me understand both how digital products feel to use and how they work behind the interface.</p>
           </div>
-
-          <aside class="profile-facts" aria-label="A short profile of Martin" data-i18n-attr="aria-label:facts.label">
-            <dl class="profile-facts-grid">
-              <div>
-                <dt data-i18n="facts.focus">Focus</dt>
-                <dd data-i18n="facts.focusValue">Building clear websites that are easy to use</dd>
-              </div>
-              <div>
-                <dt data-i18n="facts.background">Background</dt>
-                <dd data-i18n="facts.backgroundValue">Qualified IT support specialist and currently studying Multimedia Design</dd>
-              </div>
-              <div>
-                <dt data-i18n="facts.direction">Direction</dt>
-                <dd data-i18n="facts.directionValue">Frontend, software and creative technology</dd>
-              </div>
-            </dl>
-          </aside>
-
         </div>
 
         <figure class="about-portrait">
@@ -244,16 +237,16 @@
 
         <div class="about-grid">
           <article class="text-panel">
-            <h3 data-i18n="about.directionHeading">Professional direction</h3>
-            <p data-i18n="about.directionText">I am preparing for student frontend and software roles where I can contribute with JavaScript, responsive interfaces, UX and practical technical problem-solving.</p>
+            <h3 data-i18n="about.frontendHeading">Frontend development</h3>
+            <p data-i18n="about.frontendText">Building responsive and accessible interfaces with clear structure.</p>
           </article>
           <article class="text-panel">
-            <h3 data-i18n="about.processHeading">How I work</h3>
-            <p data-i18n="about.processText">I start by understanding the need, clean up the structure and then build a solution that is easy to use. I like things to feel simple while still being technically sound.</p>
+            <h3 data-i18n="about.aiHeading">AI and product UX</h3>
+            <p data-i18n="about.aiText">Exploring how focused AI tools can support real user workflows.</p>
           </article>
           <article class="text-panel">
-            <h3 data-i18n="about.valueHeading">Academic direction</h3>
-            <p data-i18n="about.valueText">I want to explore creative coding, interaction design, AI UX and digital storytelling in an international learning environment while strengthening my frontend foundation.</p>
+            <h3 data-i18n="about.technicalHeading">Technical problem-solving</h3>
+            <p data-i18n="about.technicalText">Using my IT background to create practical and reliable solutions.</p>
           </article>
         </div>
 
@@ -263,100 +256,61 @@
     <section id="faerdigheder" class="section section-skills">
       <div class="section-heading">
         <p class="section-label" data-i18n="skills.label">Tech stack</p>
-        <h2 data-i18n="skills.heading">Tech Stack &amp; Tools</h2>
-        <p data-i18n="skills.intro">Technologies connected to live work, prototypes and the areas I am currently learning.</p>
+        <h2 data-i18n="skills.heading">Technologies I work with</h2>
+        <p data-i18n="skills.intro">Used across portfolio projects, client work and prototypes.</p>
       </div>
 
-      <div class="skill-grid tech-stack-grid">
-        <article class="skill-card tech-card tech-card--evidence">
-          <h3 data-i18n="tech.liveHeading">Used in live projects</h3>
-          <ul class="tech-evidence-list">
-            <li class="tech-evidence-item">
-              <strong>HTML5 · CSS3</strong>
-              <span class="tech-project-links"><a href="cases/lg-bio-capital.html">LG Bio Capital</a><a href="cases/blade-rhythm.html">Blade Rhythm</a><a href="cases/aquashield.html">AquaShield</a><a href="https://forni.dk/" target="_blank" rel="noopener noreferrer">Forni</a></span>
-            </li>
-            <li class="tech-evidence-item">
-              <strong>JavaScript · DOM Manipulation</strong>
-              <span class="tech-project-links"><a href="cases/blade-rhythm.html">Blade Rhythm</a><a href="cases/aquashield.html">AquaShield</a></span>
-            </li>
-            <li class="tech-evidence-item">
-              <strong>Responsive Design</strong>
-              <span class="tech-project-links"><a href="cases/lg-bio-capital.html">LG Bio Capital</a><a href="cases/aquashield.html">AquaShield</a><a href="https://forni.dk/" target="_blank" rel="noopener noreferrer">Forni</a></span>
-            </li>
-            <li class="tech-evidence-item">
-              <strong>Git · GitHub</strong>
-              <span class="tech-project-links"><a href="https://github.com/martincgerlach/StudymateAI" target="_blank" rel="noopener noreferrer">StudyMate AI</a><a href="https://github.com/martincgerlach/Blade-Rhythm" target="_blank" rel="noopener noreferrer">Blade Rhythm</a><a href="https://github.com/martincgerlach/AquaShield" target="_blank" rel="noopener noreferrer">AquaShield</a></span>
-            </li>
-            <li class="tech-evidence-item">
-              <strong>Cloudflare</strong>
-              <span data-i18n="tech.cloudflareEvidence">GerlachDesign.dk — DNS, SSL and domain setup</span>
-            </li>
-            <li class="tech-evidence-item">
-              <strong>GitHub Pages</strong>
-              <span class="tech-project-links"><a href="https://martincgerlach.github.io/StudymateAI/" target="_blank" rel="noopener noreferrer">StudyMate demo</a><a href="https://martincgerlach.github.io/AquaShield/" target="_blank" rel="noopener noreferrer">AquaShield</a><a href="https://martincgerlach.github.io/Through-my-lens/" target="_blank" rel="noopener noreferrer">Through My Lens</a></span>
-            </li>
-          </ul>
+      <div class="tech-group-grid">
+        <article class="tech-group-card">
+          <span class="tech-group-icon" aria-hidden="true">&lt;/&gt;</span>
+          <h3 data-i18n="tech.frontendHeading">Core frontend</h3>
+          <ul class="tech-badge-list"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive Design</li><li>DOM</li><li>Fetch API</li></ul>
         </article>
-
-        <article class="skill-card tech-card tech-card--evidence">
-          <h3 data-i18n="tech.prototypeHeading">Used in prototypes</h3>
-          <ul class="tech-evidence-list">
-            <li class="tech-evidence-item"><strong>Node.js · Express.js</strong><span class="tech-project-links"><a href="cases/studymate-ai.html">StudyMate AI</a></span></li>
-            <li class="tech-evidence-item"><strong>Fetch API · JSON · REST APIs</strong><span class="tech-project-links"><a href="cases/studymate-ai.html">StudyMate AI</a></span></li>
-            <li class="tech-evidence-item"><strong>OpenAI API · Prompt Engineering</strong><span class="tech-project-links"><a href="cases/studymate-ai.html">StudyMate AI</a></span></li>
-            <li class="tech-evidence-item"><strong>Role-based AI Assistants · npm</strong><span class="tech-project-links"><a href="cases/studymate-ai.html">StudyMate AI</a></span></li>
-          </ul>
+        <article class="tech-group-card">
+          <span class="tech-group-icon" aria-hidden="true">{ }</span>
+          <h3 data-i18n="tech.backendHeading">Application and backend</h3>
+          <ul class="tech-badge-list"><li>Node.js</li><li>Express</li><li>REST APIs</li><li>JSON</li></ul>
         </article>
-
-        <article class="skill-card tech-card tech-card--evidence">
-          <h3 data-i18n="tech.learningHeading">Currently learning</h3>
-          <ul class="tech-evidence-list">
-            <li class="tech-evidence-item"><strong>AI UX</strong><span data-i18n="tech.aiUxEvidence">Applied and evaluated through StudyMate AI</span></li>
-            <li class="tech-evidence-item"><strong>Cloudflare Pages Functions</strong><span data-i18n="tech.functionsEvidence">Prepared for StudyMate’s server-side deployment</span></li>
-            <li class="tech-evidence-item"><strong>Knowledge Base Systems</strong><span data-i18n="tech.knowledgeEvidence">Explored in StudyMate’s local prototype</span></li>
-          </ul>
-          <a class="text-link" href="cases/studymate-ai.html" data-i18n="tech.learningEvidenceLink">See the StudyMate evidence</a>
+        <article class="tech-group-card">
+          <span class="tech-group-icon" aria-hidden="true">AI</span>
+          <h3>AI</h3>
+          <ul class="tech-badge-list"><li>OpenAI API</li><li>Prompt Engineering</li><li>Role-based AI Assistants</li><li>AI UX</li></ul>
+        </article>
+        <article class="tech-group-card">
+          <span class="tech-group-icon" aria-hidden="true">◇</span>
+          <h3 data-i18n="tech.designHeading">Design</h3>
+          <ul class="tech-badge-list"><li>Figma</li><li>Photoshop</li><li>Premiere Pro</li></ul>
+        </article>
+        <article class="tech-group-card tech-group-card--wide">
+          <span class="tech-group-icon" aria-hidden="true">↗</span>
+          <h3 data-i18n="tech.workflowHeading">Workflow and deployment</h3>
+          <ul class="tech-badge-list"><li>Git</li><li>GitHub</li><li>VS Code</li><li>npm</li><li>Cloudflare</li><li>GitHub Pages</li><li>Thunder Client</li></ul>
         </article>
       </div>
     </section>
 
     <section id="materiale" class="section section-materials">
       <div class="section-heading">
-        <p class="section-label" data-i18n="materials.label">Applications</p>
-        <h2 data-i18n="materials.heading">CV and supporting documents</h2>
-        <p data-i18n="materials.intro">Current application material and documentation of my technical background.</p>
+        <p class="section-label" data-i18n="materials.label">Background</p>
+        <h2 data-i18n="materials.heading">CV</h2>
+        <p data-i18n="materials.intro">Download my CV in Danish or English.</p>
       </div>
 
-      <div class="material-grid">
-        <article class="material-card">
-          <div>
-            <h3>CV</h3>
-            <p data-i18n="materials.cvText">Download my CV in Danish or English.</p>
-          </div>
-          <div class="button-row">
-            <a class="button button-primary" href="CV_Martin_Gerlach_DA.pdf" download data-i18n="materials.danishCv">Danish CV</a>
-            <a class="button button-secondary" href="CV_Martin_Gerlach_EN.pdf" download data-i18n="materials.englishCv">English CV</a>
-          </div>
-        </article>
-        <article class="material-card">
-          <div>
-            <h3 data-i18n="materials.schoolCase">School case</h3>
-            <p data-i18n="materials.schoolCaseText">Read the AquaShield case about interface development, interaction and clear emergency information.</p>
-          </div>
-          <a class="button button-secondary" href="cases/aquashield.html" data-i18n="materials.readSchoolCase">Read school case</a>
-        </article>
+      <div class="credentials-panel">
+        <a class="credential-link" href="CV_Martin_Gerlach_DA.pdf" download><span data-i18n="materials.danishCv">Danish CV</span><span aria-hidden="true">↓</span></a>
+        <a class="credential-link" href="CV_Martin_Gerlach_EN.pdf" download><span data-i18n="materials.englishCv">English CV</span><span aria-hidden="true">↓</span></a>
       </div>
     </section>
 
     <section id="kontakt" class="section section-contact">
       <div class="contact-panel">
         <div>
-          <p class="section-label" data-i18n="contact.label">Contact</p>
-          <h2 data-i18n="contact.heading">Let's build something useful</h2>
-          <p data-i18n="contact.text">I'm open to student frontend or software roles, AI UX projects and academic collaborations or exchange opportunities.</p>
+          <p class="section-label" data-i18n="contact.label">Get in touch</p>
+          <h2 data-i18n="contact.heading">Let's build something useful.</h2>
+          <p data-i18n="contact.text">I am open to student frontend and software roles, AI UX collaborations and ambitious digital projects.</p>
         </div>
         <div class="contact-actions">
-          <a class="button button-primary" href="mailto:martin.gerlach.2950@gmail.com" data-i18n="contact.email">Send email</a>
+          <a class="button button-primary" href="mailto:martin.gerlach.2950@gmail.com" data-i18n="contact.email">Send me an email</a>
           <a class="button button-secondary" href="https://github.com/martincgerlach" target="_blank" rel="noopener noreferrer" data-i18n="contact.github">GitHub</a>
           <a class="button button-secondary" href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
@@ -374,9 +328,9 @@
     </nav>
   </footer>
 
-  <script src="portfolio-translations.js?v=20260727-1"></script>
+  <script src="portfolio-translations.js?v=20260731-1"></script>
   <script src="language.js?v=20260727-1"></script>
-  <script src="hero-video.js?v=20260727-2"></script>
+  <script src="hero-video.js?v=20260731-1"></script>
   <script>
     const button = document.getElementById("toggle-theme");
     const root = document.documentElement;

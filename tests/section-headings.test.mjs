@@ -13,9 +13,9 @@ function cssRule(selector, source = css) {
 test("the four portfolio sections use the approved compact copy", () => {
   const expected = [
     ["Featured work", "Featured projects", "A focused selection of work combining design, code and practical problem-solving."],
-    ["About me", "Design, code and practical problem-solving", "Hi, I'm Martin. I study Multimedia Design and previously qualified as an IT support specialist."],
-    ["Tech stack", "Tech Stack &amp; Tools", "Technologies connected to live work, prototypes and the areas I am currently learning."],
-    ["Applications", "CV and supporting documents", "Current application material and documentation of my technical background."],
+    ["About me", "I combine design thinking with technical problem-solving\\.", "I am a Multimedia Design student and qualified IT support specialist."],
+    ["Tech stack", "Technologies I work with", "Used across portfolio projects, client work and prototypes."],
+    ["Background", "CV", "Download my CV in Danish or English."],
   ];
 
   for (const [label, title, copy] of expected) {
