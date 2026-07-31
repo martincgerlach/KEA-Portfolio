@@ -14,19 +14,20 @@ function projectArticle(title) {
   return html.slice(articleStart, articleEnd + "</article>".length);
 }
 
-test("profile facts are integrated into the about section after its introduction", () => {
+test("about section uses three concise focus areas without repeated profile facts", () => {
   const projects = html.indexOf('<section id="projekter"');
   const about = html.indexOf('<section id="om-mig"');
   const introduction = html.indexOf('data-i18n="about.intro"', about);
-  const facts = html.indexOf('class="profile-facts"', about);
-  const aboutEnd = html.indexOf('</section>', facts);
+  const frontend = html.indexOf('data-i18n="about.frontendHeading"', about);
+  const aboutEnd = html.indexOf('</section>', about);
 
-  assert.ok(projects < about && about < introduction && introduction < facts && facts < aboutEnd);
-  assert.doesNotMatch(html.slice(0, html.indexOf("</header>")), /hero-facts/);
-  assert.match(html, /Qualified IT support specialist and currently studying Multimedia Design/);
+  assert.ok(projects < about && about < introduction && introduction < frontend && frontend < aboutEnd);
+  assert.doesNotMatch(html.slice(about, aboutEnd), /profile-facts|Professional direction|Academic direction/);
+  assert.match(html, /AI and product UX/);
+  assert.match(html, /Technical problem-solving/);
 });
 
-test("every featured project uses the compact evidence structure", () => {
+test("every featured project uses the compact image-led structure", () => {
   const projects = [
     ["StudyMate AI", "project-card--studymate", "cases/studymate-ai.html"],
     ["LG Bio Capital Partners", "project-card--lg", "cases/lg-bio-capital.html"],
@@ -38,12 +39,14 @@ test("every featured project uses the compact evidence structure", () => {
     const article = projectArticle(title);
     assert.match(article, new RegExp(className));
     assert.match(article, /data-i18n="[^"]+\.description"/);
-    assert.match(article, /class="project-proof"/);
     assert.match(article, /class="tag-list"/);
     assert.ok((article.match(/<li(?:\s[^>]*)?>/g) ?? []).length <= 4);
     assert.match(article, new RegExp(`class="button button-primary" href="${caseHref.replace(".", "\\.")}"`));
-    assert.doesNotMatch(article, /project-role|project-meta/);
+    assert.doesNotMatch(article, /project-role|project-meta|project-proof/);
   }
+
+  assert.match(projectArticle("StudyMate AI"), /class="project-contribution"/);
+  assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), /project-contribution/);
 });
 
 test("the three featured technical projects expose verified GitHub links", () => {
@@ -64,25 +67,24 @@ test("the three featured technical projects expose verified GitHub links", () =>
   assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), />View code</);
 });
 
-test("project and evidence hooks are defined without a new layout system", () => {
-  assert.match(css, /\.profile-facts\s*\{/);
+test("new homepage hooks keep the layout in vanilla CSS", () => {
   assert.match(css, /\.project-actions\s*\{/);
-  assert.match(css, /\.tech-evidence-list\s*\{/);
-  assert.match(css, /\.tech-evidence-item\s*\{/);
-  assert.match(css, /\.tech-project-links\s*\{/);
+  assert.match(css, /\.hero-scene-copy\s*\{/);
+  assert.match(css, /\.tech-group-grid\s*\{/);
+  assert.match(css, /\.tech-group-card\s*\{/);
+  assert.match(css, /\.tech-badge-list\s*\{/);
+  assert.match(css, /\.credentials-panel\s*\{/);
   assert.doesNotMatch(css, /\.project-role\s*\{|\.project-meta\s*\{/);
-
-  for (const modifier of ["studymate", "lg", "blade", "aquashield"]) {
-    assert.match(css, new RegExp(`\\.project-card--${modifier}\\s*\\{[^}]*--project-accent:`, "s"));
-  }
+  assert.doesNotMatch(html, /React|Vue|Angular/);
 });
 
-test("AquaShield exposes live project and school case links", () => {
+test("AquaShield exposes live project and code links without a duplicate credentials link", () => {
   const article = projectArticle("AquaShield");
   assert.match(article, /href="https:\/\/martincgerlach\.github\.io\/AquaShield\/"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
   assert.match(article, /href="https:\/\/github\.com\/martincgerlach\/AquaShield"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
-  assert.match(html, /data-i18n="materials\.schoolCase">School case</);
   assert.match(html, /href="cases\/aquashield\.html"/);
+  const materials = html.slice(html.indexOf('<section id="materiale"'), html.indexOf('</section>', html.indexOf('<section id="materiale"')));
+  assert.doesNotMatch(materials, /AquaShield|cases\/aquashield\.html/);
 });
 
 test("mobile rules compact navigation and preserve the cinematic video hero", () => {
@@ -90,62 +92,63 @@ test("mobile rules compact navigation and preserve the cinematic video hero", ()
 
   assert.match(mobile, /\.main-nav\s*\{[^}]*grid-template-columns:\s*1fr auto/s);
   assert.match(mobile, /\.main-nav ul\s*\{[^}]*grid-column:\s*1\s*\/\s*-1/s);
-  assert.match(mobile, /\.hero-content\s*\{[^}]*align-items:\s*flex-end/s);
-  assert.match(mobile, /\.hero-video\s*\{[^}]*object-position:\s*50% center/s);
+  assert.match(mobile, /\.home-page \.hero\s*\{[^}]*min-height:\s*160vh/s);
+  assert.match(mobile, /\.home-page \.hero-video\s*\{[^}]*object-position:\s*40% center/s);
+  assert.match(mobile, /\.hero-scene-copy--working\s*\{[^}]*bottom:\s*7\.2rem/s);
   assert.doesNotMatch(css, /\.hero-visual\s*\{|\.portrait-card\s*\{|\.identity-card\s*\{/);
 });
 
-test("tech stack uses evidence groups instead of subjective levels", () => {
+test("tech stack uses concise categories instead of subjective levels", () => {
   const sectionStart = html.indexOf('<section id="faerdigheder"');
   const sectionEnd = html.indexOf("</section>", sectionStart);
   const section = html.slice(sectionStart, sectionEnd);
 
-  assert.match(section, /Tech Stack &amp; Tools|Tech Stack & Tools/);
-  assert.match(section, /Used in live projects/);
-  assert.match(section, /Used in prototypes/);
-  assert.match(section, /Currently learning/);
-  assert.match(section, /StudyMate AI/);
-  assert.match(section, /GerlachDesign\.dk — DNS, SSL and domain setup/);
+  assert.match(section, /Technologies I work with/);
+  assert.match(section, /Core frontend/);
+  assert.match(section, /Application and backend/);
+  assert.match(section, /Workflow and deployment/);
   assert.doesNotMatch(section, /expert/i);
   assert.doesNotMatch(section, /progress/i);
   assert.doesNotMatch(section, /\d+%/);
-  assert.doesNotMatch(section, /Comfortable|Experience|Improving|Building with/);
-  assert.doesNotMatch(section, /Figma|Photoshop|Premiere Pro|VS Code|Thunder Client|Postman/);
+  assert.doesNotMatch(section, /Comfortable|Experience|Improving|Building with|Currently learning/);
+  assert.match(section, /Figma|Photoshop|Premiere Pro/);
+  assert.match(section, /VS Code|Thunder Client/);
   assert.doesNotMatch(section, /Vercel|Netlify/);
 });
 
-test("tech stack keeps project-connected technologies visible", () => {
+test("tech stack keeps the approved technologies visible", () => {
   const expected = [
-    "HTML5",
-    "CSS3",
+    "HTML",
+    "CSS",
     "JavaScript",
     "Responsive Design",
-    "DOM Manipulation",
+    "DOM",
     "Fetch API",
     "JSON",
     "REST APIs",
     "Node.js",
-    "Express.js",
+    "Express",
     "OpenAI API",
     "Prompt Engineering",
     "AI UX",
     "Role-based AI Assistants",
-    "Knowledge Base Systems",
+    "Figma",
+    "Photoshop",
+    "Premiere Pro",
     "Git",
     "GitHub",
+    "VS Code",
     "npm",
     "Cloudflare",
-    "Cloudflare Pages Functions",
     "GitHub Pages",
+    "Thunder Client",
   ];
 
   for (const item of expected) {
     assert.match(html, new RegExp(item.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 
-  assert.match(css, /\.tech-stack-grid\s*\{/);
-  assert.match(css, /\.tech-card\s*\{/);
-  assert.match(css, /\.tech-evidence-list\s*\{/);
-  assert.match(css, /\.tech-evidence-item\s*\{/);
-  assert.match(css, /\.tech-project-links\s*\{/);
+  assert.match(css, /\.tech-group-grid\s*\{/);
+  assert.match(css, /\.tech-group-card\s*\{/);
+  assert.match(css, /\.tech-badge-list\s*\{/);
 });

@@ -26,8 +26,8 @@ test('Blade Rhythm card presents the playable JavaScript project', async () => {
   const preview = article.match(/<img\b[^>]*blade-rhythm-preview\.webp[^>]*>/i)?.[0] ?? '';
 
   assert.match(article, /<p class="project-type" data-i18n="blade\.type">JavaScript game<\/p>/);
-  assert.match(article, /Playable JavaScript with state, timing and keyboard input/);
-  assert.match(article, /data-i18n="blade\.proof"/);
+  assert.match(article, /A timing-based browser game where the player attacks, heals and faces faster enemies/);
+  assert.doesNotMatch(article, /project-proof|data-i18n="blade\.proof"/);
   assert.equal(getAttribute(cta, 'href'), 'blade-rhythm/index.html');
   assert.match(article, /class="button button-primary" href="cases\/blade-rhythm\.html"/);
   assert.equal(getAttribute(cta, 'target'), null);
