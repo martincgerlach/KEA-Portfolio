@@ -12,7 +12,7 @@ const translations = context.window.pageTranslations;
 
 test("portfolio defaults to English and loads translations before the engine", () => {
   assert.match(html, /<html lang="en"/);
-  assert.match(html, /<script src="portfolio-translations\.js\?v=20260731-1"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260731-1"><\/script>/s);
+  assert.match(html, /<script src="portfolio-translations\.js\?v=20260731-2"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260731-1"><\/script>/s);
 });
 
 test("portfolio exposes the approved flag controls", () => {
@@ -32,14 +32,23 @@ test("every portfolio translation hook exists in both dictionaries", () => {
 });
 
 test("portfolio dictionary contains the approved core copy", () => {
+  assert.equal(translations.en["meta.title"], "Martin Gerlach | Frontend Developer, AI Builder & UX Designer");
+  assert.equal(translations.da["meta.title"], "Martin Gerlach | Frontendudvikler, AI-bygger og UX-designer");
+  assert.equal(translations.en["nav.skills"], "Tech");
+  assert.equal(translations.da["nav.skills"], "Tech");
+  assert.match(html, /href="#faerdigheder" data-nav-section="faerdigheder" data-i18n="nav\.skills">Tech<\/a>/);
   assert.equal(translations.en["hero.heading"], "Martin Gerlach");
   assert.equal(translations.da["hero.heading"], "Martin Gerlach");
   assert.equal(translations.en["hero.role"], "SOFTWARE DEVELOPER • AI BUILDER • UX DESIGNER");
   assert.equal(translations.en["hero.intro"], "I build digital experiences that are intelligent, intuitive and impactful.");
   assert.equal(translations.en["hero.projectsCta"], "View my work");
   assert.equal(translations.en["hero.aboutCta"], "About me");
-  assert.equal(translations.en["hero.workingHeading"], "I turn ideas into working digital products.");
-  assert.equal(translations.da["hero.workingLabel"], "Fra idé til interface");
+  assert.equal(translations.en["hero.workingLabel"], "FROM CONCEPT TO CODE");
+  assert.equal(translations.en["hero.workingHeading"], "I design and build useful digital products.");
+  assert.equal(translations.en["hero.workingText"], "Combining frontend development, thoughtful UX and practical AI to turn ideas into working experiences.");
+  assert.equal(translations.da["hero.workingLabel"], "FRA KONCEPT TIL KODE");
+  assert.equal(translations.da["hero.workingHeading"], "Jeg designer og bygger brugbare digitale produkter.");
+  assert.equal(translations.da["hero.workingText"], "Jeg kombinerer frontendudvikling, gennemtænkt UX og praktisk AI for at omsætte idéer til digitale oplevelser, der virker.");
   assert.equal(translations.en["hero.discover"], "Discover my work");
   assert.equal(translations.da["hero.scroll"], "Scroll for at udforske");
   assert.equal(translations.da["hero.discover"], "Udforsk mit arbejde");
@@ -58,14 +67,18 @@ test("every project card translates its visible type and supporting copy", () =>
     "forni.type",
     "story.type",
   ]);
-  assert.equal(translations.en["studymate.type"], "Featured AI Product");
-  assert.equal(translations.da["studymate.type"], "Udvalgt AI-produkt");
+  assert.equal(translations.en["studymate.type"], "Featured AI Product · Prototype");
+  assert.equal(translations.da["studymate.type"], "Udvalgt AI-produkt · Prototype");
   assert.equal(translations.da["lg.type"], "Kundewebsite");
   assert.equal(translations.da["blade.type"], "JavaScript-spil");
   assert.equal(translations.en["aquashield.type"], "School project");
   assert.equal(translations.da["aquashield.type"], "Skoleprojekt");
-  assert.equal(translations.en["materials.heading"], "CV");
-  assert.equal(translations.da["materials.heading"], "CV");
+  assert.equal(translations.en["materials.label"], "Background and credentials");
+  assert.equal(translations.en["materials.heading"], "Professional background");
+  assert.equal(translations.en["materials.intro"], "Download my CV in Danish or English.");
+  assert.equal(translations.da["materials.label"], "Baggrund og kvalifikationer");
+  assert.equal(translations.da["materials.heading"], "Professionel baggrund");
+  assert.equal(translations.da["materials.intro"], "Download mit CV på dansk eller engelsk.");
   assert.doesNotMatch(html, /data-i18n="materials\.schoolCase"/);
   assert.doesNotMatch(html, /project-card--lifescience|project-card--todo/);
 });

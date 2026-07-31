@@ -27,8 +27,9 @@ test("hero presents the approved static content and four primary destinations", 
   assert.match(html, /class="button hero-cta" href="#projekter"[^>]*>View my work<\/a>/);
   assert.match(html, /class="button hero-secondary-cta" href="#om-mig"[^>]*>About me<\/a>/);
   assert.match(html, /data-hero-copy="working"/);
-  assert.match(html, />From idea to interface<\/p>/i);
-  assert.match(html, />I turn ideas into working digital products\.<\/h2>/);
+  assert.match(html, />FROM CONCEPT TO CODE<\/p>/);
+  assert.match(html, />I design and build useful digital products\.<\/h2>/);
+  assert.match(html, />Combining frontend development, thoughtful UX and practical AI to turn ideas into working experiences\.<\/p>/);
 
   const nav = html.slice(html.indexOf('<nav class="main-nav"'), html.indexOf("</nav>") + 6);
   for (const target of ["projekter", "om-mig", "faerdigheder", "kontakt"]) {

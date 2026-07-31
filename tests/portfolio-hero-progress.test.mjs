@@ -177,6 +177,7 @@ test("work copy remains readable until the final project transition", async () =
   assert.equal(runtime.hero.dataset.scrollStage, "work");
   assert.equal(runtime.hero.styles.get("--hero-heading-scroll-opacity"), "1.0000");
   assert.equal(runtime.hero.styles.get("--hero-transition-opacity"), "0.0000");
+  assert.equal(runtime.hero.styles.get("--hero-scroll-opacity"), "0.0000");
   assert.equal(runtime.heroLink.attributes.get("tabindex"), "-1");
 
   runtime.setHeroTop(-1120);
@@ -184,6 +185,7 @@ test("work copy remains readable until the final project transition", async () =
   runtime.runNextFrame();
   assert.equal(runtime.hero.dataset.scrollStage, "transition");
   assert.ok(Number(runtime.hero.styles.get("--hero-transition-opacity")) > 0);
+  assert.equal(runtime.hero.styles.get("--hero-scroll-opacity"), "0.0000");
 
   runtime.setHeroTop(-1400);
   runtime.listeners.get("scroll").handler();
@@ -191,6 +193,7 @@ test("work copy remains readable until the final project transition", async () =
   assert.equal(runtime.hero.dataset.scrollStage, "final");
   assert.equal(runtime.hero.styles.get("--hero-video-scale"), "1.0250");
   assert.equal(runtime.hero.styles.get("--hero-overlay-darkness"), "0.9400");
+  assert.equal(runtime.hero.styles.get("--hero-transition-opacity"), "0.0000");
 });
 
 test("scrolling back to the top restores the drone clip", async () => {
