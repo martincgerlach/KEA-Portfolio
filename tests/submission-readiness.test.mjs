@@ -15,6 +15,9 @@ test("homepage exposes the four featured projects only", () => {
 });
 
 test("submission metadata and indexability files are present", async () => {
+  assert.match(html, /<title data-i18n="meta\.title">Martin Gerlach \| Frontend Developer, AI Builder &amp; UX Designer<\/title>/);
+  assert.match(html, /<meta property="og:title" content="Martin Gerlach \| Frontend Developer, AI Builder & UX Designer"/);
+  assert.match(html, /<meta name="twitter:title" content="Martin Gerlach \| Frontend Developer, AI Builder & UX Designer"/);
   assert.match(html, /<link rel="canonical" href="https:\/\/gerlachdesign\.dk\/"/);
   assert.match(html, /<meta property="og:image" content="https:\/\/gerlachdesign\.dk\/social-preview\.png"/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image"/);
@@ -35,8 +38,9 @@ test("both current CV files are compact one-page application PDFs", async () => 
 });
 
 test("the education certificate is not published by the portfolio", async () => {
-  assert.doesNotMatch(html, /Uddannelsesbevis\.pdf|Trade certificate|Svendebrev/i);
-  assert.doesNotMatch(translations, /materials\.certificate|Trade certificate|Svendebrev/i);
+  assert.doesNotMatch(html, /Uddannelsesbevis\.pdf|Trade certificate|Svendebrev|IT Support Specialist Certificate/i);
+  assert.doesNotMatch(html, /(?:href|src)="[^"]*(?:certificate|uddannelsesbevis|svendebrev)/i);
+  assert.doesNotMatch(translations, /materials\.certificate|Trade certificate|Svendebrev|IT Support Specialist Certificate/i);
   for (const name of ["Uddannelsesbevis.pdf", "billede af svendebrev.jpg"]) {
     await assert.rejects(access(new URL(`../${name}`, import.meta.url)));
   }
