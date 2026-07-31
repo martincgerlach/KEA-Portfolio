@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { access, readFile, stat } from "node:fs/promises";
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+const translations = await readFile(new URL("../portfolio-translations.js", import.meta.url), "utf8");
 
 test("homepage exposes the four featured projects only", () => {
   const cards = html.match(/<article class="[^"]*\bproject-card\b[^"]*">/g) ?? [];
@@ -30,6 +31,14 @@ test("both current CV files are compact one-page application PDFs", async () => 
     assert.equal(bytes.subarray(0, 4).toString("ascii"), "%PDF");
     assert.ok(fileStat.size < 100 * 1024, `${name} should remain lightweight`);
     assert.match(bytes.toString("latin1"), /\/Count 1\b/);
+  }
+});
+
+test("the education certificate is not published by the portfolio", async () => {
+  assert.doesNotMatch(html, /Uddannelsesbevis\.pdf|Trade certificate|Svendebrev/i);
+  assert.doesNotMatch(translations, /materials\.certificate|Trade certificate|Svendebrev/i);
+  for (const name of ["Uddannelsesbevis.pdf", "billede af svendebrev.jpg"]) {
+    await assert.rejects(access(new URL(`../${name}`, import.meta.url)));
   }
 });
 
