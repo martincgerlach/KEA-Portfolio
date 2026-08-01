@@ -23,7 +23,7 @@ SOFT = HexColor("#EAF5F2")
 CONTENT = {
     "da": {
         "filename": "CV_Martin_Gerlach_DA.pdf",
-        "subtitle": "Multimediedesignstuderende | Frontend & kreativ teknologi",
+        "subtitle": "Multimediedesignstuderende | Frontend, AI-produkter & UX",
         "profile_title": "PROFIL",
         "profile": (
             "Jeg studerer multimediedesign og er uddannet IT-supporter. "
@@ -35,7 +35,7 @@ CONTENT = {
         "skills": [
             ("Frontend", "HTML, CSS, JavaScript, responsive design, DOM, Fetch API, JSON"),
             ("Backend", "Node.js og Express - erfaring fra projekter"),
-            ("AI / UX", "OpenAI API, promptdesign og AI UX - lærer gennem projekter"),
+            ("AI / UX", "OpenAI API, rollebaseret prompting og AI UX - anvendt i StudyMate AI"),
             ("Design", "Figma, Photoshop, Premiere Pro"),
             ("Tools", "Git, GitHub, VS Code, npm, Cloudflare, GitHub Pages"),
         ],
@@ -83,7 +83,7 @@ CONTENT = {
     },
     "en": {
         "filename": "CV_Martin_Gerlach_EN.pdf",
-        "subtitle": "Multimedia Design Student | Frontend & Creative Technology",
+        "subtitle": "Multimedia Design Student | Frontend, AI Products & UX",
         "profile_title": "PROFILE",
         "profile": (
             "I study Multimedia Design and am a qualified IT support specialist. "
@@ -95,7 +95,7 @@ CONTENT = {
         "skills": [
             ("Frontend", "HTML, CSS, JavaScript, responsive design, DOM, Fetch API, JSON"),
             ("Backend", "Node.js and Express - project experience"),
-            ("AI / UX", "OpenAI API, prompt design and AI UX - learning by building"),
+            ("AI / UX", "OpenAI API, role-based prompting and AI UX - applied in StudyMate AI"),
             ("Design", "Figma, Photoshop, Premiere Pro"),
             ("Tools", "Git, GitHub, VS Code, npm, Cloudflare, GitHub Pages"),
         ],
@@ -136,7 +136,7 @@ CONTENT = {
                 "September 2024 - March 2025",
                 "Support, onboarding, device setup, Active Directory, MFA and meeting-room technology for a large organisation. The role strengthened systematic troubleshooting and clear user communication.",
             ),
-            ("IT Support Trainee - MT Hojgaard", "October 2022 - September 2024", ""),
+            ("IT Support Trainee - MT Højgaard", "October 2022 - September 2024", ""),
         ],
         "portfolio_title": "PORTFOLIO",
         "portfolio_text": "Case studies, live projects and code: gerlachdesign.dk",

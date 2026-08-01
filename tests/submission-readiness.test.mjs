@@ -43,12 +43,18 @@ test("both current CV files are compact one-page application PDFs", async () => 
   assert.match(cvSource, /September 2024 - marts 2025/);
   assert.match(cvSource, /September 2024 - March 2025/);
   assert.doesNotMatch(cvSource, /MT Højgaard[\s\S]{0,180}(?:present|nu)/i);
+  assert.match(cvSource, /Multimediedesignstuderende \| Frontend, AI-produkter & UX/);
+  assert.match(cvSource, /Multimedia Design Student \| Frontend, AI Products & UX/);
+  assert.match(cvSource, /OpenAI API, rollebaseret prompting og AI UX - anvendt i StudyMate AI/);
+  assert.match(cvSource, /OpenAI API, role-based prompting and AI UX - applied in StudyMate AI/);
+  assert.match(cvSource, /IT Support Trainee - MT Højgaard/);
+  assert.doesNotMatch(cvSource, /lærer gennem projekter|learning by building|currently learning/i);
 });
 
 test("the education certificate is not published by the portfolio", async () => {
   assert.doesNotMatch(html, /Uddannelsesbevis\.pdf|Trade certificate|Svendebrev|IT Support Specialist Certificate/i);
   assert.doesNotMatch(html, /(?:href|src)="[^"]*(?:certificate|uddannelsesbevis|svendebrev)/i);
-  assert.doesNotMatch(translations, /materials\.certificate|Trade certificate|Svendebrev|IT Support Specialist Certificate/i);
+  assert.doesNotMatch(translations, /materials\.certificate(?:Link|Download)|Trade certificate|Svendebrev|IT Support Specialist Certificate/i);
   for (const name of ["Uddannelsesbevis.pdf", "billede af svendebrev.jpg"]) {
     await assert.rejects(access(new URL(`../${name}`, import.meta.url)));
   }

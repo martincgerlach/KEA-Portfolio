@@ -40,9 +40,11 @@ test("credential links clearly download the two public CV PDFs", () => {
   assert.match(materials, /class="qualification-summary"[^>]*aria-label="IT support qualification"/);
   assert.match(materials, /Qualified IT Support Specialist/);
   assert.match(materials, /Completed in 2024/);
+  assert.match(materials, /Certificate available upon request\./);
   const qualification = materials.slice(materials.indexOf('class="qualification-summary"'), materials.indexOf("</div>", materials.indexOf('class="qualification-summary"')));
   assert.doesNotMatch(qualification, /<a\b|href=/);
-  assert.doesNotMatch(`${html}\n${translationSource}`, /certificate|uddannelsesbevis|svendebrev/i);
+  assert.doesNotMatch(`${html}\n${translationSource}`, /(?:href|src)="[^"]*(?:certificate|uddannelsesbevis|svendebrev)/i);
+  assert.doesNotMatch(`${html}\n${translationSource}`, /materials\.certificate(?:Link|Download)|Trade certificate|Svendebrev|IT Support Specialist Certificate/i);
 });
 
 test("homepage SEO and social metadata follow the active language", () => {
