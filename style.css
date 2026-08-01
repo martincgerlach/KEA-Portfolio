@@ -3018,6 +3018,12 @@ body.light-mode .case-evidence-step {
   font-weight: 700;
 }
 
+.home-page .qualification-details {
+  display: grid;
+  gap: 0.15rem;
+  text-align: right;
+}
+
 .home-page .credentials-panel {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3151,6 +3157,10 @@ body.light-mode .case-evidence-step {
     display: grid;
     justify-items: start;
     gap: 0.3rem;
+  }
+
+  .home-page .qualification-details {
+    text-align: left;
   }
 
   .home-page .main-nav {
