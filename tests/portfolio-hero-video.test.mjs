@@ -10,10 +10,10 @@ test("hero uses the finished local video with a poster and accessible fallback",
   assert.match(html, /<header id="top" class="hero">/);
   assert.match(
     html,
-    /<video id="hero-video" class="hero-video hero-video--intro" autoplay muted loop playsinline preload="metadata" poster="videos\/portfolio-hero-poster-20260729\.jpg">/,
+    /<video id="hero-video" class="hero-video hero-video--intro" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="videos\/portfolio-hero-poster-20260729\.jpg">/,
   );
   assert.match(html, /<source src="videos\/portfolio-hero-intro-20260731\.mp4" type="video\/mp4" \/>/);
-  assert.match(html, /<video id="hero-work-video" class="hero-video hero-video--work" muted loop playsinline preload="metadata">/);
+  assert.match(html, /<video id="hero-work-video" class="hero-video hero-video--work" width="1280" height="720" muted loop playsinline preload="none">/);
   assert.match(html, /<source src="videos\/portfolio-hero-work-20260731\.mp4" type="video\/mp4" \/>/);
   assert.doesNotMatch(html, /<video[^>]*\scontrols(?:\s|=|>)/);
   assert.match(html, /class="hero-video-fallback"/);
@@ -54,7 +54,7 @@ test("hero progress is normalized without hijacking or animating scroll", () => 
   assert.match(script, /dataset\.scrollProgress/);
   assert.match(script, /window\.requestAnimationFrame\(updateScrollProgress\)/);
   assert.match(script, /addEventListener\("scroll", requestScrollUpdate, \{ passive: true \}\)/);
-  assert.doesNotMatch(script, /preventDefault|scrollTo|scrollBy|scrollIntoView|ScrollTrigger|gsap/i);
+  assert.doesNotMatch(script, /scrollTo|scrollBy|scrollIntoView|ScrollTrigger|gsap/i);
   assert.doesNotMatch(css, /var\(--hero-progress\)/);
 });
 
@@ -83,10 +83,13 @@ test("the two video scenes have deterministic playback and fallback states", () 
   assert.match(script, /hero-video-fallback-active/);
 });
 
-test("project navigation stays native and scene changes never alter playback speed", () => {
-  assert.doesNotMatch(script, /heroCta\?\.addEventListener\("click"/);
+test("project navigation uses a direct native hash jump without changing playback speed", () => {
+  assert.match(script, /const projectsCta = introCopy\.querySelector\("\.hero-cta"\)/);
+  assert.match(script, /projectsCta\?\.addEventListener\("click"/);
+  assert.match(script, /window\.location\.hash = projectsCta\.hash/);
+  assert.match(script, /event\.preventDefault\(\)/);
   assert.doesNotMatch(script, /suspendVideoScrub|scrubVideo/);
-  assert.doesNotMatch(script, /preventDefault\(\)/);
+  assert.doesNotMatch(script, /scrollTo|scrollBy|scrollIntoView/);
   assert.match(script, /progress >= 0\.1\) switchScene\("work"\)/);
   assert.doesNotMatch(script, /currentTime\s*=\s*progress|progress\s*\*\s*(?:introVideo|workVideo)\.duration/);
   assert.doesNotMatch(script, /playbackRate\s*=/);

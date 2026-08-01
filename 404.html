@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="author" content="Martin Gerlach" />
+  <meta name="description" content="The requested page could not be found on Martin Gerlach’s portfolio." data-i18n-attr="content:error.metaDescription" />
+  <meta id="theme-color" name="theme-color" content="#0a0d10" />
+  <title data-i18n="error.metaTitle">Page not found | Martin Gerlach</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="style.css?v=20260731-2" />
+</head>
+<body class="error-page dark-mode">
+  <a class="skip-link" href="#main-content" data-i18n="skip.content">Skip to content</a>
+
+  <header class="error-header">
+    <nav class="main-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
+      <a class="nav-brand" href="index.html" aria-label="Martin Gerlach home" data-i18n-attr="aria-label:nav.home">MG</a>
+      <ul>
+        <li><a href="index.html#projekter" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="index.html#om-mig" data-i18n="nav.about">About</a></li>
+        <li><a href="index.html#faerdigheder" data-i18n="nav.skills">Tech</a></li>
+        <li><a href="index.html#kontakt" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:language.label">
+          <button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button>
+          <button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button>
+        </div>
+        <button id="toggle-theme" class="theme-toggle" type="button" aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content" class="error-main">
+    <div class="error-copy">
+      <p class="section-label" data-i18n="error.label">Error 404</p>
+      <h1 data-i18n="error.heading">Page not found</h1>
+      <p data-i18n="error.text">The page may have moved or the link may be outdated.</p>
+      <div class="error-actions">
+        <a class="button button-primary" href="index.html" data-i18n="error.home">Back to homepage</a>
+        <a class="button button-secondary" href="index.html#projekter" data-i18n="error.projects">View projects</a>
+      </div>
+    </div>
+    <div class="error-mark" aria-hidden="true">404</div>
+  </main>
+
+  <footer class="error-footer">
+    <p data-i18n="footer.copyright">© 2026 Martin Gerlach. No tracking or analytics.</p>
+    <a href="mailto:martin.gerlach.2950@gmail.com" data-i18n="footer.email">Email</a>
+  </footer>
+
+  <script src="portfolio-translations.js?v=20260731-3"></script>
+  <script src="language.js?v=20260727-1"></script>
+  <script>
+    const button = document.getElementById("toggle-theme");
+    const root = document.documentElement;
+    const themeColor = document.getElementById("theme-color");
+    const THEME_KEY = "gerlach-theme";
+
+    const applyTheme = (theme) => {
+      const isLight = theme === "light";
+      document.body.classList.toggle("dark-mode", !isLight);
+      document.body.classList.toggle("light-mode", isLight);
+      root.classList.toggle("dark-mode", !isLight);
+      root.classList.toggle("light-mode", isLight);
+      themeColor.setAttribute("content", isLight ? "#f5f4f8" : "#0a0d10");
+    };
+
+    const updateThemeLabel = () => {
+      const isDark = document.body.classList.contains("dark-mode");
+      button.querySelector(".theme-label").textContent = GerlachLanguage.t(isDark ? "theme.lightLabel" : "theme.darkLabel");
+      button.setAttribute("aria-label", GerlachLanguage.t(isDark ? "theme.light" : "theme.dark"));
+      button.querySelector(".theme-icon").textContent = isDark ? "☀" : "☾";
+    };
+
+    button.addEventListener("click", () => {
+      const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+      applyTheme(nextTheme);
+      try {
+        window.localStorage.setItem(THEME_KEY, nextTheme);
+      } catch {
+        // Theme switching still works when storage is unavailable.
+      }
+      updateThemeLabel();
+    });
+
+    try {
+      applyTheme(window.localStorage.getItem(THEME_KEY) === "light" ? "light" : "dark");
+    } catch {
+      applyTheme("dark");
+    }
+    updateThemeLabel();
+    document.addEventListener("languagechange", updateThemeLabel);
+  </script>
+</body>
+</html>

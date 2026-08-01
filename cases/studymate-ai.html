@@ -3,14 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Case study for Martin Gerlach's StudyMate AI prototype." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Martin Gerlach" />
+  <meta name="theme-color" content="#07100f" />
+  <meta name="description" content="StudyMate AI case study covering product thinking, AI UX, frontend states and protected server-side OpenAI integration." />
   <link rel="canonical" href="https://gerlachdesign.dk/cases/studymate-ai.html" />
   <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://gerlachdesign.dk/cases/studymate-ai.html" />
+  <meta property="og:site_name" content="GerlachDesign" />
   <meta property="og:title" content="StudyMate AI Case Study | Martin Gerlach" />
-  <meta property="og:description" content="An honest AI UX, frontend and backend prototype case with testing, implementation and current limitations." />
+  <meta property="og:description" content="A functional AI study prototype with role-based assistants, a protected API flow and honest deployment limits." />
   <meta property="og:image" content="https://gerlachdesign.dk/studymate-preview.webp" />
+  <meta property="og:image:alt" content="StudyMate AI dashboard prototype with specialised study assistants" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="StudyMate AI Case Study | Martin Gerlach" />
+  <meta name="twitter:description" content="A functional AI study prototype with role-based assistants, a protected API flow and honest deployment limits." />
+  <meta name="twitter:image" content="https://gerlachdesign.dk/studymate-preview.webp" />
   <title>StudyMate AI Case Study | Martin Gerlach</title>
   <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
   <link rel="stylesheet" href="../style.css?v=bilingual" />
 </head>
 <body class="dark-mode">
@@ -24,192 +35,234 @@
 
     <header class="case-hero">
       <div class="case-hero-copy">
-        <p class="section-label">AI prototype</p>
+        <p class="section-label">Featured AI product · Functional prototype</p>
         <h1>StudyMate AI</h1>
-        <p>StudyMate AI is an AI study platform prototype built to explore how students can use specialized AI assistants instead of one generic chatbot.</p>
+        <p>A study workspace that explores how focused AI assistants can support coding, design, UX, exams and project planning without making students write a new role prompt every time.</p>
         <div class="case-actions">
-          <a class="button button-primary" href="https://martincgerlach.github.io/StudymateAI/" target="_blank" rel="noopener noreferrer">View prototype</a>
+          <a class="button button-primary" href="https://martincgerlach.github.io/StudymateAI/" target="_blank" rel="noopener noreferrer">View static prototype</a>
           <a class="button button-secondary" href="https://github.com/martincgerlach/StudymateAI" target="_blank" rel="noopener noreferrer">View code</a>
         </div>
       </div>
       <figure class="case-visual">
-        <img src="../studymate-preview.webp" alt="Screenshot of the StudyMate AI dashboard prototype" width="1440" height="900" />
+        <img src="../studymate-preview.webp" alt="StudyMate AI dashboard with assistant navigation and the Study Coach workspace" width="1440" height="900" decoding="async" fetchpriority="high" />
+        <figcaption>The public prototype demonstrates the interface and fallback flow without exposing an API key.</figcaption>
       </figure>
     </header>
 
     <section class="case-summary" aria-label="Project summary">
       <article>
         <h2>Problem</h2>
-        <p>Students often use AI as one general chatbot, which can make answers feel generic and disconnected from the actual study task.</p>
+        <p>A general chatbot can give broad answers that feel disconnected from a student's actual task and level.</p>
       </article>
       <article>
-        <h2>Target group</h2>
-        <p>Multimedia Design students who need practical help with coding, design, UX, exams and project planning.</p>
+        <h2>Primary users</h2>
+        <p>Multimedia Design students working with code, design, UX, exams and project planning.</p>
       </article>
       <article>
-        <h2>My role</h2>
-        <p>Product concept, UI design, frontend, backend structure, prompt design, documentation and deployment preparation.</p>
+        <h2>My contribution</h2>
+        <p>Product concept, UI design, frontend, backend structure, prompt configuration, documentation and deployment preparation.</p>
       </article>
       <article>
-        <h2>Tools</h2>
-        <p>HTML, CSS, JavaScript, Node.js, Express, OpenAI API, Cloudflare Pages Functions and GitHub.</p>
+        <h2>Stack</h2>
+        <p>HTML, CSS, JavaScript, Node.js, Express, OpenAI API, Markdown knowledge files and Cloudflare Pages Functions.</p>
       </article>
     </section>
 
     <section class="case-section">
       <div>
-        <p class="section-label">Prototype status</p>
-        <h2>Current prototype status</h2>
+        <p class="section-label">Overview</p>
+        <h2>Project overview</h2>
       </div>
       <div class="case-text-stack">
         <article>
-          <h3>Static portfolio demo</h3>
-          <p>The published GitHub Pages version demonstrates the interface, assistant selection and fallback states without pretending that the live AI backend is already deployed.</p>
+          <h3>Functional prototype</h3>
+          <p>The interface, assistant selection, prompt suggestions, chat states and backend routes are implemented. The repository contains both a local Express version and a Cloudflare Pages Functions version.</p>
         </article>
         <article>
-          <h3>Server-side version prepared</h3>
-          <p>The GitHub Pages version is a static fallback demo. A Cloudflare Pages Functions version is prepared so the real OpenAI API call can run server-side.</p>
+          <h3>Public status</h3>
+          <p>The public GitHub Pages demo is static. It uses clear fallback responses so visitors can understand the flow without being told that a real AI service is already live.</p>
         </article>
         <article>
-          <h3>Production ready: no</h3>
-          <p>This is not a finished SaaS product. It still needs final Cloudflare deployment, real AI testing, stronger long-term usage protection and more user testing.</p>
+          <h3>Evidence boundary</h3>
+          <p>StudyMate AI is not a production-ready service. The Cloudflare route is prepared, but public server deployment, live OpenAI testing and external usability testing still need to be completed.</p>
         </article>
       </div>
     </section>
 
     <section class="case-section">
       <div>
-        <p class="section-label">Internal review</p>
-        <h2>Internal walkthrough before external testing</h2>
+        <p class="section-label">Context</p>
+        <h2>Users and use case</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>One clear task before the message</h3>
+          <p>The main user is a Multimedia Design student who may need help with very different tasks during the same project. Choosing a focused assistant makes the intended kind of help visible before the conversation begins.</p>
+        </article>
+        <article>
+          <h3>Less prompt setup</h3>
+          <p>The student should not need to explain “act as a coding mentor” or “review this as a UX researcher” in every message. The selected role and its supporting instructions are handled by the system.</p>
+        </article>
+        <article>
+          <h3>Secondary audience</h3>
+          <p>The case also needs to help a recruiter understand what is real: a working interface, server-side routes and structured prompts, presented with clear prototype limits.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">AI UX</p>
+        <h2>Product concept</h2>
+      </div>
+      <div>
+        <p class="case-intro">Six user-facing assistants keep the product understandable. Internal skill instructions and relevant project context can then shape the response without adding more choices to the interface.</p>
+        <ul class="assistant-role-list" aria-label="StudyMate AI assistant roles">
+          <li><strong>Study Coach</strong><span>Explains difficult topics and helps structure study work.</span></li>
+          <li><strong>Coding Mentor</strong><span>Supports HTML, CSS, JavaScript, APIs, JSON and debugging.</span></li>
+          <li><strong>Design Critic</strong><span>Reviews hierarchy, spacing, visual choices and accessibility.</span></li>
+          <li><strong>UX Researcher</strong><span>Helps plan research, user journeys and evidence-based testing.</span></li>
+          <li><strong>Exam Coach</strong><span>Challenges arguments and prepares realistic project questions.</span></li>
+          <li><strong>Project Manager</strong><span>Turns project needs into priorities, tasks and simple sprint plans.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Interaction</p>
+        <h2>User flow and interface decisions</h2>
+      </div>
+      <div>
+        <ol class="case-flow-list" aria-label="StudyMate AI main user flow">
+          <li><span>1</span><div><strong>Enter the demo</strong><p>Continue without creating a real account.</p></div></li>
+          <li><span>2</span><div><strong>Choose an assistant</strong><p>Compare clear roles and examples before starting.</p></div></li>
+          <li><span>3</span><div><strong>Write a study task</strong><p>Use a prompt suggestion or enter a specific question.</p></div></li>
+          <li><span>4</span><div><strong>Follow the response state</strong><p>See loading, success, error or an honest static fallback.</p></div></li>
+        </ol>
+        <div class="case-text-stack case-text-stack--after-flow">
+          <article>
+            <h3>Familiar chat patterns</h3>
+            <p>Assistant navigation, example prompts, message bubbles and copy/retry actions reduce the amount of new interaction the user has to learn.</p>
+          </article>
+          <article>
+            <h3>Visible system state</h3>
+            <p>The frontend includes empty, loading, error, retry and static fallback states. The fallback explains the prototype boundary instead of pretending a generated answer came from OpenAI.</p>
+          </article>
+          <article>
+            <h3>Context without debug noise</h3>
+            <p>The interface can show that project knowledge is available, while matched files and hidden prompt instructions remain a backend concern.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-section--architecture">
+      <div>
+        <p class="section-label">Software structure</p>
+        <h2 id="architecture-title">Technical architecture</h2>
+        <p class="case-section-summary">The browser manages the experience. A server-side route owns validation, prompt context, the secret key and the OpenAI request.</p>
+      </div>
+      <div>
+        <figure class="architecture-visual" aria-labelledby="architecture-title">
+          <ol class="architecture-flow">
+            <li class="architecture-node">
+              <span class="architecture-step">01</span>
+              <h3>User interface</h3>
+              <p>The student selects an assistant and writes a study task.</p>
+            </li>
+            <li class="architecture-node">
+              <span class="architecture-step">02</span>
+              <h3>Frontend application</h3>
+              <p>JavaScript sends <code>assistantId</code> and the message with POST <code>/api/chat</code>.</p>
+            </li>
+            <li class="architecture-node architecture-node--protected">
+              <span class="architecture-boundary">Protected boundary</span>
+              <h3>Server-side API route</h3>
+              <p>The route validates input, finds the role, adds context, applies limits and builds the request.</p>
+            </li>
+            <li class="architecture-node">
+              <span class="architecture-step">04</span>
+              <h3>OpenAI Responses API</h3>
+              <p>The prepared server integration sends instructions and the user's input.</p>
+            </li>
+            <li class="architecture-node">
+              <span class="architecture-step">05</span>
+              <h3>Response in the interface</h3>
+              <p>The frontend renders the reply or presents a clear error and retry state.</p>
+            </li>
+          </ol>
+
+          <dl class="architecture-details">
+            <div><dt>Role configuration</dt><dd>Assistant role and internal skill instructions are selected on the server.</dd></div>
+            <div><dt>Project context</dt><dd>Relevant Markdown excerpts are chosen with simple weighted matching.</dd></div>
+            <div><dt>Secret handling</dt><dd>The API key stays in server-side environment variables.</dd></div>
+            <div><dt>Guardrails</dt><dd>Input validation, message limits, output limits, basic rate limiting and error handling.</dd></div>
+          </dl>
+          <figcaption>The same product flow can use the local Express backend or the prepared Cloudflare Pages Functions route. The public GitHub Pages demo stops at a static fallback.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Implementation</p>
+        <h2>Frontend and backend implementation</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>Frontend state and feedback</h3>
+          <p>Vanilla JavaScript manages assistant selection, prompt suggestions, local chat state and the loading, error, retry and static fallback states. The message composer is disabled while a response is pending.</p>
+        </article>
+        <article>
+          <h3>Protected request flow</h3>
+          <p>The frontend sends only <code>assistantId</code> and the user message. The API key never appears in frontend JavaScript; it belongs in the Express environment or Cloudflare environment variables.</p>
+        </article>
+        <article>
+          <h3>Prompt and context building</h3>
+          <p>The server combines the assistant role, internal skill instructions, relevant Markdown context and the user message. The local Knowledge Base uses weighted keyword and phrase matching, not embeddings or semantic search.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Tradeoffs</p>
+        <h2>Challenges and current limitations</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>Static and server modes can be confused</h3>
+          <p>A public interface that looks complete can make a fallback answer feel like an error. I rewrote the static response so it explains what the prototype demonstrates and what is not connected.</p>
+        </article>
+        <article>
+          <h3>Context matching is intentionally simple</h3>
+          <p>The Knowledge Base uses weighted keyword and phrase matching across Markdown files. It is understandable and suitable for this prototype, but it is not semantic retrieval and can miss useful context.</p>
+        </article>
+        <article>
+          <h3>Prototype protection is limited</h3>
+          <p>There are no real accounts, database or cloud chat history. Rate limiting is basic, and the prepared Cloudflare integration still needs public deployment testing before it can be described as a live AI service.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Internal walkthrough before external testing</p>
+        <h2>Testing and iteration</h2>
       </div>
       <div class="case-text-stack">
         <article>
           <h3>Internal walkthrough</h3>
-          <p>I reviewed the prototype myself with five user tasks: understand the product, continue as demo, choose an assistant, send an MMD task and start a new chat.</p>
+          <p>I reviewed five tasks myself: understand the concept, enter the demo, choose an assistant, submit a Multimedia Design task and start a new chat. This was an internal check, not external user research.</p>
         </article>
         <article>
-          <h3>Internal observations</h3>
-          <p>The product concept was clear, but the static GitHub Pages demo could sound like a technical error. Link-based questions were also confusing because the static demo cannot inspect external websites.</p>
+          <h3>What changed</h3>
+          <p>The walkthrough showed that fallback copy could sound like a backend error and link-based questions could be misleading. I rewrote the fallback, added URL-aware guidance and reduced the visual weight of user messages and copy actions.</p>
         </article>
         <article>
-          <h3>Changes after the walkthrough</h3>
-          <p>I rewrote the fallback answer, added URL-aware guidance, made the user message bubble calmer and reduced the visual weight of copy actions.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div>
-        <p class="section-label">Process</p>
-        <h2>From chatbot idea to assistant system</h2>
-      </div>
-      <div class="case-text-stack">
-        <article>
-          <h3>1. Clear assistant roles</h3>
-          <p>I changed the idea from one general chatbot into six focused assistants: Study Coach, Coding Mentor, Design Critic, UX Researcher, Exam Coach and Project Manager.</p>
-        </article>
-        <article>
-          <h3>2. Product-like chat UI</h3>
-          <p>I built a dashboard and chat flow with assistant selection, prompt suggestions, loading states, error states and calmer copy actions after reviewing the first version.</p>
-        </article>
-        <article>
-          <h3>3. Honest portfolio scope</h3>
-          <p>I kept the project realistic by using vanilla frontend code and a simple backend instead of turning it into an over-engineered SaaS platform.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div>
-        <p class="section-label">Implementation evidence</p>
-        <h2>How the prototype connects</h2>
-      </div>
-      <div>
-        <div class="case-evidence-flow" aria-label="StudyMate AI implementation flow">
-          <article class="case-evidence-step">
-            <span>Step 1</span>
-            <h3>Assistant choice</h3>
-            <p>The frontend stores the selected assistant role and presents matching prompt suggestions.</p>
-          </article>
-          <article class="case-evidence-step">
-            <span>Step 2</span>
-            <h3>API request</h3>
-            <p>The message and assistant ID are sent to <code>/api/chat</code> without exposing an API key.</p>
-          </article>
-          <article class="case-evidence-step">
-            <span>Step 3</span>
-            <h3>Prompt context</h3>
-            <p>The backend combines the assistant role, connected skills and relevant local knowledge.</p>
-          </article>
-          <article class="case-evidence-step">
-            <span>Step 4</span>
-            <h3>Response state</h3>
-            <p>The interface shows either a server response or an explicit static fallback with its limits.</p>
-          </article>
-        </div>
-        <p class="case-note"><strong>Evidence boundary:</strong> The flow is implemented in the repository. The public GitHub Pages demo remains static until the server-side Cloudflare deployment has been tested with a real key.</p>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div>
-        <p class="section-label">AI implementation</p>
-        <h2>Protected API and assistant prompts</h2>
-      </div>
-      <div class="case-text-stack">
-        <article>
-          <h3>Frontend to backend</h3>
-          <p>The frontend sends the selected assistant and user message to `/api/chat`. The frontend never contains the OpenAI API key.</p>
-        </article>
-        <article>
-          <h3>Assistant data</h3>
-          <p>Each assistant has a role, description, example questions and internal skill stack. This makes the AI feel more focused than a random chatbot.</p>
-        </article>
-        <article>
-          <h3>Knowledge Base direction</h3>
-          <p>The local version can load Markdown knowledge files, so the assistant can become more relevant to school projects and personal notes over time.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div>
-        <p class="section-label">Security</p>
-        <h2>Protecting the AI demo</h2>
-      </div>
-      <div class="case-text-stack">
-        <article>
-          <h3>API key protection</h3>
-          <p>The OpenAI key is only used on the server side. It is not stored in frontend JavaScript and should never be committed to GitHub.</p>
-        </article>
-        <article>
-          <h3>Usage limits</h3>
-          <p>The backend includes message length limits, token limits and basic rate limiting to make the public demo safer to share.</p>
-        </article>
-        <article>
-          <h3>Cloudflare preparation</h3>
-          <p>The Cloudflare version is prepared so the public portfolio demo can use server-side functions instead of exposing secrets in the browser.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div>
-        <p class="section-label">Testing</p>
-        <h2>What has been checked</h2>
-      </div>
-      <div class="case-text-stack">
-        <article>
-          <h3>Internal flow check</h3>
-          <p>I checked whether a new user can understand the product, enter the demo, choose an assistant, send a message and start a new chat on desktop and mobile.</p>
-        </article>
-        <article>
-          <h3>Interface testing</h3>
-          <p>I checked empty states, loading states, error states, static demo fallback text, copy actions, spacing and mobile layout so the prototype feels calmer and more product-like.</p>
-        </article>
-        <article>
-          <h3>Planned external testing</h3>
-          <p>The final Cloudflare deployment should be tested with a real OpenAI key and 3–5 external participants before I present it as a live AI demo to employers.</p>
+          <h3>Technical checks</h3>
+          <p>The repository includes a deployment-preparation check for required routes, protected frontend code, Cloudflare configuration, rate limiting and Knowledge Base context. This checks implementation structure, not product usability.</p>
         </article>
       </div>
     </section>
@@ -248,12 +301,22 @@
 
     <section class="case-section">
       <div>
-        <p class="section-label">Result</p>
-        <h2>What the project shows</h2>
+        <p class="section-label">Outcome</p>
+        <h2>Result and reflection</h2>
       </div>
       <div class="case-text-stack">
-        <p>The result is an AI study platform prototype with a usable frontend, structured backend routes and explicit deployment limits. The implementation shows how I connect product decisions, interface states and server-side API handling.</p>
-        <p><strong>Next step:</strong> I would deploy the Cloudflare version, test `/api/chat` with a real OpenAI key and keep improving the Knowledge Base with more real project summaries.</p>
+        <article>
+          <h3>Current result</h3>
+          <p>The result is a functional prototype that connects a product idea, six clear assistant roles, frontend interaction states and a protected server-side request structure.</p>
+        </article>
+        <article>
+          <h3>What I learned</h3>
+          <p>The most useful AI decision was not adding more features. It was deciding where roles, context, secrets and feedback states belong so the interface stays understandable.</p>
+        </article>
+        <article>
+          <h3>Next improvements</h3>
+          <p>My next steps are to verify the Cloudflare deployment with a real key, run the planned sessions with 3–5 participants, improve the weakest flow based on evidence and add more relevant project summaries to the Knowledge Base.</p>
+        </article>
       </div>
     </section>
   </main>

@@ -3,14 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Martin Gerlach" />
+  <meta name="theme-color" content="#07100f" />
   <meta name="description" content="Case study for Martin Gerlach's AquaShield interaction design and frontend project." />
   <link rel="canonical" href="https://gerlachdesign.dk/cases/aquashield.html" />
   <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://gerlachdesign.dk/cases/aquashield.html" />
+  <meta property="og:site_name" content="GerlachDesign" />
   <meta property="og:title" content="AquaShield Case Study | Martin Gerlach" />
   <meta property="og:description" content="A school project about emergency information, interaction design, UX writing and JavaScript forms." />
   <meta property="og:image" content="https://gerlachdesign.dk/aquashield-preview.webp" />
+  <meta property="og:image:alt" content="AquaShield tsunami emergency-information prototype" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AquaShield Case Study | Martin Gerlach" />
+  <meta name="twitter:description" content="A school project about emergency information, interaction design, UX writing and JavaScript forms." />
+  <meta name="twitter:image" content="https://gerlachdesign.dk/aquashield-preview.webp" />
   <title>AquaShield Case Study | Martin Gerlach</title>
   <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
   <link rel="stylesheet" href="../style.css?v=bilingual" />
 </head>
 <body class="dark-mode">
@@ -24,7 +35,7 @@
 
     <header class="case-hero">
       <div class="case-hero-copy">
-        <p class="section-label">School project</p>
+        <p class="section-label">T04 · Individual school project</p>
         <h1>AquaShield</h1>
         <p>A tsunami emergency guide designed to turn critical information into clear actions before, during and after a warning.</p>
         <div class="case-actions">
@@ -33,26 +44,27 @@
         </div>
       </div>
       <figure class="case-visual">
-        <img src="../aquashield-preview.webp" alt="Screenshot of the AquaShield tsunami emergency guide" width="1440" height="900" />
+        <img src="../aquashield-preview.webp" alt="Screenshot of the AquaShield tsunami emergency guide" width="1440" height="900" decoding="async" fetchpriority="high" />
+        <figcaption>The prototype prioritises quick safety actions before progressive detail and a personal emergency plan.</figcaption>
       </figure>
     </header>
 
     <section class="case-summary" aria-label="Project summary">
       <article>
+        <h2>Assignment context</h2>
+        <p>T04 / User interface development. An individual school project focused on interface behavior and frontend implementation.</p>
+      </article>
+      <article>
         <h2>Problem</h2>
-        <p>Emergency information can be difficult to scan and act on when a user is under pressure.</p>
+        <p>Emergency information can be difficult for residents or visitors to scan and act on when they are under pressure.</p>
       </article>
       <article>
-        <h2>Target group</h2>
-        <p>Residents or visitors in tsunami-risk areas who need a quick overview and a more detailed personal plan.</p>
-      </article>
-      <article>
-        <h2>My role</h2>
+        <h2>My contribution</h2>
         <p>Frontend development, interaction design, UX writing, responsive layout and form feedback.</p>
       </article>
       <article>
-        <h2>Tools</h2>
-        <p>HTML, CSS, vanilla JavaScript, native form validation, dialog elements and responsive testing.</p>
+        <h2>Current result</h2>
+        <p>A responsive prototype with guidance, an interactive diagram, checklists and a personal emergency-plan flow.</p>
       </article>
     </section>
 
@@ -105,13 +117,13 @@
             <p>Validation and a dialog summary help the user check the plan before leaving the form.</p>
           </article>
         </div>
-        <p class="case-note"><strong>Evidence boundary:</strong> The interactions and validation are implemented in the live project. The content hierarchy has been reviewed responsively, but it has not yet been tested with people in a real emergency context.</p>
+        <p class="case-note"><strong>Evidence boundary:</strong> The interactions and validation are implemented in the live project. The case does not claim formal emergency-services validation or measured safety outcomes, and external usability testing is still planned.</p>
       </div>
     </section>
 
     <section class="case-section">
       <div>
-        <p class="section-label">Design and code</p>
+        <p class="section-label">Design and development</p>
         <h2>Choices behind the interface</h2>
       </div>
       <div class="case-text-stack">
@@ -126,6 +138,27 @@
         <article>
           <h3>Responsive structure</h3>
           <p>The navigation, cards, diagram and form stack at smaller widths so the main actions remain readable and touch-friendly.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Challenges</p>
+        <h2>Making interaction reduce uncertainty</h2>
+      </div>
+      <div class="case-text-stack">
+        <article>
+          <h3>Information priority</h3>
+          <p>The interface needed to show urgent actions first without hiding the supporting detail people may need while preparing.</p>
+        </article>
+        <article>
+          <h3>Interaction without noise</h3>
+          <p>Accordions, popovers, the diagram and the form each needed a clear purpose instead of becoming decorative effects.</p>
+        </article>
+        <article>
+          <h3>Form recovery</h3>
+          <p>Required fields, error messages and the summary dialog had to help a user correct missing information and understand what was saved.</p>
         </article>
       </div>
     </section>
@@ -153,13 +186,11 @@
 
     <section class="case-section">
       <div>
-        <p class="section-label">Result and reflection</p>
-        <h2>What I learned</h2>
+        <p class="section-label">Final result</p>
+        <h2>A responsive emergency-information prototype</h2>
       </div>
       <div class="case-text-stack">
         <p>The result is a responsive emergency-information prototype with several interaction types connected to one clear task. It demonstrates UX writing, forms, interface feedback and JavaScript behavior beyond a static layout.</p>
-        <p>I learned that interaction should reduce uncertainty. A dialog, animation or form state only helps when it makes the next action easier to understand.</p>
-        <p><strong>Next step:</strong> I would run an external usability test and simplify any content that users hesitate over.</p>
       </div>
     </section>
 
@@ -192,6 +223,17 @@
           <h3>Pending evidence</h3>
           <p><strong>Findings:</strong> Pending external sessions. <strong>Resulting design changes:</strong> Pending analysis of the completed test notes.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Reflection</p>
+        <h2>What I learned</h2>
+      </div>
+      <div class="case-text-stack">
+        <p>Interaction should reduce uncertainty. A dialog, animation or form state only helps when it makes the next action easier to understand.</p>
+        <p><strong>Next step:</strong> I would complete the planned external usability test, review the emergency content with a relevant subject specialist and simplify anything users hesitate over.</p>
       </div>
     </section>
   </main>
