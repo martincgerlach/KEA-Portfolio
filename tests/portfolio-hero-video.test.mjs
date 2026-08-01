@@ -76,6 +76,15 @@ test("the two video scenes have deterministic playback and fallback states", () 
   assert.match(script, /const restartActiveVideo = \(scene, video\)/);
   assert.match(script, /introVideo\.addEventListener\("ended"/);
   assert.match(script, /workVideo\.addEventListener\("ended"/);
+  assert.match(script, /introVideo\.addEventListener\("timeupdate"/);
+  assert.match(script, /workVideo\.addEventListener\("timeupdate"/);
+  assert.match(script, /const getPlaybackCopyOpacity = \(scene, currentTime\)/);
+  assert.match(script, /fadeOutStart: 9\.4/);
+  assert.match(script, /fadeOutEnd: 10\.35/);
+  assert.match(script, /fadeInStart: 0\.15/);
+  assert.match(script, /fadeInEnd: 0\.85/);
+  assert.match(script, /fadeOutStart: 26\.2/);
+  assert.match(script, /fadeOutEnd: 27\.05/);
   assert.match(script, /const targetVideo = scene === "work" \? workVideo : introVideo/);
   assert.match(script, /await video\.play\(\)/);
   assert.match(script, /introVideo\.pause\(\)/);
@@ -94,7 +103,7 @@ test("project navigation uses a direct native hash jump without changing playbac
   assert.match(script, /event\.preventDefault\(\)/);
   assert.doesNotMatch(script, /suspendVideoScrub|scrubVideo/);
   assert.doesNotMatch(script, /scrollTo|scrollBy|scrollIntoView/);
-  assert.match(script, /progress >= SCENE_TIMING\.showWorkAt\) switchScene\("work"\)/);
+  assert.match(script, /progress >= SCENE_TIMING\.scroll\.showWorkAt\) switchScene\("work"\)/);
   const scrollUpdate = script.slice(script.indexOf("const updateScrollProgress"), script.indexOf("const requestScrollUpdate"));
   assert.match(scrollUpdate, /switchScene\("work"\)/);
   assert.doesNotMatch(script, /currentTime\s*=\s*progress|progress\s*\*\s*(?:introVideo|workVideo)\.duration/);

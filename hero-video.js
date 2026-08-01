@@ -9,9 +9,23 @@
   if (!hero || !introVideo || !workVideo || !introCopy || !workCopy) return;
 
   const SCENE_TIMING = Object.freeze({
-    preloadWorkAt: 0.02,
-    showWorkAt: 0.12,
-    restoreIntroAt: 0.03,
+    scroll: Object.freeze({
+      preloadWorkAt: 0.02,
+      showWorkAt: 0.12,
+      restoreIntroAt: 0.03,
+    }),
+    copy: Object.freeze({
+      intro: Object.freeze({
+        fadeOutStart: 9.4,
+        fadeOutEnd: 10.35,
+      }),
+      work: Object.freeze({
+        fadeInStart: 0.15,
+        fadeInEnd: 0.85,
+        fadeOutStart: 26.2,
+        fadeOutEnd: 27.05,
+      }),
+    }),
     crossfadeMs: 460,
   });
 
@@ -49,6 +63,24 @@
     element.style.setProperty("--scene-opacity", opacity.toFixed(4));
     element.classList.toggle("is-active", opacity > 0.015);
     element.setAttribute("aria-hidden", String(visibleOpacity <= 0.015));
+  };
+
+  const getPlaybackCopyOpacity = (scene, currentTime) => {
+    if (scene === "intro") {
+      const timing = SCENE_TIMING.copy.intro;
+      return 1 - smoothRange(currentTime, timing.fadeOutStart, timing.fadeOutEnd);
+    }
+
+    const timing = SCENE_TIMING.copy.work;
+    const fadeIn = smoothRange(currentTime, timing.fadeInStart, timing.fadeInEnd);
+    const fadeOut = 1 - smoothRange(currentTime, timing.fadeOutStart, timing.fadeOutEnd);
+    return fadeIn * fadeOut;
+  };
+
+  const updateCopyFromPlayback = (scene, video) => {
+    if (scene !== activeScene || reducedMotion) return;
+    const copy = scene === "intro" ? introCopy : workCopy;
+    setCopyState(copy, getPlaybackCopyOpacity(scene, video.currentTime));
   };
 
   const updateLinkAvailability = () => {
@@ -131,7 +163,7 @@
 
     window.requestAnimationFrame(() => {
       if (requestId !== sceneRequestId) return;
-      applyScene(scene);
+      applyScene(scene, getPlaybackCopyOpacity(scene, targetVideo.currentTime));
       window.setTimeout(() => previousVideo.pause(), SCENE_TIMING.crossfadeMs);
     });
   };
@@ -139,6 +171,7 @@
   const restartActiveVideo = (scene, video) => {
     if (scene !== activeScene || reducedMotion) return;
     video.currentTime = 0;
+    updateCopyFromPlayback(scene, video);
     playVideo(video);
   };
 
@@ -178,9 +211,9 @@
     const transitionOpacity = transitionIn * (1 - transitionOut);
     const headingOffset = smoothRange(progress, 0.64, 0.88) * -24;
 
-    if (!reducedMotion && progress >= SCENE_TIMING.preloadWorkAt) preloadWorkVideo();
-    if (!reducedMotion && progress >= SCENE_TIMING.showWorkAt) switchScene("work");
-    else if (!reducedMotion && progress <= SCENE_TIMING.restoreIntroAt) switchScene("intro");
+    if (!reducedMotion && progress >= SCENE_TIMING.scroll.preloadWorkAt) preloadWorkVideo();
+    if (!reducedMotion && progress >= SCENE_TIMING.scroll.showWorkAt) switchScene("work");
+    else if (!reducedMotion && progress <= SCENE_TIMING.scroll.restoreIntroAt) switchScene("intro");
 
     hero.style.setProperty("--hero-progress", progress.toFixed(4));
     hero.style.setProperty("--hero-action-scroll-opacity", actionScrollOpacity.toFixed(4));
@@ -224,6 +257,8 @@
   introVideo.addEventListener("loadeddata", () => {
     hero.classList.add("hero-video-ready");
   });
+  introVideo.addEventListener("timeupdate", () => updateCopyFromPlayback("intro", introVideo));
+  workVideo.addEventListener("timeupdate", () => updateCopyFromPlayback("work", workVideo));
   introVideo.addEventListener("ended", () => restartActiveVideo("intro", introVideo));
   workVideo.addEventListener("ended", () => restartActiveVideo("work", workVideo));
   introVideo.addEventListener("error", showFallback);
