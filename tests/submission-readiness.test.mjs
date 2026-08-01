@@ -5,12 +5,16 @@ import { access, readFile, stat } from "node:fs/promises";
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const translations = await readFile(new URL("../portfolio-translations.js", import.meta.url), "utf8");
 
-test("homepage exposes the four featured projects only", () => {
+test("homepage keeps three technical projects featured and groups client work below", () => {
   const cards = html.match(/<article class="[^"]*\bproject-card\b[^"]*">/g) ?? [];
-  assert.equal(cards.length, 4);
-  for (const title of ["StudyMate AI", "LG Bio Capital Partners", "Blade Rhythm", "AquaShield"]) {
+  assert.equal(cards.length, 3);
+  for (const title of ["StudyMate AI", "Blade Rhythm", "AquaShield"]) {
     assert.match(html, new RegExp(`<h3>${title}</h3>`));
   }
+  for (const title of ["LG Bio Capital Partners", "Forni Pizza Foodtrailer"]) {
+    assert.match(html, new RegExp(`<h4>${title}</h4>`));
+  }
+  assert.doesNotMatch(html, /Through My Lens|Through-my-lens/i);
   assert.doesNotMatch(html, /<h3>LifeScienceNextGen<\/h3>|<h3>Todo-liste webapp<\/h3>/);
 });
 
@@ -46,7 +50,7 @@ test("the education certificate is not published by the portfolio", async () => 
   }
 });
 
-test("all four featured projects have evidence-led local case studies", async () => {
+test("all four portfolio case studies remain evidence-led", async () => {
   const names = ["studymate-ai", "lg-bio-capital", "blade-rhythm", "aquashield"];
   for (const name of names) {
     const source = await readFile(new URL(`../cases/${name}.html`, import.meta.url), "utf8");

@@ -10,6 +10,7 @@
 
   const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
   const heroLinks = introCopy.querySelectorAll("a");
+  const projectsCta = introCopy.querySelector(".hero-cta");
   const navLinks = [...document.querySelectorAll("[data-nav-section]")];
   const observedSections = navLinks
     .map((link) => document.getElementById(link.dataset.navSection))
@@ -179,6 +180,16 @@
     if (scrollFrame) return;
     scrollFrame = window.requestAnimationFrame(updateScrollProgress);
   };
+
+  projectsCta?.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.documentElement.classList.add("is-direct-anchor");
+    window.location.hash = projectsCta.hash;
+
+    window.requestAnimationFrame(() => {
+      document.documentElement.classList.remove("is-direct-anchor");
+    });
+  });
 
   introVideo.addEventListener("loadeddata", () => {
     hero.classList.add("hero-video-ready");

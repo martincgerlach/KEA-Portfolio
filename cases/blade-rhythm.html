@@ -3,14 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Martin Gerlach" />
+  <meta name="theme-color" content="#07100f" />
   <meta name="description" content="Case study for Martin Gerlach's Blade Rhythm JavaScript game." />
   <link rel="canonical" href="https://gerlachdesign.dk/cases/blade-rhythm.html" />
   <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://gerlachdesign.dk/cases/blade-rhythm.html" />
+  <meta property="og:site_name" content="GerlachDesign" />
   <meta property="og:title" content="Blade Rhythm Case Study | Martin Gerlach" />
   <meta property="og:description" content="A creative coding case about timing, game state, keyboard input and interface feedback in vanilla JavaScript." />
   <meta property="og:image" content="https://gerlachdesign.dk/blade-rhythm-preview.webp" />
+  <meta property="og:image:alt" content="Blade Rhythm gameplay with player, enemy and timing zone" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blade Rhythm Case Study | Martin Gerlach" />
+  <meta name="twitter:description" content="A creative coding case about timing, game state, keyboard input and interface feedback in vanilla JavaScript." />
+  <meta name="twitter:image" content="https://gerlachdesign.dk/blade-rhythm-preview.webp" />
   <title>Blade Rhythm Case Study | Martin Gerlach</title>
   <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
   <link rel="stylesheet" href="../style.css?v=bilingual" />
 </head>
 <body class="dark-mode">
@@ -24,7 +35,7 @@
 
     <header class="case-hero">
       <div class="case-hero-copy">
-        <p class="section-label">JavaScript game</p>
+        <p class="section-label">Personal learning project</p>
         <h1>Blade Rhythm</h1>
         <p>A timing-based browser game where the player attacks, heals and reacts to enemy movement. The project was mainly about connecting game logic, keyboard input and interface feedback.</p>
         <div class="case-actions">
@@ -33,26 +44,27 @@
         </div>
       </div>
       <figure class="case-visual">
-        <img src="../blade-rhythm-preview.webp" alt="Blade Rhythm gameplay with player, enemy and timing zone" width="1440" height="900" />
+        <img src="../blade-rhythm-preview.webp" alt="Blade Rhythm gameplay with player, enemy and timing zone" width="1440" height="900" decoding="async" fetchpriority="high" />
+        <figcaption>The playable arena combines timing feedback, health states, keyboard input and increasing difficulty.</figcaption>
       </figure>
     </header>
 
     <section class="case-summary" aria-label="Project summary">
       <article>
+        <h2>Context</h2>
+        <p>Built individually as a focused vanilla JavaScript learning project rather than a full game or game engine.</p>
+      </article>
+      <article>
         <h2>Problem</h2>
-        <p>I wanted to build a small game that was more than a static interface: it needed timing, state changes and controls that felt understandable.</p>
+        <p>Build a small game that goes beyond a static interface by connecting timing, state changes and understandable controls.</p>
       </article>
       <article>
-        <h2>Target group</h2>
-        <p>People who enjoy short timing games, including portfolio visitors who want to try the interaction instead of only reading about the code.</p>
-      </article>
-      <article>
-        <h2>My role</h2>
+        <h2>My contribution</h2>
         <p>Game concept, frontend, JavaScript logic, interface states and responsive adjustments.</p>
       </article>
       <article>
-        <h2>Tools</h2>
-        <p>HTML, CSS, vanilla JavaScript, DOM updates, keyboard input and simple automated tests.</p>
+        <h2>Current result</h2>
+        <p>A playable browser game with button and keyboard controls, health, combo, difficulty and restart states.</p>
       </article>
     </section>
 
@@ -132,11 +144,32 @@
 
     <section class="case-section">
       <div>
-        <p class="section-label">Result</p>
-        <h2>What the project shows</h2>
+        <p class="section-label">Challenges</p>
+        <h2>Keeping timing, state and feedback in sync</h2>
       </div>
       <div class="case-text-stack">
-        <p>The final result is a playable browser game with visible state changes, keyboard controls and a difficulty loop. In my portfolio, it shows that I can build interactive JavaScript and test important behavior instead of only styling static pages.</p>
+        <article>
+          <h3>Timer lifecycle</h3>
+          <p>Restarting had to clear previous timers before starting a new loop, otherwise enemy movement and attacks could run more than once.</p>
+        </article>
+        <article>
+          <h3>Readable timing</h3>
+          <p>The player needs to understand where a successful hit can happen while still reacting quickly to enemy movement.</p>
+        </article>
+        <article>
+          <h3>Responsive controls</h3>
+          <p>The arena, status values and controls had to remain usable on smaller screens without changing the underlying game rules.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div>
+        <p class="section-label">Final result</p>
+        <h2>A playable and testable JavaScript loop</h2>
+      </div>
+      <div class="case-text-stack">
+        <p>The result is a playable browser game with visible state changes, keyboard controls and increasing difficulty. It shows that I can connect interactive JavaScript behavior and automated checks instead of only styling a static page.</p>
       </div>
     </section>
 

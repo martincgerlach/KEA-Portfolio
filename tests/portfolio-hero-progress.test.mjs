@@ -22,15 +22,20 @@ function createClassList() {
 function createElement() {
   const styles = new Map();
   const attributes = new Map();
+  const listeners = new Map();
   return {
     classList: createClassList(),
     dataset: {},
+    hash: "",
     style: { setProperty: (name, value) => styles.set(name, value) },
+    addEventListener: (name, handler) => listeners.set(name, handler),
     setAttribute: (name, value) => attributes.set(name, value),
     removeAttribute: (name) => attributes.delete(name),
+    querySelector: () => null,
     querySelectorAll: () => [],
     styles,
     attributes,
+    listeners,
   };
 }
 
@@ -63,6 +68,10 @@ function createHeroRuntime() {
   const heroLink = createElement();
   const introVideo = createVideo();
   const workVideo = createVideo();
+  const documentElement = createElement();
+  documentElement.scrollHeight = 5000;
+  heroLink.hash = "#projekter";
+  introCopy.querySelector = (selector) => selector === ".hero-cta" ? heroLink : null;
   introCopy.querySelectorAll = () => [heroLink];
   hero.offsetHeight = 2400;
   let heroTop = 0;
@@ -71,6 +80,7 @@ function createHeroRuntime() {
   const window = {
     innerHeight: 1000,
     scrollY: 0,
+    location: { hash: "" },
     matchMedia: () => ({ matches: false }),
     addEventListener: (name, handler, options) => listeners.set(name, { handler, options }),
     requestAnimationFrame: (callback) => {
@@ -96,7 +106,7 @@ function createHeroRuntime() {
   ]);
   const document = {
     hidden: false,
-    documentElement: { scrollHeight: 5000 },
+    documentElement,
     querySelector: (selector) => selectors.get(selector) ?? null,
     querySelectorAll: () => [],
     getElementById: (id) => elementsById.get(id) ?? null,
@@ -112,6 +122,8 @@ function createHeroRuntime() {
     heroLink,
     introVideo,
     workVideo,
+    documentElement,
+    window,
     listeners,
     setHeroTop: (value) => { heroTop = value; },
     runNextFrame: () => frames.shift()?.(),
@@ -123,6 +135,22 @@ function createHeroRuntime() {
     },
   };
 }
+
+test("hero CTA jumps directly to Projects before the intro actions disappear", () => {
+  const runtime = createHeroRuntime();
+  let defaultPrevented = false;
+
+  runtime.heroLink.listeners.get("click")({
+    preventDefault: () => { defaultPrevented = true; },
+  });
+
+  assert.equal(defaultPrevented, true);
+  assert.equal(runtime.window.location.hash, "#projekter");
+  assert.equal(runtime.documentElement.classList.has("is-direct-anchor"), true);
+
+  runtime.runNextFrame();
+  assert.equal(runtime.documentElement.classList.has("is-direct-anchor"), false);
+});
 
 async function activateScene(runtime, heroTop) {
   runtime.setHeroTop(heroTop);
@@ -220,5 +248,5 @@ test("scene switching is independent from scroll scrubbing", () => {
   assert.match(source, /progress >= 0\.1\) switchScene\("work"\)/);
   assert.doesNotMatch(source, /playbackRate\s*=/);
   assert.doesNotMatch(source, /currentTime\s*=\s*progress|progress\s*\*\s*(?:introVideo|workVideo)\.duration/);
-  assert.doesNotMatch(source, /preventDefault|scrollTo|scrollBy|scrollIntoView/);
+  assert.doesNotMatch(source, /scrollTo|scrollBy|scrollIntoView/);
 });

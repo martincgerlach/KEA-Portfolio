@@ -8,15 +8,17 @@ function getAttribute(tag, name) {
   return tag.match(new RegExp(`\\b${name}\\s*=\\s*["']([^"']*)["']`, 'i'))?.[1] ?? null;
 }
 
-test('Blade Rhythm appears between LG Bio Capital and AquaShield', () => {
-  const lg = html.indexOf('LG Bio Capital Partners');
+test('Blade Rhythm appears before AquaShield in the featured project list', () => {
+  const featuredStart = html.indexOf('<div class="project-list">');
+  const featuredEnd = html.indexOf('</div>\n\n      <section class="secondary-work"', featuredStart);
+  const featuredProjects = html.slice(featuredStart, featuredEnd);
   const blade = html.indexOf('Blade Rhythm');
   const aquashield = html.indexOf('AquaShield');
 
-  assert.ok(lg !== -1, 'LG Bio Capital card is missing');
   assert.ok(blade !== -1, 'Blade Rhythm card is missing');
   assert.ok(aquashield !== -1, 'AquaShield card is missing');
-  assert.ok(lg < blade && blade < aquashield);
+  assert.ok(blade < aquashield);
+  assert.doesNotMatch(featuredProjects, /LG Bio Capital Partners/);
 });
 
 test('Blade Rhythm card presents the playable JavaScript project', async () => {

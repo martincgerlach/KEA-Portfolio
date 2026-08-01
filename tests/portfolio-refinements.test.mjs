@@ -30,7 +30,6 @@ test("about section uses three concise focus areas without repeated profile fact
 test("every featured project uses the compact image-led structure", () => {
   const projects = [
     ["StudyMate AI", "project-card--studymate", "cases/studymate-ai.html"],
-    ["LG Bio Capital Partners", "project-card--lg", "cases/lg-bio-capital.html"],
     ["Blade Rhythm", "project-card--blade", "cases/blade-rhythm.html"],
     ["AquaShield", "project-card--aquashield", "cases/aquashield.html"],
   ];
@@ -42,11 +41,21 @@ test("every featured project uses the compact image-led structure", () => {
     assert.match(article, /class="tag-list"/);
     assert.ok((article.match(/<li(?:\s[^>]*)?>/g) ?? []).length <= 4);
     assert.match(article, new RegExp(`class="button button-primary" href="${caseHref.replace(".", "\\.")}"`));
-    assert.doesNotMatch(article, /project-role|project-meta|project-proof/);
+    assert.doesNotMatch(article, /project-role|project-meta|project-proof|project-contribution/);
   }
+});
 
-  assert.match(projectArticle("StudyMate AI"), /class="project-contribution"/);
-  assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), /project-contribution/);
+test("project interactions stay restrained, keyboard-visible and motion-safe", () => {
+  assert.match(css, /\.home-page \.project-card:focus-within\s*\{[^}]*translateY\(-3px\)/s);
+  assert.match(css, /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*\.home-page \.project-card:hover \.project-media img[\s\S]*scale\(1\.025\)/s);
+  assert.match(css, /\.home-page \.project-media img[^}]*transition:\s*transform 220ms ease/s);
+
+  const reducedMotionBlocks = [...css.matchAll(/@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{([\s\S]*?)\n\}/g)]
+    .map((match) => match[1])
+    .join("\n");
+
+  assert.match(reducedMotionBlocks, /\.home-page \.project-card:focus-within[\s\S]*transform:\s*none/s);
+  assert.match(reducedMotionBlocks, /\.home-page \.project-card:hover \.project-media img[\s\S]*transform:\s*none/s);
 });
 
 test("the three featured technical projects expose verified GitHub links", () => {
@@ -64,7 +73,10 @@ test("the three featured technical projects expose verified GitHub links", () =>
     assert.match(anchor, /rel="noopener noreferrer"/);
   }
 
-  assert.doesNotMatch(projectArticle("LG Bio Capital Partners"), />View code</);
+  const lgTitle = html.indexOf("<h4>LG Bio Capital Partners</h4>");
+  const lgArticle = html.slice(html.lastIndexOf("<article", lgTitle), html.indexOf("</article>", lgTitle));
+  assert.match(lgArticle, /href="cases\/lg-bio-capital\.html"/);
+  assert.doesNotMatch(lgArticle, />View code</);
 });
 
 test("new homepage hooks keep the layout in vanilla CSS", () => {
@@ -93,7 +105,7 @@ test("mobile rules compact navigation and preserve the cinematic video hero", ()
   assert.match(mobile, /\.main-nav\s*\{[^}]*grid-template-columns:\s*1fr auto/s);
   assert.match(mobile, /\.main-nav ul\s*\{[^}]*grid-column:\s*1\s*\/\s*-1/s);
   assert.match(mobile, /\.home-page \.hero\s*\{[^}]*min-height:\s*160vh/s);
-  assert.match(mobile, /\.home-page \.hero-video\s*\{[^}]*object-position:\s*40% center/s);
+  assert.match(mobile, /\.home-page \.hero-video\s*\{[^}]*object-position:\s*6% center/s);
   assert.match(mobile, /\.hero-scene-copy--working\s*\{[^}]*bottom:\s*7\.2rem/s);
   assert.doesNotMatch(css, /\.hero-visual\s*\{|\.portrait-card\s*\{|\.identity-card\s*\{/);
 });
