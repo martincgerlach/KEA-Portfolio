@@ -8,6 +8,13 @@
 
   if (!hero || !introVideo || !workVideo || !introCopy || !workCopy) return;
 
+  const SCENE_TIMING = Object.freeze({
+    preloadWorkAt: 0.02,
+    showWorkAt: 0.12,
+    restoreIntroAt: 0.03,
+    crossfadeMs: 460,
+  });
+
   const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
   const heroLinks = introCopy.querySelectorAll("a");
   const projectsCta = introCopy.querySelector(".hero-cta");
@@ -23,6 +30,10 @@
   let sceneRequestId = 0;
   let actionScrollOpacity = 1;
   let headingScrollOpacity = 1;
+  let introSceneOpacity = 1;
+  let workSceneOpacity = 0;
+  let workPreloaded = false;
+  let workUnavailable = false;
 
   const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 
@@ -32,6 +43,8 @@
   };
 
   const setCopyState = (element, opacity) => {
+    if (element === introCopy) introSceneOpacity = opacity;
+    if (element === workCopy) workSceneOpacity = opacity;
     const visibleOpacity = opacity * headingScrollOpacity;
     element.style.setProperty("--scene-opacity", opacity.toFixed(4));
     element.classList.toggle("is-active", opacity > 0.015);
@@ -47,15 +60,15 @@
     });
   };
 
-  const applyScene = (scene) => {
+  const applyScene = (scene, copyOpacity = 1) => {
     activeScene = scene;
     const workIsActive = scene === "work";
 
     hero.classList.toggle("hero-work-active", workIsActive);
     hero.classList.remove("hero-scene-switching");
     hero.dataset.videoScene = workIsActive ? "working" : "walking";
-    setCopyState(introCopy, workIsActive ? 0 : 1);
-    setCopyState(workCopy, workIsActive ? 1 : 0);
+    setCopyState(introCopy, workIsActive ? 0 : copyOpacity);
+    setCopyState(workCopy, workIsActive ? copyOpacity : 0);
     updateLinkAvailability();
   };
 
@@ -81,6 +94,13 @@
     }
   };
 
+  const preloadWorkVideo = () => {
+    if (workPreloaded || workUnavailable) return;
+    workPreloaded = true;
+    workVideo.preload = "auto";
+    workVideo.load?.();
+  };
+
   const switchScene = async (scene) => {
     if (reducedMotion || requestedScene === scene) return;
 
@@ -89,11 +109,16 @@
     const targetVideo = scene === "work" ? workVideo : introVideo;
     const previousVideo = scene === "work" ? introVideo : workVideo;
 
-    hero.classList.add("hero-scene-switching");
-
-    if (scene === "work" && targetVideo.currentTime > 0.4) {
-      targetVideo.currentTime = 0;
+    if (scene === "work" && workUnavailable) {
+      requestedScene = "intro";
+      introVideo.currentTime = 0;
+      applyScene("intro");
+      await playVideo(introVideo);
+      return;
     }
+
+    targetVideo.currentTime = 0;
+    hero.classList.add("hero-scene-switching");
 
     const started = await playVideo(targetVideo);
     if (requestId !== sceneRequestId) return;
@@ -107,8 +132,14 @@
     window.requestAnimationFrame(() => {
       if (requestId !== sceneRequestId) return;
       applyScene(scene);
-      window.setTimeout(() => previousVideo.pause(), 460);
+      window.setTimeout(() => previousVideo.pause(), SCENE_TIMING.crossfadeMs);
     });
+  };
+
+  const restartActiveVideo = (scene, video) => {
+    if (scene !== activeScene || reducedMotion) return;
+    video.currentTime = 0;
+    playVideo(video);
   };
 
   const updateActiveNavigation = () => {
@@ -147,8 +178,9 @@
     const transitionOpacity = transitionIn * (1 - transitionOut);
     const headingOffset = smoothRange(progress, 0.64, 0.88) * -24;
 
-    if (!reducedMotion && progress >= 0.1) switchScene("work");
-    else if (!reducedMotion && progress <= 0.03) switchScene("intro");
+    if (!reducedMotion && progress >= SCENE_TIMING.preloadWorkAt) preloadWorkVideo();
+    if (!reducedMotion && progress >= SCENE_TIMING.showWorkAt) switchScene("work");
+    else if (!reducedMotion && progress <= SCENE_TIMING.restoreIntroAt) switchScene("intro");
 
     hero.style.setProperty("--hero-progress", progress.toFixed(4));
     hero.style.setProperty("--hero-action-scroll-opacity", actionScrollOpacity.toFixed(4));
@@ -161,18 +193,16 @@
     hero.style.setProperty("--hero-transition-opacity", transitionOpacity.toFixed(4));
     hero.style.setProperty("--hero-nav-backdrop", smoothRange(progress, 0.02, 0.18).toFixed(4));
     hero.dataset.scrollProgress = progress.toFixed(4);
-    hero.dataset.scrollStage = progress < 0.1
-      ? "initial"
-      : progress < 0.72
-        ? "work"
-        : progress < 0.92
-          ? "transition"
-          : "final";
+    hero.dataset.scrollStage = progress < 0.72
+      ? "hero"
+      : progress < 0.92
+        ? "transition"
+        : "final";
 
     navigation?.classList.toggle("is-scrolled", window.scrollY > 24);
     updateActiveNavigation();
-    setCopyState(introCopy, activeScene === "intro" ? 1 : 0);
-    setCopyState(workCopy, activeScene === "work" ? 1 : 0);
+    setCopyState(introCopy, introSceneOpacity);
+    setCopyState(workCopy, workSceneOpacity);
     updateLinkAvailability();
   };
 
@@ -194,11 +224,15 @@
   introVideo.addEventListener("loadeddata", () => {
     hero.classList.add("hero-video-ready");
   });
+  introVideo.addEventListener("ended", () => restartActiveVideo("intro", introVideo));
+  workVideo.addEventListener("ended", () => restartActiveVideo("work", workVideo));
   introVideo.addEventListener("error", showFallback);
   workVideo.addEventListener("error", () => {
-    requestedScene = "intro";
-    applyScene("intro");
-    playVideo(introVideo);
+    workUnavailable = true;
+    if (activeScene === "work") {
+      requestedScene = "work";
+      switchScene("intro");
+    }
   });
 
   if ("IntersectionObserver" in window) {
@@ -234,8 +268,7 @@
   updateScrollProgress();
 
   if (reducedMotion) {
-    introVideo.pause();
-    workVideo.pause();
+    showFallback();
   } else {
     playVideo(introVideo).then((started) => {
       if (!started) {

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Martin Gerlach" />
-  <meta name="description" content="Martin Gerlach is a Multimedia Design student and qualified IT support specialist building frontend, UX and creative technology projects." data-i18n-attr="content:meta.description" />
+  <meta name="description" content="Portfolio of Martin Gerlach, a Multimedia Design student building frontend experiences, AI product prototypes and thoughtful UX projects." data-i18n-attr="content:meta.description" />
   <meta id="theme-color" name="theme-color" content="#0a0d10" />
   <link rel="canonical" href="https://gerlachdesign.dk/" />
   <meta property="og:type" content="website" />
@@ -13,20 +13,33 @@
   <meta property="og:site_name" content="GerlachDesign" />
   <meta property="og:locale" content="en_GB" data-i18n-attr="content:meta.locale" />
   <meta property="og:title" content="Martin Gerlach | Frontend Developer, AI Builder & UX Designer" data-i18n-attr="content:meta.title" />
-  <meta property="og:description" content="Multimedia Design student and qualified IT support specialist building clear frontend, AI and UX projects." data-i18n-attr="content:meta.socialDescription" />
+  <meta property="og:description" content="Frontend, AI product and UX projects by Multimedia Design student Martin Gerlach." data-i18n-attr="content:meta.socialDescription" />
   <meta property="og:image" content="https://gerlachdesign.dk/social-preview.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Portfolio preview for Martin Gerlach with his portrait and a description of his digital product work" data-i18n-attr="content:meta.socialImageAlt" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Martin Gerlach | Frontend Developer, AI Builder & UX Designer" data-i18n-attr="content:meta.title" />
-  <meta name="twitter:description" content="Multimedia Design student and qualified IT support specialist building clear frontend, AI and UX projects." data-i18n-attr="content:meta.socialDescription" />
+  <meta name="twitter:description" content="Frontend, AI product and UX projects by Multimedia Design student Martin Gerlach." data-i18n-attr="content:meta.socialDescription" />
   <meta name="twitter:image" content="https://gerlachdesign.dk/social-preview.png" />
   <meta name="twitter:image:alt" content="Portfolio preview for Martin Gerlach with his portrait and a description of his digital product work" data-i18n-attr="content:meta.socialImageAlt" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Martin Gerlach",
+      "url": "https://gerlachdesign.dk/",
+      "jobTitle": "Multimedia Design student, Frontend Developer, AI Builder and UX Designer",
+      "sameAs": [
+        "https://github.com/martincgerlach",
+        "https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/"
+      ]
+    }
+  </script>
   <title data-i18n="meta.title">Martin Gerlach | Frontend Developer, AI Builder &amp; UX Designer</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="stylesheet" href="style.css?v=20260801-1" />
+  <link rel="stylesheet" href="style.css?v=20260801-2" />
 </head>
 <body class="home-page dark-mode">
   <a class="skip-link" href="#main-content" data-i18n="skip.content">Skip to content</a>
@@ -52,10 +65,10 @@
     <div class="hero-sticky">
       <div class="hero-media" aria-hidden="true">
         <div class="hero-video-fallback"></div>
-        <video id="hero-video" class="hero-video hero-video--intro" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="videos/portfolio-hero-poster-20260729.jpg">
+        <video id="hero-video" class="hero-video hero-video--intro" width="1280" height="720" autoplay muted playsinline preload="metadata" poster="videos/portfolio-hero-poster-20260729.jpg">
           <source src="videos/portfolio-hero-intro-20260731.mp4" type="video/mp4" />
         </video>
-        <video id="hero-work-video" class="hero-video hero-video--work" width="1280" height="720" muted loop playsinline preload="none">
+        <video id="hero-work-video" class="hero-video hero-video--work" width="1280" height="720" muted playsinline preload="none">
           <source src="videos/portfolio-hero-work-20260731.mp4" type="video/mp4" />
         </video>
         <div class="hero-overlay"></div>
@@ -107,7 +120,7 @@
       <div class="project-list">
         <article class="project-card project-card-featured project-card--studymate">
           <div class="project-content">
-            <p class="project-type" data-i18n="studymate.type">Featured AI Product · Prototype</p>
+            <p class="project-type" data-i18n="studymate.type">Featured AI Product · Functional Prototype</p>
             <h3>StudyMate AI</h3>
             <p data-i18n="studymate.description">An AI study workspace with specialized assistants, contextual project support and a protected server-side integration.</p>
             <ul class="tag-list" aria-label="Technologies used for StudyMate AI" data-i18n-attr="aria-label:studymate.techAria">
@@ -308,7 +321,12 @@
       <div class="section-heading">
         <p class="section-label" data-i18n="materials.label">Background and credentials</p>
         <h2 data-i18n="materials.heading">Professional background</h2>
-        <p data-i18n="materials.intro">Download my CV in Danish or English.</p>
+        <p data-i18n="materials.intro">View my CV and learn more about my technical qualification.</p>
+      </div>
+
+      <div class="qualification-summary" aria-label="IT support qualification" data-i18n-attr="aria-label:materials.qualificationLabel">
+        <strong data-i18n="materials.qualification">Qualified IT Support Specialist</strong>
+        <span data-i18n="materials.completed">Completed in 2024</span>
       </div>
 
       <div class="credentials-panel">
@@ -347,9 +365,9 @@
     </nav>
   </footer>
 
-  <script src="portfolio-translations.js?v=20260801-1"></script>
+  <script src="portfolio-translations.js?v=20260801-2"></script>
   <script src="language.js?v=20260727-1"></script>
-  <script src="hero-video.js?v=20260801-1"></script>
+  <script src="hero-video.js?v=20260801-3"></script>
   <script>
     const button = document.getElementById("toggle-theme");
     const root = document.documentElement;

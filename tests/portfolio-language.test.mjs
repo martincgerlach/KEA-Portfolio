@@ -12,7 +12,7 @@ const translations = context.window.pageTranslations;
 
 test("portfolio defaults to English and loads translations before the engine", () => {
   assert.match(html, /<html lang="en"/);
-  assert.match(html, /<script src="portfolio-translations\.js\?v=20260801-1"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260801-1"><\/script>/s);
+  assert.match(html, /<script src="portfolio-translations\.js\?v=20260801-2"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260801-3"><\/script>/s);
 });
 
 test("portfolio exposes the approved flag controls", () => {
@@ -66,8 +66,8 @@ test("every project card translates its visible type and supporting copy", () =>
     "lg.type",
     "forni.type",
   ]);
-  assert.equal(translations.en["studymate.type"], "Featured AI Product · Prototype");
-  assert.equal(translations.da["studymate.type"], "Udvalgt AI-produkt · Prototype");
+  assert.equal(translations.en["studymate.type"], "Featured AI Product · Functional Prototype");
+  assert.equal(translations.da["studymate.type"], "Udvalgt AI-produkt · Funktionel prototype");
   assert.equal(translations.da["lg.type"], "Kundewebsite");
   assert.equal(translations.da["blade.type"], "JavaScript-spil");
   assert.equal(translations.en["aquashield.type"], "School project");
@@ -76,10 +76,14 @@ test("every project card translates its visible type and supporting copy", () =>
   assert.equal(translations.da["more.heading"], "Kundewebsites");
   assert.equal(translations.en["materials.label"], "Background and credentials");
   assert.equal(translations.en["materials.heading"], "Professional background");
-  assert.equal(translations.en["materials.intro"], "Download my CV in Danish or English.");
+  assert.equal(translations.en["materials.intro"], "View my CV and learn more about my technical qualification.");
+  assert.equal(translations.en["materials.qualification"], "Qualified IT Support Specialist");
+  assert.equal(translations.en["materials.completed"], "Completed in 2024");
   assert.equal(translations.da["materials.label"], "Baggrund og kvalifikationer");
   assert.equal(translations.da["materials.heading"], "Professionel baggrund");
-  assert.equal(translations.da["materials.intro"], "Download mit CV på dansk eller engelsk.");
+  assert.equal(translations.da["materials.intro"], "Se mit CV og læs mere om min tekniske kvalifikation.");
+  assert.equal(translations.da["materials.qualification"], "Uddannet IT-supporter");
+  assert.equal(translations.da["materials.completed"], "Afsluttet i 2024");
   assert.doesNotMatch(html, /data-i18n="materials\.schoolCase"/);
   assert.doesNotMatch(html, /project-card--lifescience|project-card--todo/);
 });

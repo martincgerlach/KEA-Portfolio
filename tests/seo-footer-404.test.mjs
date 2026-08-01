@@ -37,6 +37,11 @@ test("credential links clearly download the two public CV PDFs", () => {
     assert.match(materials, new RegExp(`href="${name}"[^>]*type="application/pdf"[^>]*download[^>]*data-i18n-attr="aria-label:${key}"`));
   }
   assert.equal((materials.match(/PDF · Download/g) ?? []).length, 2);
+  assert.match(materials, /class="qualification-summary"[^>]*aria-label="IT support qualification"/);
+  assert.match(materials, /Qualified IT Support Specialist/);
+  assert.match(materials, /Completed in 2024/);
+  const qualification = materials.slice(materials.indexOf('class="qualification-summary"'), materials.indexOf("</div>", materials.indexOf('class="qualification-summary"')));
+  assert.doesNotMatch(qualification, /<a\b|href=/);
   assert.doesNotMatch(`${html}\n${translationSource}`, /certificate|uddannelsesbevis|svendebrev/i);
 });
 
@@ -51,6 +56,7 @@ test("homepage SEO and social metadata follow the active language", () => {
   assert.match(html, /<meta name="twitter:title"[^>]*data-i18n-attr="content:meta\.title"/);
   assert.match(html, /<meta name="twitter:description"[^>]*data-i18n-attr="content:meta\.socialDescription"/);
   assert.match(html, /<meta name="twitter:image:alt"[^>]*data-i18n-attr="content:meta\.socialImageAlt"/);
+  assert.match(html, /<script type="application\/ld\+json">[\s\S]*"@type": "Person"[\s\S]*"name": "Martin Gerlach"/);
 
   assert.equal(translations.en["meta.locale"], "en_GB");
   assert.equal(translations.da["meta.locale"], "da_DK");
@@ -97,7 +103,7 @@ test("the custom 404 page is bilingual, theme-aware and index-safe", async () =>
   assert.match(css, /\.error-page \.error-main\s*\{/);
 
   for (const language of ["en", "da"]) {
-    for (const key of ["error.metaTitle", "error.heading", "error.text", "error.home", "error.projects"]) {
+    for (const key of ["error.metaTitle", "error.heading", "error.text", "error.home", "error.projects", "footer.copyright"]) {
       assert.equal(typeof translations[language][key], "string", `Missing ${language} ${key}`);
     }
   }
