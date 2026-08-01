@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+const notFound = await readFile(new URL("../404.html", import.meta.url), "utf8");
 const css = await readFile(new URL("../style.css", import.meta.url), "utf8");
 const source = await readFile(new URL("../portfolio-translations.js", import.meta.url), "utf8");
 const context = vm.createContext({ window: {} });
@@ -12,7 +13,7 @@ const translations = context.window.pageTranslations;
 
 test("portfolio defaults to English and loads translations before the engine", () => {
   assert.match(html, /<html lang="en"/);
-  assert.match(html, /<script src="portfolio-translations\.js\?v=20260801-2"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260801-3"><\/script>/s);
+  assert.match(html, /<script src="portfolio-translations\.js\?v=20260801-4"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260801-4"><\/script>/s);
 });
 
 test("portfolio exposes the approved flag controls", () => {
@@ -21,14 +22,21 @@ test("portfolio exposes the approved flag controls", () => {
 });
 
 test("every portfolio translation hook exists in both dictionaries", () => {
-  const textKeys = [...html.matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]);
-  const attrKeys = [...html.matchAll(/data-i18n-attr="([^"]+)"/g)].flatMap((match) =>
+  const documents = `${html}\n${notFound}`;
+  const textKeys = [...documents.matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]);
+  const attrKeys = [...documents.matchAll(/data-i18n-attr="([^"]+)"/g)].flatMap((match) =>
     match[1].split(";").map((pair) => pair.split(":")[1]),
   );
-  for (const key of new Set([...textKeys, ...attrKeys])) {
+  const runtimeKeys = ["theme.light", "theme.dark", "theme.lightLabel", "theme.darkLabel"];
+  const usedKeys = new Set([...textKeys, ...attrKeys, ...runtimeKeys]);
+
+  for (const key of usedKeys) {
     assert.equal(typeof translations.en[key], "string", `Missing English key: ${key}`);
     assert.equal(typeof translations.da[key], "string", `Missing Danish key: ${key}`);
   }
+
+  assert.deepEqual(Object.keys(translations.en).sort(), [...usedKeys].sort(), "English dictionary contains stale keys");
+  assert.deepEqual(Object.keys(translations.da).sort(), [...usedKeys].sort(), "Danish dictionary contains stale keys");
 });
 
 test("portfolio dictionary contains the approved core copy", () => {

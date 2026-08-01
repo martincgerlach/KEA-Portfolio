@@ -198,6 +198,14 @@ test("scrolling starts the work clip without changing playback speed", async () 
   assert.equal(runtime.introVideo.playbackRate, 1);
   assert.equal(runtime.workVideo.playbackRate, 1);
   assert.equal(runtime.introCopy.styles.get("--scene-opacity"), "0.0000");
+  assert.equal(runtime.workCopy.styles.get("--scene-opacity"), "0.0000");
+
+  runtime.workVideo.currentTime = 0.5;
+  runtime.workVideo.listeners.get("timeupdate")();
+  assert.equal(runtime.workCopy.styles.get("--scene-opacity"), "0.5000");
+
+  runtime.workVideo.currentTime = 1;
+  runtime.workVideo.listeners.get("timeupdate")();
   assert.equal(runtime.workCopy.styles.get("--scene-opacity"), "1.0000");
 
   runtime.runNextTimer();
@@ -207,6 +215,8 @@ test("scrolling starts the work clip without changing playback speed", async () 
 test("work copy remains readable until the final project transition", async () => {
   const runtime = createHeroRuntime();
   await advanceScrollToWork(runtime);
+  runtime.workVideo.currentTime = 10;
+  runtime.workVideo.listeners.get("timeupdate")();
   await updateScroll(runtime, -700);
 
   assert.equal(runtime.hero.dataset.scrollProgress, "0.5000");
@@ -255,11 +265,36 @@ test("scrolling back to the top restores the drone clip", async () => {
   assert.equal(runtime.workVideo.paused, true);
 });
 
+test("scene copy follows playback time and resets when the active clip loops", async () => {
+  const runtime = createHeroRuntime();
+
+  runtime.introVideo.currentTime = 9.875;
+  runtime.introVideo.listeners.get("timeupdate")();
+  assert.equal(runtime.introCopy.styles.get("--scene-opacity"), "0.5000");
+
+  runtime.introVideo.currentTime = 10.5;
+  runtime.introVideo.listeners.get("timeupdate")();
+  assert.equal(runtime.introCopy.styles.get("--scene-opacity"), "0.0000");
+
+  runtime.introVideo.listeners.get("ended")();
+  assert.equal(runtime.introVideo.currentTime, 0);
+  assert.equal(runtime.introCopy.styles.get("--scene-opacity"), "1.0000");
+
+  await advanceScrollToWork(runtime);
+  runtime.workVideo.currentTime = 26.625;
+  runtime.workVideo.listeners.get("timeupdate")();
+  assert.equal(runtime.workCopy.styles.get("--scene-opacity"), "0.5000");
+
+  runtime.workVideo.listeners.get("ended")();
+  assert.equal(runtime.workVideo.currentTime, 0);
+  assert.equal(runtime.workCopy.styles.get("--scene-opacity"), "0.0000");
+});
+
 test("scene switching is independent from scroll scrubbing", () => {
   assert.match(source, /const introVideo = document\.getElementById\("hero-video"\)/);
   assert.match(source, /const workVideo = document\.getElementById\("hero-work-video"\)/);
-  assert.match(source, /progress >= SCENE_TIMING\.showWorkAt\) switchScene\("work"\)/);
-  assert.match(source, /progress <= SCENE_TIMING\.restoreIntroAt\) switchScene\("intro"\)/);
+  assert.match(source, /progress >= SCENE_TIMING\.scroll\.showWorkAt\) switchScene\("work"\)/);
+  assert.match(source, /progress <= SCENE_TIMING\.scroll\.restoreIntroAt\) switchScene\("intro"\)/);
   const scrollUpdate = source.slice(source.indexOf("const updateScrollProgress"), source.indexOf("const requestScrollUpdate"));
   assert.match(scrollUpdate, /switchScene\("work"\)/);
   assert.match(scrollUpdate, /switchScene\("intro"\)/);
