@@ -4,6 +4,7 @@ import { access, readFile, stat } from "node:fs/promises";
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const translations = await readFile(new URL("../portfolio-translations.js", import.meta.url), "utf8");
+const cvSource = await readFile(new URL("../scripts/generate_cvs.py", import.meta.url), "utf8");
 
 test("homepage keeps three technical projects featured and groups client work below", () => {
   const cards = html.match(/<article class="[^"]*\bproject-card\b[^"]*">/g) ?? [];
@@ -39,6 +40,9 @@ test("both current CV files are compact one-page application PDFs", async () => 
     assert.ok(fileStat.size < 100 * 1024, `${name} should remain lightweight`);
     assert.match(bytes.toString("latin1"), /\/Count 1\b/);
   }
+  assert.match(cvSource, /September 2024 - marts 2025/);
+  assert.match(cvSource, /September 2024 - March 2025/);
+  assert.doesNotMatch(cvSource, /MT Højgaard[\s\S]{0,180}(?:present|nu)/i);
 });
 
 test("the education certificate is not published by the portfolio", async () => {

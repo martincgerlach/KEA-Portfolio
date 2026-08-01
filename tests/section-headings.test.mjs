@@ -15,7 +15,7 @@ test("the four portfolio sections use the approved compact copy", () => {
     ["Featured work", "Featured projects", "A focused selection of work combining design, code and practical problem-solving."],
     ["About me", "I combine design thinking with technical problem-solving\\.", "I am a Multimedia Design student and qualified IT support specialist."],
     ["Tech stack", "Technologies I work with", "Used across portfolio projects, client work and prototypes."],
-    ["Background and credentials", "Professional background", "Download my CV in Danish or English."],
+    ["Background and credentials", "Professional background", "View my CV and learn more about my technical qualification."],
   ];
 
   for (const [label, title, copy] of expected) {

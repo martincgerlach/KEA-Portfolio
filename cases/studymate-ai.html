@@ -22,7 +22,7 @@
   <title>StudyMate AI Case Study | Martin Gerlach</title>
   <link rel="icon" type="image/png" href="../favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
-  <link rel="stylesheet" href="../style.css?v=bilingual" />
+  <link rel="stylesheet" href="../style.css?v=20260801-2" />
 </head>
 <body class="dark-mode">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -64,7 +64,7 @@
       </article>
       <article>
         <h2>Stack</h2>
-        <p>HTML, CSS, JavaScript, Node.js, Express, OpenAI API, Markdown knowledge files and Cloudflare Pages Functions.</p>
+        <p>HTML, CSS, JavaScript, Node.js, Express, a local OpenAI API integration and Markdown knowledge files. Cloudflare Pages Functions are prepared for deployment.</p>
       </article>
     </section>
 
@@ -75,16 +75,16 @@
       </div>
       <div class="case-text-stack">
         <article>
-          <h3>Functional prototype</h3>
-          <p>The interface, assistant selection, prompt suggestions, chat states and backend routes are implemented. The repository contains both a local Express version and a Cloudflare Pages Functions version.</p>
+          <h3>Implemented locally</h3>
+          <p>The interface, assistant selection, prompt suggestions, chat states and Express backend routes are implemented. With a local API key, the server can send protected requests to OpenAI.</p>
         </article>
         <article>
-          <h3>Public status</h3>
-          <p>The public GitHub Pages demo is static. It uses clear fallback responses so visitors can understand the flow without being told that a real AI service is already live.</p>
+          <h3>Public functional prototype</h3>
+          <p>The public GitHub Pages demo demonstrates the complete interface flow with static fallback responses. It does not run the server-backed OpenAI integration.</p>
         </article>
         <article>
-          <h3>Evidence boundary</h3>
-          <p>StudyMate AI is not a production-ready service. The Cloudflare route is prepared, but public server deployment, live OpenAI testing and external usability testing still need to be completed.</p>
+          <h3>Not a finished commercial product</h3>
+          <p>StudyMate AI is not production-ready. Public server deployment, live OpenAI testing, stronger abuse protection and external usability testing still need to be completed.</p>
         </article>
       </div>
     </section>
@@ -168,28 +168,33 @@
           <ol class="architecture-flow">
             <li class="architecture-node">
               <span class="architecture-step">01</span>
-              <h3>User interface</h3>
-              <p>The student selects an assistant and writes a study task.</p>
+              <h3>Student</h3>
+              <p>The student chooses a focused type of support and enters a study task.</p>
             </li>
             <li class="architecture-node">
               <span class="architecture-step">02</span>
-              <h3>Frontend application</h3>
-              <p>JavaScript sends <code>assistantId</code> and the message with POST <code>/api/chat</code>.</p>
-            </li>
-            <li class="architecture-node architecture-node--protected">
-              <span class="architecture-boundary">Protected boundary</span>
-              <h3>Server-side API route</h3>
-              <p>The route validates input, finds the role, adds context, applies limits and builds the request.</p>
+              <h3>StudyMate interface</h3>
+              <p>JavaScript manages selection, loading, success, error and retry states.</p>
             </li>
             <li class="architecture-node">
-              <span class="architecture-step">04</span>
-              <h3>OpenAI Responses API</h3>
-              <p>The prepared server integration sends instructions and the user's input.</p>
+              <span class="architecture-step">03</span>
+              <h3>Assistant request</h3>
+              <p>The frontend sends only <code>assistantId</code> and the message to POST <code>/api/chat</code>.</p>
+            </li>
+            <li class="architecture-node architecture-node--protected">
+              <span class="architecture-boundary">04 · Protected</span>
+              <h3>Server-side route</h3>
+              <p>The route validates input, selects role and context, applies limits and reads the environment key.</p>
             </li>
             <li class="architecture-node">
               <span class="architecture-step">05</span>
-              <h3>Response in the interface</h3>
-              <p>The frontend renders the reply or presents a clear error and retry state.</p>
+              <h3>OpenAI Responses API</h3>
+              <p>The prepared integration sends server-built instructions and the user's input.</p>
+            </li>
+            <li class="architecture-node">
+              <span class="architecture-step">06</span>
+              <h3>Interface response</h3>
+              <p>The frontend renders the reply or returns a clear loading, error and retry state.</p>
             </li>
           </ol>
 
@@ -295,6 +300,10 @@
         <article>
           <h3>Pending evidence</h3>
           <p><strong>Findings:</strong> Pending external sessions. <strong>Resulting design changes:</strong> Pending analysis of the completed test notes.</p>
+        </article>
+        <article>
+          <h3>Next validation step</h3>
+          <p>Test the prototype with 3–5 Multimedia Design students and observe whether they understand the assistant structure, project context and core interaction without guidance.</p>
         </article>
       </div>
     </section>

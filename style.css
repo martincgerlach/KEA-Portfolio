@@ -1380,7 +1380,7 @@ body.light-mode .architecture-visual {
 
 .architecture-flow {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -2998,6 +2998,26 @@ body.light-mode .case-evidence-step {
   padding-block: clamp(3rem, 5vw, 4.5rem);
 }
 
+.home-page .qualification-summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.home-page .qualification-summary strong {
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.home-page .qualification-summary span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 .home-page .credentials-panel {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3127,6 +3147,12 @@ body.light-mode .case-evidence-step {
 }
 
 @media (max-width: 680px) {
+  .home-page .qualification-summary {
+    display: grid;
+    justify-items: start;
+    gap: 0.3rem;
+  }
+
   .home-page .main-nav {
     top: 0;
     width: 100%;

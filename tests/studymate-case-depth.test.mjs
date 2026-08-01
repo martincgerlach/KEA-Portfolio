@@ -21,8 +21,8 @@ test("StudyMate presents a complete but honest product and software narrative", 
   }
 
   assert.match(html, /functional prototype/i);
-  assert.match(html, /public GitHub Pages demo is static/i);
-  assert.match(html, /not a production-ready service/i);
+  assert.match(html, /public GitHub Pages demo demonstrates the complete interface flow with static fallback responses/i);
+  assert.match(html, /not production-ready/i);
   assert.match(html, /external testing has not yet been completed/i);
   assert.doesNotMatch(html, /production[- ]ready AI platform|advanced AI system|real user accounts/i);
 });
@@ -51,24 +51,27 @@ test("the architecture visual is semantic, accessible and explicit about securit
   assert.match(html, /<ol class="architecture-flow"/);
 
   for (const label of [
-    "User interface",
-    "Frontend application",
-    "Server-side API route",
+    "Student",
+    "StudyMate interface",
+    "Assistant request",
+    "Server-side route",
     "OpenAI Responses API",
-    "Response in the interface",
+    "Interface response",
   ]) {
     assert.match(html, new RegExp(`<h3>${label}<\/h3>`));
   }
 
-  assert.match(html, /Protected boundary/);
+  assert.match(html, /04 · Protected/);
   assert.match(html, /API key stays in server-side environment variables/);
+  assert.match(html, /reads the environment key/);
+  assert.equal((html.match(/class="architecture-node(?: [^"]*)?"/g) ?? []).length, 6);
   assert.match(html, /class="architecture-details"/);
   assert.match(html, /<figcaption>/);
   assert.doesNotMatch(html, /canvas|<svg|mermaid|diagram\.js/i);
 });
 
 test("the architecture visual adapts without relying on animation", () => {
-  assert.match(css, /\.architecture-flow\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*repeat\(5,/s);
+  assert.match(css, /\.architecture-flow\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*repeat\(6,/s);
   assert.match(css, /\.architecture-node::after\s*\{[^}]*content:\s*"";[^}]*rotate\(45deg\)/s);
   assert.match(css, /body\.light-mode \.architecture-visual/);
   assert.match(css, /@media\s*\(max-width:\s*980px\)[\s\S]*\.architecture-flow\s*\{[^}]*grid-template-columns:\s*1fr;/s);

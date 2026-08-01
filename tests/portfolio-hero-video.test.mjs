@@ -10,10 +10,11 @@ test("hero uses the finished local video with a poster and accessible fallback",
   assert.match(html, /<header id="top" class="hero">/);
   assert.match(
     html,
-    /<video id="hero-video" class="hero-video hero-video--intro" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="videos\/portfolio-hero-poster-20260729\.jpg">/,
+    /<video id="hero-video" class="hero-video hero-video--intro" width="1280" height="720" autoplay muted playsinline preload="metadata" poster="videos\/portfolio-hero-poster-20260729\.jpg">/,
   );
   assert.match(html, /<source src="videos\/portfolio-hero-intro-20260731\.mp4" type="video\/mp4" \/>/);
-  assert.match(html, /<video id="hero-work-video" class="hero-video hero-video--work" width="1280" height="720" muted loop playsinline preload="none">/);
+  assert.match(html, /<video id="hero-work-video" class="hero-video hero-video--work" width="1280" height="720" muted playsinline preload="none">/);
+  assert.doesNotMatch(html, /<video[^>]*\sloop(?:\s|=|>)/);
   assert.match(html, /<source src="videos\/portfolio-hero-work-20260731\.mp4" type="video\/mp4" \/>/);
   assert.doesNotMatch(html, /<video[^>]*\scontrols(?:\s|=|>)/);
   assert.match(html, /class="hero-video-fallback"/);
@@ -72,6 +73,9 @@ test("the two video scenes have deterministic playback and fallback states", () 
   assert.match(script, /introVideo\.addEventListener\("error", showFallback\)/);
   assert.match(script, /workVideo\.addEventListener\("error"/);
   assert.match(script, /const switchScene = async \(scene\)/);
+  assert.match(script, /const restartActiveVideo = \(scene, video\)/);
+  assert.match(script, /introVideo\.addEventListener\("ended"/);
+  assert.match(script, /workVideo\.addEventListener\("ended"/);
   assert.match(script, /const targetVideo = scene === "work" \? workVideo : introVideo/);
   assert.match(script, /await video\.play\(\)/);
   assert.match(script, /introVideo\.pause\(\)/);
@@ -90,7 +94,9 @@ test("project navigation uses a direct native hash jump without changing playbac
   assert.match(script, /event\.preventDefault\(\)/);
   assert.doesNotMatch(script, /suspendVideoScrub|scrubVideo/);
   assert.doesNotMatch(script, /scrollTo|scrollBy|scrollIntoView/);
-  assert.match(script, /progress >= 0\.1\) switchScene\("work"\)/);
+  assert.match(script, /progress >= SCENE_TIMING\.showWorkAt\) switchScene\("work"\)/);
+  const scrollUpdate = script.slice(script.indexOf("const updateScrollProgress"), script.indexOf("const requestScrollUpdate"));
+  assert.match(scrollUpdate, /switchScene\("work"\)/);
   assert.doesNotMatch(script, /currentTime\s*=\s*progress|progress\s*\*\s*(?:introVideo|workVideo)\.duration/);
   assert.doesNotMatch(script, /playbackRate\s*=/);
 });

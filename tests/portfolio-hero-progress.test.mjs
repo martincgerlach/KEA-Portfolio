@@ -44,7 +44,9 @@ function createVideo() {
   return {
     currentTime: 0,
     playbackRate: 1,
+    preload: "metadata",
     paused: true,
+    loadCalls: 0,
     listeners,
     addEventListener: (name, handler) => listeners.set(name, handler),
     play() {
@@ -53,6 +55,9 @@ function createVideo() {
     },
     pause() {
       this.paused = true;
+    },
+    load() {
+      this.loadCalls += 1;
     },
   };
 }
@@ -152,10 +157,14 @@ test("hero CTA jumps directly to Projects before the intro actions disappear", (
   assert.equal(runtime.documentElement.classList.has("is-direct-anchor"), false);
 });
 
-async function activateScene(runtime, heroTop) {
+async function updateScroll(runtime, heroTop) {
   runtime.setHeroTop(heroTop);
   runtime.listeners.get("scroll").handler();
   runtime.runNextFrame();
+}
+
+async function advanceScrollToWork(runtime) {
+  await updateScroll(runtime, -350);
   for (let index = 0; index < 4; index += 1) {
     await Promise.resolve();
   }
@@ -166,7 +175,7 @@ test("hero progress begins at zero and scroll listening is passive", () => {
   const runtime = createHeroRuntime();
 
   assert.equal(runtime.hero.dataset.scrollProgress, "0.0000");
-  assert.equal(runtime.hero.dataset.scrollStage, "initial");
+  assert.equal(runtime.hero.dataset.scrollStage, "hero");
   assert.equal(runtime.hero.dataset.videoScene, "walking");
   assert.equal(runtime.hero.styles.get("--hero-progress"), "0.0000");
   assert.equal(runtime.hero.styles.get("--hero-action-scroll-opacity"), "1.0000");
@@ -176,14 +185,12 @@ test("hero progress begins at zero and scroll listening is passive", () => {
   assert.equal(runtime.workCopy.styles.get("--scene-opacity"), "0.0000");
 });
 
-test("normal scroll starts the dedicated work clip without changing playback speed", async () => {
+test("scrolling starts the work clip without changing playback speed", async () => {
   const runtime = createHeroRuntime();
-  runtime.introVideo.currentTime = 3;
-
-  await activateScene(runtime, -350);
+  await advanceScrollToWork(runtime);
 
   assert.equal(runtime.hero.dataset.scrollProgress, "0.2500");
-  assert.equal(runtime.hero.dataset.scrollStage, "work");
+  assert.equal(runtime.hero.dataset.scrollStage, "hero");
   assert.equal(runtime.hero.dataset.videoScene, "working");
   assert.equal(runtime.hero.classList.has("hero-work-active"), true);
   assert.equal(runtime.workVideo.paused, false);
@@ -199,10 +206,12 @@ test("normal scroll starts the dedicated work clip without changing playback spe
 
 test("work copy remains readable until the final project transition", async () => {
   const runtime = createHeroRuntime();
-  await activateScene(runtime, -700);
+  await advanceScrollToWork(runtime);
+  await updateScroll(runtime, -700);
 
   assert.equal(runtime.hero.dataset.scrollProgress, "0.5000");
-  assert.equal(runtime.hero.dataset.scrollStage, "work");
+  assert.equal(runtime.hero.dataset.scrollStage, "hero");
+  assert.equal(runtime.hero.dataset.videoScene, "working");
   assert.equal(runtime.hero.styles.get("--hero-heading-scroll-opacity"), "1.0000");
   assert.equal(runtime.hero.styles.get("--hero-transition-opacity"), "0.0000");
   assert.equal(runtime.hero.styles.get("--hero-scroll-opacity"), "0.0000");
@@ -226,10 +235,14 @@ test("work copy remains readable until the final project transition", async () =
 
 test("scrolling back to the top restores the drone clip", async () => {
   const runtime = createHeroRuntime();
-  await activateScene(runtime, -350);
+  await advanceScrollToWork(runtime);
   runtime.runNextTimer();
 
-  await activateScene(runtime, 0);
+  await updateScroll(runtime, 0);
+  for (let index = 0; index < 4; index += 1) {
+    await Promise.resolve();
+  }
+  runtime.runNextFrame();
 
   assert.equal(runtime.hero.dataset.scrollProgress, "0.0000");
   assert.equal(runtime.hero.dataset.videoScene, "walking");
@@ -245,7 +258,11 @@ test("scrolling back to the top restores the drone clip", async () => {
 test("scene switching is independent from scroll scrubbing", () => {
   assert.match(source, /const introVideo = document\.getElementById\("hero-video"\)/);
   assert.match(source, /const workVideo = document\.getElementById\("hero-work-video"\)/);
-  assert.match(source, /progress >= 0\.1\) switchScene\("work"\)/);
+  assert.match(source, /progress >= SCENE_TIMING\.showWorkAt\) switchScene\("work"\)/);
+  assert.match(source, /progress <= SCENE_TIMING\.restoreIntroAt\) switchScene\("intro"\)/);
+  const scrollUpdate = source.slice(source.indexOf("const updateScrollProgress"), source.indexOf("const requestScrollUpdate"));
+  assert.match(scrollUpdate, /switchScene\("work"\)/);
+  assert.match(scrollUpdate, /switchScene\("intro"\)/);
   assert.doesNotMatch(source, /playbackRate\s*=/);
   assert.doesNotMatch(source, /currentTime\s*=\s*progress|progress\s*\*\s*(?:introVideo|workVideo)\.duration/);
   assert.doesNotMatch(source, /scrollTo|scrollBy|scrollIntoView/);
