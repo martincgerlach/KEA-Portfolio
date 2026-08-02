@@ -23,11 +23,17 @@ test("hero videos expose stable dimensions and defer the secondary scene", () =>
   );
 });
 
-test("below-the-fold homepage images reserve space and load asynchronously", () => {
+test("homepage images reserve space and below-the-fold media loads lazily", () => {
   const images = [...html.matchAll(/<img\s+[^>]+>/g)].map(([image]) => image);
   assert.ok(images.length >= 6);
 
-  images.forEach((image) => {
+  const brandImage = images.find((image) => image.includes('src="favicon.png"')) ?? "";
+  assert.match(brandImage, /width="512"/);
+  assert.match(brandImage, /height="512"/);
+  assert.match(brandImage, /fetchpriority="high"/);
+  assert.doesNotMatch(brandImage, /loading="lazy"/);
+
+  images.filter((image) => image !== brandImage).forEach((image) => {
     assert.match(image, /width="\d+"/);
     assert.match(image, /height="\d+"/);
     assert.match(image, /loading="lazy"/);

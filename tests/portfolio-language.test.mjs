@@ -13,7 +13,7 @@ const translations = context.window.pageTranslations;
 
 test("portfolio defaults to English and loads translations before the engine", () => {
   assert.match(html, /<html lang="en"/);
-  assert.match(html, /<script src="portfolio-translations\.js\?v=20260801-5"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260801-4"><\/script>/s);
+  assert.match(html, /<script src="portfolio-translations\.js\?v=20260801-5"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260802-1"><\/script>/s);
 });
 
 test("portfolio exposes the approved flag controls", () => {

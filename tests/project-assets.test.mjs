@@ -6,15 +6,15 @@ const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const css = await readFile(new URL("../style.css", import.meta.url), "utf8");
 const translations = await readFile(new URL("../portfolio-translations.js", import.meta.url), "utf8");
 
-const previews = [
-  "lg-biocapital-preview.webp",
-  "studymate-preview.webp",
-  "forni-preview.webp",
-  "aquashield-preview.webp",
-];
+const previews = new Map([
+  ["lg-biocapital-preview.webp", 800],
+  ["studymate-preview.webp", 900],
+  ["forni-preview.webp", 900],
+  ["aquashield-preview.webp", 900],
+]);
 
-test("project screenshots use optimized 1440 by 900 WebP assets", async () => {
-  for (const name of previews) {
+test("project screenshots use optimized WebP assets with stable dimensions", async () => {
+  for (const [name, height] of previews) {
     const fileUrl = new URL(`../${name}`, import.meta.url);
     const contents = await readFile(fileUrl);
     const fileStat = await stat(fileUrl);
@@ -24,9 +24,13 @@ test("project screenshots use optimized 1440 by 900 WebP assets", async () => {
     assert.ok(fileStat.size < 250 * 1024, `${name} must stay below 250 KB`);
     assert.match(
       html,
-      new RegExp(`<img[^>]*src="${name.replace(".", "\\.")}"[^>]*loading="lazy"[^>]*decoding="async"[^>]*width="1440"[^>]*height="900"`),
+      new RegExp(`<img[^>]*src="${name.replace(".", "\\.")}"[^>]*loading="lazy"[^>]*decoding="async"[^>]*width="1440"[^>]*height="${height}"`),
     );
   }
+});
+
+test("LG Bio Capital thumbnail keeps the client portrait visible", () => {
+  assert.match(css, /\.home-page \.secondary-project--lg img\s*\{[^}]*object-position:\s*left top/s);
 });
 
 test("project screenshot media preserves the full viewport", () => {

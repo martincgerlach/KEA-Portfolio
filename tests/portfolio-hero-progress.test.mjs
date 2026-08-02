@@ -122,6 +122,7 @@ function createHeroRuntime() {
 
   return {
     hero,
+    navigation,
     introCopy,
     workCopy,
     heroLink,
@@ -183,6 +184,19 @@ test("hero progress begins at zero and scroll listening is passive", () => {
   assert.equal(runtime.listeners.get("scroll").options.passive, true);
   assert.equal(runtime.introCopy.styles.get("--scene-opacity"), "1.0000");
   assert.equal(runtime.workCopy.styles.get("--scene-opacity"), "0.0000");
+  assert.equal(runtime.navigation.classList.has("is-over-content"), false);
+});
+
+test("navigation only enters the content state at the end of the hero", async () => {
+  const runtime = createHeroRuntime();
+
+  await updateScroll(runtime, -1300);
+  assert.equal(runtime.hero.dataset.scrollProgress, "0.9286");
+  assert.equal(runtime.navigation.classList.has("is-over-content"), false);
+
+  await updateScroll(runtime, -1386);
+  assert.equal(runtime.hero.dataset.scrollProgress, "0.9900");
+  assert.equal(runtime.navigation.classList.has("is-over-content"), true);
 });
 
 test("scrolling starts the work clip without changing playback speed", async () => {
