@@ -65,8 +65,8 @@ CONTENT = {
                 "Skabte et spilbart JavaScript-timingspil med tastaturstyring, game state, feedback og stigende sværhedsgrad.",
             ),
             (
-                "AquaShield",
-                "Udviklede et responsivt skoleprojekt med interaktionsdesign, UX-writing og et formularflow i flere trin.",
+                "PlayNext",
+                "Byggede en tosproget beslutningsassistent med React, TypeScript, Fastify, rigtige katalogdata og afgrænset AI-reranking.",
             ),
         ],
         "experience_title": "ERFARING",
@@ -125,8 +125,8 @@ CONTENT = {
                 "Created a playable JavaScript timing game with keyboard controls, game state, feedback and increasing difficulty.",
             ),
             (
-                "AquaShield",
-                "Developed a responsive school project with interaction design, UX writing and a multi-step form flow.",
+                "PlayNext",
+                "Built a bilingual decision assistant with React, TypeScript, Fastify, real catalogue data and bounded AI reranking.",
             ),
         ],
         "experience_title": "EXPERIENCE",

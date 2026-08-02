@@ -13,7 +13,7 @@ const translations = context.window.pageTranslations;
 
 test("portfolio defaults to English and loads translations before the engine", () => {
   assert.match(html, /<html lang="en"/);
-  assert.match(html, /<script src="portfolio-translations\.js\?v=20260801-5"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260801-4"><\/script>/s);
+  assert.match(html, /<script src="portfolio-translations\.js\?v=20260801-5"><\/script>\s*<script src="language\.js\?v=20260727-1"><\/script>\s*<script src="hero-video\.js\?v=20260802-1"><\/script>/s);
 });
 
 test("portfolio exposes the approved flag controls", () => {
@@ -70,7 +70,7 @@ test("every project card translates its visible type and supporting copy", () =>
   assert.deepEqual(typeKeys, [
     "studymate.type",
     "blade.type",
-    "aquashield.type",
+    "playnext.type",
     "lg.type",
     "forni.type",
   ]);
@@ -78,8 +78,8 @@ test("every project card translates its visible type and supporting copy", () =>
   assert.equal(translations.da["studymate.type"], "Udvalgt AI-produkt · Funktionel prototype");
   assert.equal(translations.da["lg.type"], "Kundewebsite");
   assert.equal(translations.da["blade.type"], "JavaScript-spil");
-  assert.equal(translations.en["aquashield.type"], "School project");
-  assert.equal(translations.da["aquashield.type"], "Skoleprojekt");
+  assert.equal(translations.en["playnext.type"], "AI decision product · Local prototype");
+  assert.equal(translations.da["playnext.type"], "AI-beslutningsprodukt · Lokal prototype");
   assert.equal(translations.en["more.heading"], "Client websites");
   assert.equal(translations.da["more.heading"], "Kundewebsites");
   assert.equal(translations.en["materials.label"], "Background and credentials");

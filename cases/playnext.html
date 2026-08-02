@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Martin Gerlach" />
+  <meta name="theme-color" content="#090b10" />
+  <meta name="description" content="PlayNext case study about a bilingual, data-backed movie and series decision assistant with bounded AI." data-i18n-attr="content:meta.description" />
+  <link rel="canonical" href="https://gerlachdesign.dk/cases/playnext.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://gerlachdesign.dk/cases/playnext.html" />
+  <meta property="og:site_name" content="GerlachDesign" />
+  <meta property="og:title" content="PlayNext Case Study | Martin Gerlach" data-i18n-attr="content:meta.title" />
+  <meta property="og:description" content="A React and TypeScript product case combining real catalogue data, deterministic recommendations and bounded AI." data-i18n-attr="content:meta.description" />
+  <meta property="og:image" content="https://gerlachdesign.dk/playnext-preview.jpg" />
+  <meta property="og:image:alt" content="PlayNext request screen with mood and viewing preferences" data-i18n-attr="content:hero.imageAlt" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PlayNext Case Study | Martin Gerlach" data-i18n-attr="content:meta.title" />
+  <meta name="twitter:description" content="A React and TypeScript product case combining real catalogue data, deterministic recommendations and bounded AI." data-i18n-attr="content:meta.description" />
+  <meta name="twitter:image" content="https://gerlachdesign.dk/playnext-preview.jpg" />
+  <title data-i18n="meta.title">PlayNext Case Study | Martin Gerlach</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <link rel="stylesheet" href="../style.css?v=20260802-3" />
+  <link rel="stylesheet" href="case-study.css?v=20260802-2" />
+</head>
+<body class="case-page dark-mode" data-case="playnext">
+  <a class="skip-link" href="#main-content" data-i18n="common.skip">Skip to content</a>
+  <header class="case-site-header">
+    <nav class="main-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:common.navLabel">
+      <a class="nav-brand" href="../index.html#top" aria-label="Martin Gerlach home" data-i18n-attr="aria-label:common.homeLabel"><img src="../favicon.png" alt="" width="512" height="512" decoding="async" /></a>
+      <ul><li><a href="../index.html#projekter" data-nav-section="projekter" data-i18n="common.projects">Projects</a></li><li><a href="../index.html#om-mig" data-nav-section="om-mig" data-i18n="common.about">About</a></li><li><a href="../index.html#faerdigheder" data-nav-section="faerdigheder" data-i18n="common.tech">Tech</a></li><li><a href="../index.html#kontakt" data-nav-section="kontakt" data-i18n="common.contact">Contact</a></li></ul>
+      <div class="nav-actions"><div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:common.languageLabel"><button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button><button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button></div><button class="theme-toggle" type="button" data-case-theme aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button></div>
+    </nav>
+  </header>
+
+  <main id="main-content" class="case-main">
+    <a class="case-back" href="../index.html#projekter" data-i18n="common.back">Back to projects</a>
+    <header class="case-hero-new">
+      <div class="case-hero-copy-new">
+        <p class="case-kicker" data-i18n="hero.label">Bilingual AI decision product · Functional local prototype</p>
+        <h1>PlayNext</h1>
+        <p class="case-hero-lede" data-i18n="hero.description">A movie and series decision assistant that turns mood, time and streaming constraints into a small, explainable shortlist grounded in real catalogue data.</p>
+        <p class="case-status-note" data-i18n="hero.status">Local prototype · Production deployment is not published yet</p>
+      </div>
+      <figure class="case-hero-media"><img src="../playnext-preview.jpg" alt="PlayNext request screen with a mood prompt and editable viewing preferences" data-i18n-attr="alt:hero.imageAlt" width="1280" height="720" decoding="async" fetchpriority="high" /><figcaption data-i18n="hero.caption">The request surface combines free text with explicit controls before recommendations are generated.</figcaption></figure>
+    </header>
+
+    <section class="case-summary-new" aria-label="Project summary" data-i18n-attr="aria-label:common.summaryLabel">
+      <article><h2 data-i18n="summary.problemHeading">Problem</h2><p data-i18n="summary.problem">Finding more titles is easy; choosing one that fits the moment, time and available services is harder.</p></article>
+      <article><h2 data-i18n="summary.usersHeading">Target users</h2><p data-i18n="summary.users">Viewers who want a small, trustworthy shortlist instead of another endless catalogue.</p></article>
+      <article><h2 data-i18n="summary.contributionHeading">My contribution</h2><p data-i18n="summary.contribution">Product strategy, UX, React frontend, API architecture, recommendation logic, AI boundaries and testing.</p></article>
+      <article><h2 data-i18n="summary.techHeading">Technologies</h2><p>React, TypeScript, Fastify, Zod, TMDB, OpenAI API, Vitest</p></article>
+    </section>
+
+    <div class="case-content">
+      <section class="case-content-section">
+        <div class="case-content-copy"><p class="case-section-number">01</p><h2 data-i18n="problem.heading">The decision problem</h2><p data-i18n="problem.text">The product narrows a high-choice catalogue using mood, runtime, content type, exclusions and Danish provider availability. The goal is a confident decision, not a longer recommendation feed.</p></div>
+        <div class="case-feature-grid case-content-visual"><article class="case-feature case-feature--accent"><h3 data-i18n="problem.controlHeading">Human control</h3><p data-i18n="problem.controlText">Users can inspect and correct interpreted preferences before recommendations run.</p></article><article class="case-feature"><h3 data-i18n="problem.dataHeading">Real catalogue evidence</h3><p data-i18n="problem.dataText">TMDB metadata and provider availability remain the source of truth for every candidate.</p></article></div>
+      </section>
+
+      <section class="case-content-section">
+        <div class="case-content-copy"><p class="case-section-number">02</p><h2 data-i18n="flow.heading">Product flow and refinement</h2><p data-i18n="flow.text">Free text becomes an editable preference summary. Deterministic filters create a valid shortlist, and users can reject, replace, request similar titles, edit preferences or restart.</p></div>
+        <div class="case-content-visual"><img class="case-mobile-evidence" src="../playnext-mobile.jpg" alt="Mobile PlayNext preference request screen" data-i18n-attr="alt:flow.imageAlt" width="390" height="844" loading="lazy" decoding="async" /></div>
+      </section>
+
+      <section class="case-content-section">
+        <div class="case-content-copy"><p class="case-section-number">03</p><h2 data-i18n="architecture.heading">Architecture and AI boundaries</h2><p data-i18n="architecture.text">The React client, Fastify API and shared Zod schemas keep interface state, server secrets and validation separate. AI extracts preferences and may rerank only an allowlisted shortlist; it cannot invent titles or metadata.</p></div>
+        <ol class="case-architecture case-content-visual"><li><strong data-i18n="architecture.inputHeading">Viewer request</strong><p data-i18n="architecture.inputText">Bounded text and explicit controls describe the current need.</p></li><li><strong data-i18n="architecture.extractHeading">Preference extraction</strong><p data-i18n="architecture.extractText">Structured AI output is validated and remains editable.</p></li><li><strong data-i18n="architecture.catalogHeading">Catalogue and filters</strong><p data-i18n="architecture.catalogText">TMDB data passes hard filters and inspectable scoring.</p></li><li><strong data-i18n="architecture.rerankHeading">Optional reranking</strong><p data-i18n="architecture.rerankText">AI can reorder only validated candidate IDs with grounded evidence.</p></li><li><strong data-i18n="architecture.resultHeading">Explainable result</strong><p data-i18n="architecture.resultText">The interface shows match reasons, compromises and provenance.</p></li><li><strong data-i18n="architecture.fallbackHeading">Deterministic fallback</strong><p data-i18n="architecture.fallbackText">Recommendations still work honestly when AI is unavailable.</p></li></ol>
+      </section>
+
+      <section class="case-content-section">
+        <div class="case-content-copy"><p class="case-section-number">04</p><h2 data-i18n="testing.heading">Testing, limitations and reflection</h2><p data-i18n="testing.text">The local project includes schema, API and React tests plus browser QA from 360 to 1440 pixels. Production deployment and external usability testing have not yet been completed.</p></div>
+        <div class="case-content-visual">
+          <p class="case-testing-status" data-i18n="testing.status">Status: Automated and responsive QA completed · External usability testing is planned.</p>
+          <details class="case-test-plan"><summary data-i18n="testing.planSummary">Planned test details</summary><div class="case-test-plan-content"><div><h3 data-i18n="testing.objectiveHeading">Objective and participants</h3><p data-i18n="testing.objectiveText">Test with 3–5 streaming viewers whether the request, preference correction and recommendation refinement flow remains understandable.</p></div><div><h3 data-i18n="testing.tasksHeading">Tasks</h3><ol class="case-task-list"><li data-i18n="testing.taskOne">Describe a viewing need and interpret the extracted preferences.</li><li data-i18n="testing.taskTwo">Correct one preference before requesting recommendations.</li><li data-i18n="testing.taskThree">Reject one result and request a replacement.</li><li data-i18n="testing.taskFour">Explain why a recommendation matches and where it compromises.</li></ol></div><div><h3 data-i18n="testing.measureHeading">Observe and measure</h3><p data-i18n="testing.measureText">Record completion, critical errors, assistance, hesitation, wrong turns and confidence in the explanations.</p></div><div><h3 data-i18n="testing.pendingHeading">Pending evidence</h3><p data-i18n="testing.pendingText">Usability findings and resulting product changes remain pending until external sessions are completed.</p></div></div></details>
+          <div class="case-reflection-grid"><article class="case-reflection-card"><h3 data-i18n="testing.workedHeading">What worked well</h3><p data-i18n="testing.workedText">Deterministic validation keeps the product useful and explainable even when AI is unavailable.</p></article><article class="case-reflection-card"><h3 data-i18n="testing.challengeHeading">Biggest challenge</h3><p data-i18n="testing.challengeText">Balancing a simple decision flow with provider, runtime, genre and AI failure states.</p></article><article class="case-reflection-card"><h3 data-i18n="testing.improveHeading">What I would improve</h3><p data-i18n="testing.improveText">Deploy the edge architecture, add observability and test the complete flow with real viewers.</p></article></div>
+        </div>
+      </section>
+    </div>
+
+    <a class="case-next" href="studymate-ai.html"><div><p class="case-next-label" data-i18n="common.nextProject">Next project</p><h2>StudyMate AI</h2><p data-i18n="next.description">AI study prototype · Product and technical UX</p></div><span class="case-next-arrow" aria-hidden="true">→</span></a>
+  </main>
+  <footer class="case-footer"><p>© 2026 GerlachDesign</p><div><a href="mailto:martin.gerlach.2950@gmail.com">Email</a><a href="https://github.com/martincgerlach" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></footer>
+  <script src="case-translations.js?v=20260802-2"></script><script>window.pageTranslations = window.CaseStudyTranslations.forPage("playnext");</script><script src="../language.js?v=20260727-1"></script><script src="case-study.js?v=20260802-1"></script>
+</body>
+</html>

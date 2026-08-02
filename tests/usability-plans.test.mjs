@@ -2,28 +2,27 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 
-const cases = ["studymate-ai", "blade-rhythm", "aquashield"];
+const cases = ["studymate-ai", "blade-rhythm", "playnext"];
 
-test("relevant cases contain explicit planned usability tests", async () => {
+test("relevant cases preserve concise but explicit planned usability tests", async () => {
   for (const name of cases) {
     const source = await readFile(new URL(`../cases/${name}.html`, import.meta.url), "utf8");
-    assert.match(source, /class="case-section usability-plan"/);
-    assert.match(source, /Usability testing plan/);
-    assert.match(source, /Status: Planned — external testing has not yet been completed\./);
+    assert.match(source, /class="case-test-plan"/);
+    assert.match(source, /Planned test details/);
+    assert.match(source, /Status:[^<]*(?:Planned|planned)/);
     assert.match(source, /Objective and participants/);
     assert.match(source, /3–5/);
-    assert.match(source, /<ol class="test-task-list">/);
+    assert.match(source, /class="case-task-list"/);
     assert.match(source, /Observe and measure/);
-    assert.match(source, /task completion, critical errors, moderator assistance, hesitation or wrong turns, and participant comments/i);
-    assert.match(source, /Findings:<\/strong> Pending external sessions/);
-    assert.match(source, /Resulting design changes:<\/strong> Pending analysis/);
+    assert.match(source, /critical errors/);
+    assert.match(source, /Pending evidence/);
   }
 });
 
-test("StudyMate labels its existing review as internal", async () => {
+test("StudyMate distinguishes internal review from external testing", async () => {
   const source = await readFile(new URL("../cases/studymate-ai.html", import.meta.url), "utf8");
-  assert.match(source, /Internal walkthrough before external testing/);
-  assert.match(source, /<h3>Internal walkthrough<\/h3>/);
+  assert.match(source, /An internal walkthrough improved fallback copy/);
+  assert.match(source, /external testing has not yet been completed/i);
   assert.doesNotMatch(source, /First-pass usability test|Main findings|Changes after testing/);
 });
 

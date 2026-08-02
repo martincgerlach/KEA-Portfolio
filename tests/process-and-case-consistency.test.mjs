@@ -9,7 +9,7 @@ const translations = await readFile(new URL("../portfolio-translations.js", impo
 const cases = {
   lg: await readFile(new URL("../cases/lg-bio-capital.html", import.meta.url), "utf8"),
   blade: await readFile(new URL("../cases/blade-rhythm.html", import.meta.url), "utf8"),
-  aquashield: await readFile(new URL("../cases/aquashield.html", import.meta.url), "utf8"),
+  playnext: await readFile(new URL("../cases/playnext.html", import.meta.url), "utf8"),
 };
 
 test("the bilingual process section sits between About and Tech", () => {
@@ -41,26 +41,24 @@ test("the process flow stays compact and responsive", () => {
 
 test("LG Bio Capital clearly separates client requirements and delivery", () => {
   assert.match(cases.lg, /Live client project/);
-  assert.match(cases.lg, /<h2>Client requirements<\/h2>/);
-  assert.match(cases.lg, /<h2>My contribution<\/h2>/);
-  assert.match(cases.lg, /<h2>Delivered result<\/h2>/);
-  assert.match(cases.lg, /<p class="section-label">Challenges<\/p>/);
-  assert.match(cases.lg, /I have not added conversion claims or client metrics/);
+  assert.match(cases.lg, /data-i18n="summary\.contributionHeading">My contribution/);
+  assert.match(cases.lg, /data-i18n="context\.heading">Client context and requirements/);
+  assert.match(cases.lg, /data-i18n="result\.heading">Delivered result and reflection/);
+  assert.match(cases.lg, /No conversion claims or client metrics are included/);
 });
 
 test("Blade Rhythm is presented as an individual learning project", () => {
-  assert.match(cases.blade, /Personal learning project/);
-  assert.match(cases.blade, /Built individually/);
-  assert.match(cases.blade, /<h2>My contribution<\/h2>/);
-  assert.match(cases.blade, /<p class="section-label">Challenges<\/p>/);
-  assert.match(cases.blade, /Status: Planned — external testing has not yet been completed\./);
+  assert.match(cases.blade, /Personal creative-coding project/);
+  assert.match(cases.blade, /data-i18n="summary\.contributionHeading">My contribution/);
+  assert.match(cases.blade, /data-i18n="implementation\.heading">Implementation and challenges/);
+  assert.match(cases.blade, /Status: Planned — external playtesting has not yet been completed\./);
 });
 
-test("AquaShield documents its assignment and individual contribution", () => {
-  assert.match(cases.aquashield, /T04 \/ User interface development/);
-  assert.match(cases.aquashield, /Individual school project/);
-  assert.match(cases.aquashield, /<h2>My contribution<\/h2>/);
-  assert.match(cases.aquashield, /<p class="section-label">Challenges<\/p>/);
-  assert.match(cases.aquashield, /does not claim formal emergency-services validation/);
-  assert.match(cases.aquashield, /Status: Planned — external testing has not yet been completed\./);
+test("PlayNext documents its product architecture and honest prototype limits", () => {
+  assert.match(cases.playnext, /Bilingual AI decision product · Functional local prototype/);
+  assert.match(cases.playnext, /data-i18n="summary\.contributionHeading">My contribution/);
+  assert.match(cases.playnext, /data-i18n="architecture\.heading">Architecture and AI boundaries/);
+  assert.match(cases.playnext, /AI extracts preferences and may rerank only an allowlisted shortlist; it cannot invent titles or metadata\./);
+  assert.match(cases.playnext, /Production deployment is not published yet/);
+  assert.match(cases.playnext, /External usability testing is planned/);
 });

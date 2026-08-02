@@ -7,7 +7,7 @@ Personal portfolio for Martin Gerlach, a Multimedia Design student and qualified
 - StudyMate AI - AI UX, frontend and backend prototype
 - LG Bio Capital Partners - live client website
 - Blade Rhythm - vanilla JavaScript browser game
-- AquaShield - interaction design and emergency information
+- PlayNext - React, TypeScript, API architecture and bounded AI recommendations
 
 The homepage also includes smaller client and visual-storytelling work without giving every project the same visual weight.
 

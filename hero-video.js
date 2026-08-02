@@ -233,6 +233,7 @@
         : "final";
 
     navigation?.classList.toggle("is-scrolled", window.scrollY > 24);
+    navigation?.classList.toggle("is-over-content", progress >= 0.97);
     updateActiveNavigation();
     setCopyState(introCopy, introSceneOpacity);
     setCopyState(workCopy, workSceneOpacity);
