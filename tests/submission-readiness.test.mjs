@@ -9,7 +9,7 @@ const cvSource = await readFile(new URL("../scripts/generate_cvs.py", import.met
 test("homepage keeps three technical projects featured and groups client work below", () => {
   const cards = html.match(/<article class="[^"]*\bproject-card\b[^"]*">/g) ?? [];
   assert.equal(cards.length, 3);
-  for (const title of ["StudyMate AI", "Blade Rhythm", "AquaShield"]) {
+  for (const title of ["StudyMate AI", "Blade Rhythm", "PlayNext"]) {
     assert.match(html, new RegExp(`<h3>${title}</h3>`));
   }
   for (const title of ["LG Bio Capital Partners", "Forni Pizza Foodtrailer"]) {
@@ -61,13 +61,14 @@ test("the education certificate is not published by the portfolio", async () => 
 });
 
 test("all four portfolio case studies remain evidence-led", async () => {
-  const names = ["studymate-ai", "lg-bio-capital", "blade-rhythm", "aquashield"];
+  const names = ["studymate-ai", "lg-bio-capital", "blade-rhythm", "playnext"];
   for (const name of names) {
     const source = await readFile(new URL(`../cases/${name}.html`, import.meta.url), "utf8");
     assert.match(source, /<link rel="canonical"/);
-    assert.match(source, /Process|Implementation|Interaction flow|Game loop/);
-    assert.match(source, /Testing|Test evidence|Evidence boundary/);
-    assert.match(source, /Result|Reflection|What I learned/);
+    assert.match(source, /Problem|Client context|Project concept/);
+    assert.match(source, /Implementation|Current architecture|Architecture and AI boundaries|Design direction/i);
+    assert.match(source, /Testing|Delivered result and reflection/);
+    assert.match(source, /What worked well/);
   }
 });
 

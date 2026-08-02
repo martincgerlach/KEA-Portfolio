@@ -9,7 +9,7 @@ const caseFiles = [
   "studymate-ai.html",
   "lg-bio-capital.html",
   "blade-rhythm.html",
-  "aquashield.html",
+  "playnext.html",
 ];
 
 test("hero videos expose stable dimensions and defer the secondary scene", () => {
@@ -44,10 +44,10 @@ test("homepage images reserve space and below-the-fold media loads lazily", () =
 test("case-study hero images are prioritized without lazy loading", () => {
   caseFiles.forEach((file) => {
     const source = fs.readFileSync(new URL(`../cases/${file}`, import.meta.url), "utf8");
-    const image = source.match(/<img\s+[^>]+>/)?.[0] ?? "";
+    const image = source.match(/<figure class="case-hero-media">\s*<img\s+[^>]+>/)?.[0] ?? "";
 
-    assert.match(image, /width="1440"/);
-    assert.match(image, /height="900"/);
+    assert.match(image, /width="(?:1280|1440)"/);
+    assert.match(image, /height="(?:720|800|900)"/);
     assert.match(image, /decoding="async"/);
     assert.match(image, /fetchpriority="high"/);
     assert.doesNotMatch(image, /loading="lazy"/);

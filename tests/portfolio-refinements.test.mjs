@@ -31,7 +31,7 @@ test("every featured project uses the compact image-led structure", () => {
   const projects = [
     ["StudyMate AI", "project-card--studymate", "cases/studymate-ai.html"],
     ["Blade Rhythm", "project-card--blade", "cases/blade-rhythm.html"],
-    ["AquaShield", "project-card--aquashield", "cases/aquashield.html"],
+    ["PlayNext", "project-card--playnext", "cases/playnext.html"],
   ];
 
   for (const [title, className, caseHref] of projects) {
@@ -58,11 +58,10 @@ test("project interactions stay restrained, keyboard-visible and motion-safe", (
   assert.match(reducedMotionBlocks, /\.home-page \.project-card:hover \.project-media img[\s\S]*transform:\s*none/s);
 });
 
-test("the three featured technical projects expose verified GitHub links", () => {
+test("published technical repositories expose verified GitHub links", () => {
   const links = [
     ["StudyMate AI", "https://github.com/martincgerlach/StudymateAI"],
     ["Blade Rhythm", "https://github.com/martincgerlach/Blade-Rhythm"],
-    ["AquaShield", "https://github.com/martincgerlach/AquaShield"],
   ];
 
   for (const [title, href] of links) {
@@ -87,16 +86,16 @@ test("new homepage hooks keep the layout in vanilla CSS", () => {
   assert.match(css, /\.tech-badge-list\s*\{/);
   assert.match(css, /\.credentials-panel\s*\{/);
   assert.doesNotMatch(css, /\.project-role\s*\{|\.project-meta\s*\{/);
-  assert.doesNotMatch(html, /React|Vue|Angular/);
+  assert.match(html, /React/);
 });
 
-test("AquaShield exposes live project and code links without a duplicate credentials link", () => {
-  const article = projectArticle("AquaShield");
-  assert.match(article, /href="https:\/\/martincgerlach\.github\.io\/AquaShield\/"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
-  assert.match(article, /href="https:\/\/github\.com\/martincgerlach\/AquaShield"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
-  assert.match(html, /href="cases\/aquashield\.html"/);
+test("PlayNext links to its case without claiming an unpublished demo or repository", () => {
+  const article = projectArticle("PlayNext");
+  assert.match(article, /href="cases\/playnext\.html"/);
+  assert.equal((article.match(/<a\b/g) ?? []).length, 1);
+  assert.doesNotMatch(article, /target="_blank"|View project|View code/);
   const materials = html.slice(html.indexOf('<section id="materiale"'), html.indexOf('</section>', html.indexOf('<section id="materiale"')));
-  assert.doesNotMatch(materials, /AquaShield|cases\/aquashield\.html/);
+  assert.doesNotMatch(materials, /PlayNext|cases\/playnext\.html/);
 });
 
 test("mobile rules compact navigation and preserve the cinematic video hero", () => {

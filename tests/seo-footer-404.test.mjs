@@ -65,11 +65,11 @@ test("homepage SEO and social metadata follow the active language", () => {
 });
 
 test("case studies expose complete indexable social metadata", async () => {
-  for (const name of ["studymate-ai", "lg-bio-capital", "blade-rhythm", "aquashield"]) {
+  for (const name of ["studymate-ai", "lg-bio-capital", "blade-rhythm", "playnext"]) {
     const source = await readFile(new URL(`../cases/${name}.html`, import.meta.url), "utf8");
     assert.match(source, /<meta name="robots" content="index, follow"/);
     assert.match(source, /<meta name="author" content="Martin Gerlach"/);
-    assert.match(source, /<meta name="theme-color" content="#07100f"/);
+    assert.match(source, /<meta name="theme-color" content="#090b10"/);
     assert.match(source, new RegExp(`<meta property="og:url" content="https://gerlachdesign\\.dk/cases/${name}\\.html"`));
     assert.match(source, /<meta property="og:image:alt"/);
     assert.match(source, /<meta name="twitter:card" content="summary_large_image"/);

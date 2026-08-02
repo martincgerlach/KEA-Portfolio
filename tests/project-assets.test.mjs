@@ -10,7 +10,6 @@ const previews = new Map([
   ["lg-biocapital-preview.webp", 800],
   ["studymate-preview.webp", 900],
   ["forni-preview.webp", 900],
-  ["aquashield-preview.webp", 900],
 ]);
 
 test("project screenshots use optimized WebP assets with stable dimensions", async () => {
@@ -26,6 +25,22 @@ test("project screenshots use optimized WebP assets with stable dimensions", asy
       html,
       new RegExp(`<img[^>]*src="${name.replace(".", "\\.")}"[^>]*loading="lazy"[^>]*decoding="async"[^>]*width="1440"[^>]*height="${height}"`),
     );
+  }
+});
+
+test("PlayNext uses real lightweight desktop and mobile screenshots", async () => {
+  for (const [name, width, height] of [
+    ["playnext-preview.jpg", 1280, 720],
+    ["playnext-mobile.jpg", 390, 844],
+  ]) {
+    const fileUrl = new URL(`../${name}`, import.meta.url);
+    const contents = await readFile(fileUrl);
+    const fileStat = await stat(fileUrl);
+
+    assert.deepEqual([...contents.subarray(0, 3)], [0xff, 0xd8, 0xff]);
+    assert.ok(fileStat.size < 250 * 1024, `${name} must stay below 250 KB`);
+    const source = name === "playnext-preview.jpg" ? html : await readFile(new URL("../cases/playnext.html", import.meta.url), "utf8");
+    assert.match(source, new RegExp(`src="(?:\\.\\.\\/)?${name.replace(".", "\\.")}"[^>]*width="${width}"[^>]*height="${height}"`));
   }
 });
 

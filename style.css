@@ -766,9 +766,9 @@ body.light-mode .project-card {
   --project-accent-light: #8a5b00;
 }
 
-.project-card--aquashield {
-  --project-accent: #83b9ff;
-  --project-accent-light: #2b64a7;
+.project-card--playnext {
+  --project-accent: #35d6c7;
+  --project-accent-light: #147d76;
 }
 
 .project-card--todo {
@@ -1987,7 +1987,7 @@ body.light-mode .case-evidence-step {
 }
 
 .home-page .project-card--blade,
-.home-page .project-card--aquashield {
+.home-page .project-card--playnext {
   grid-column: auto;
 }
 
@@ -2699,7 +2699,7 @@ body.light-mode .case-evidence-step {
   }
 
   .home-page .project-card--blade,
-  .home-page .project-card--aquashield {
+  .home-page .project-card--playnext {
     grid-column: span 1;
   }
 
@@ -2825,7 +2825,7 @@ body.light-mode .case-evidence-step {
 
   .home-page .project-card--studymate,
   .home-page .project-card--blade,
-  .home-page .project-card--aquashield {
+  .home-page .project-card--playnext {
     display: flex;
     grid-column: auto;
     min-height: 0;

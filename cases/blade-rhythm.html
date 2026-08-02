@@ -5,216 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Martin Gerlach" />
-  <meta name="theme-color" content="#07100f" />
-  <meta name="description" content="Case study for Martin Gerlach's Blade Rhythm JavaScript game." />
+  <meta name="theme-color" content="#090b10" />
+  <meta name="description" content="A creative coding case about timing, game state, keyboard input and interface feedback in vanilla JavaScript." data-i18n-attr="content:meta.description" />
   <link rel="canonical" href="https://gerlachdesign.dk/cases/blade-rhythm.html" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://gerlachdesign.dk/cases/blade-rhythm.html" />
-  <meta property="og:site_name" content="GerlachDesign" />
-  <meta property="og:title" content="Blade Rhythm Case Study | Martin Gerlach" />
-  <meta property="og:description" content="A creative coding case about timing, game state, keyboard input and interface feedback in vanilla JavaScript." />
-  <meta property="og:image" content="https://gerlachdesign.dk/blade-rhythm-preview.webp" />
-  <meta property="og:image:alt" content="Blade Rhythm gameplay with player, enemy and timing zone" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Blade Rhythm Case Study | Martin Gerlach" />
-  <meta name="twitter:description" content="A creative coding case about timing, game state, keyboard input and interface feedback in vanilla JavaScript." />
-  <meta name="twitter:image" content="https://gerlachdesign.dk/blade-rhythm-preview.webp" />
-  <title>Blade Rhythm Case Study | Martin Gerlach</title>
-  <link rel="icon" type="image/png" href="../favicon.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
-  <link rel="stylesheet" href="../style.css?v=bilingual" />
+  <meta property="og:type" content="article" /><meta property="og:url" content="https://gerlachdesign.dk/cases/blade-rhythm.html" /><meta property="og:site_name" content="GerlachDesign" />
+  <meta property="og:title" content="Blade Rhythm Case Study | Martin Gerlach" data-i18n-attr="content:meta.title" /><meta property="og:description" content="A creative coding case about timing, game state, keyboard input and interface feedback in vanilla JavaScript." data-i18n-attr="content:meta.description" /><meta property="og:image" content="https://gerlachdesign.dk/blade-rhythm-preview.webp" /><meta property="og:image:alt" content="Blade Rhythm gameplay with player, enemy and timing zone" data-i18n-attr="content:hero.imageAlt" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Blade Rhythm Case Study | Martin Gerlach" data-i18n-attr="content:meta.title" /><meta name="twitter:description" content="A creative coding case about timing, game state, keyboard input and interface feedback in vanilla JavaScript." data-i18n-attr="content:meta.description" /><meta name="twitter:image" content="https://gerlachdesign.dk/blade-rhythm-preview.webp" />
+  <title data-i18n="meta.title">Blade Rhythm Case Study | Martin Gerlach</title>
+  <link rel="icon" type="image/png" href="../favicon.png" /><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" /><link rel="stylesheet" href="../style.css?v=20260802-3" /><link rel="stylesheet" href="case-study.css?v=20260802-1" />
 </head>
-<body class="dark-mode">
-  <a class="skip-link" href="#main-content">Skip to content</a>
+<body class="case-page dark-mode" data-case="blade">
+  <a class="skip-link" href="#main-content" data-i18n="common.skip">Skip to content</a>
+  <header class="case-site-header"><nav class="main-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:common.navLabel"><a class="nav-brand" href="../index.html#top" aria-label="Martin Gerlach home" data-i18n-attr="aria-label:common.homeLabel"><img src="../favicon.png" alt="" width="512" height="512" decoding="async" /></a><ul><li><a href="../index.html#projekter" data-nav-section="projekter" data-i18n="common.projects">Projects</a></li><li><a href="../index.html#om-mig" data-nav-section="om-mig" data-i18n="common.about">About</a></li><li><a href="../index.html#faerdigheder" data-nav-section="faerdigheder" data-i18n="common.tech">Tech</a></li><li><a href="../index.html#kontakt" data-nav-section="kontakt" data-i18n="common.contact">Contact</a></li></ul><div class="nav-actions"><div class="language-switcher" role="group" aria-label="Choose language" data-i18n-attr="aria-label:common.languageLabel"><button type="button" data-language="en" aria-pressed="true"><span aria-hidden="true">🇬🇧</span> EN</button><button type="button" data-language="da" aria-pressed="false"><span aria-hidden="true">🇩🇰</span> DA</button></div><button class="theme-toggle" type="button" data-case-theme aria-label="Switch to light mode"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button></div></nav></header>
 
-  <main id="main-content" class="case-shell">
-    <nav class="case-topline" aria-label="Case navigation">
-      <a class="button button-secondary" href="../index.html#projekter">Back to portfolio</a>
-      <span>Case study</span>
-    </nav>
+  <main id="main-content" class="case-main">
+    <a class="case-back" href="../index.html#projekter" data-i18n="common.back">Back to projects</a>
+    <header class="case-hero-new"><div class="case-hero-copy-new"><p class="case-kicker" data-i18n="hero.label">Personal creative-coding project</p><h1>Blade Rhythm</h1><p class="case-hero-lede" data-i18n="hero.description">A timing-based browser game connecting player input, game state, visible feedback and increasing difficulty in vanilla JavaScript.</p><div class="case-actions-new"><a class="case-action case-action--primary" href="../blade-rhythm/index.html" data-i18n="hero.play">Play game</a><a class="case-action" href="https://github.com/martincgerlach/Blade-Rhythm" target="_blank" rel="noopener noreferrer" data-i18n="hero.code">View code on GitHub</a></div></div><figure class="case-hero-media"><img src="../blade-rhythm-preview.webp" alt="Blade Rhythm gameplay with player, enemy and timing zone" data-i18n-attr="alt:hero.imageAlt" width="1440" height="900" decoding="async" fetchpriority="high" /><figcaption data-i18n="hero.caption">The playable arena combines timing feedback, health states, keyboard input and increasing difficulty.</figcaption></figure></header>
 
-    <header class="case-hero">
-      <div class="case-hero-copy">
-        <p class="section-label">Personal learning project</p>
-        <h1>Blade Rhythm</h1>
-        <p>A timing-based browser game where the player attacks, heals and reacts to enemy movement. The project was mainly about connecting game logic, keyboard input and interface feedback.</p>
-        <div class="case-actions">
-          <a class="button button-primary" href="../blade-rhythm/index.html">Play game</a>
-          <a class="button button-secondary" href="https://github.com/martincgerlach/Blade-Rhythm" target="_blank" rel="noopener noreferrer">View code</a>
-        </div>
-      </div>
-      <figure class="case-visual">
-        <img src="../blade-rhythm-preview.webp" alt="Blade Rhythm gameplay with player, enemy and timing zone" width="1440" height="900" decoding="async" fetchpriority="high" />
-        <figcaption>The playable arena combines timing feedback, health states, keyboard input and increasing difficulty.</figcaption>
-      </figure>
-    </header>
+    <section class="case-summary-new" aria-label="Project summary" data-i18n-attr="aria-label:common.summaryLabel"><article><h2 data-i18n="summary.problemHeading">Problem</h2><p data-i18n="summary.problem">Create a small game where timing, state changes and controls form one understandable loop.</p></article><article><h2 data-i18n="summary.usersHeading">Target users</h2><p data-i18n="summary.users">People familiar with casual browser games and keyboard or button controls.</p></article><article><h2 data-i18n="summary.contributionHeading">My contribution</h2><p data-i18n="summary.contribution">Game concept, frontend, JavaScript logic, interface states and responsive adjustments.</p></article><article><h2 data-i18n="summary.techHeading">Technologies</h2><p>HTML, CSS, JavaScript, DOM, keyboard input</p></article></section>
 
-    <section class="case-summary" aria-label="Project summary">
-      <article>
-        <h2>Context</h2>
-        <p>Built individually as a focused vanilla JavaScript learning project rather than a full game or game engine.</p>
-      </article>
-      <article>
-        <h2>Problem</h2>
-        <p>Build a small game that goes beyond a static interface by connecting timing, state changes and understandable controls.</p>
-      </article>
-      <article>
-        <h2>My contribution</h2>
-        <p>Game concept, frontend, JavaScript logic, interface states and responsive adjustments.</p>
-      </article>
-      <article>
-        <h2>Current result</h2>
-        <p>A playable browser game with button and keyboard controls, health, combo, difficulty and restart states.</p>
-      </article>
-    </section>
+    <div class="case-content">
+      <section class="case-content-section"><div class="case-content-copy"><p class="case-section-number">01</p><h2 data-i18n="concept.heading">Project concept</h2><p data-i18n="concept.text">The project began as a focused JavaScript exercise: an enemy moves, the player reacts, and the game updates health, combo, difficulty and visible feedback.</p></div><div class="case-feature-grid case-content-visual"><article class="case-feature case-feature--accent"><h3 data-i18n="concept.goalHeading">Clear goal</h3><p data-i18n="concept.goalText">React when the enemy reaches the valid timing zone.</p></article><article class="case-feature"><h3 data-i18n="concept.scopeHeading">Deliberate scope</h3><p data-i18n="concept.scopeText">A small playable loop rather than a full game or custom engine.</p></article></div></section>
 
-    <section class="case-section">
-      <div>
-        <p class="section-label">Interaction evidence</p>
-        <h2>The game loop in four steps</h2>
-      </div>
-      <div>
-        <div class="case-evidence-flow" aria-label="Blade Rhythm game loop">
-          <article class="case-evidence-step">
-            <span>Step 1</span>
-            <h3>Enemy movement</h3>
-            <p>A timer updates the enemy position and creates the timing window for the player.</p>
-          </article>
-          <article class="case-evidence-step">
-            <span>Step 2</span>
-            <h3>Player input</h3>
-            <p>The attack button or Space key checks whether the enemy is inside a valid hit zone.</p>
-          </article>
-          <article class="case-evidence-step">
-            <span>Step 3</span>
-            <h3>State update</h3>
-            <p>Health, combo, difficulty and status values change according to the timing result.</p>
-          </article>
-          <article class="case-evidence-step">
-            <span>Step 4</span>
-            <h3>Visible feedback</h3>
-            <p>The interface reports the result and the next enemy cycle begins with the current state.</p>
-          </article>
-        </div>
-        <p class="case-note"><strong>Testing evidence:</strong> Automated checks cover restart timers, keyboard controls, enemy attacks and reachable timing zones. External playtesting is still a next step.</p>
-      </div>
-    </section>
+      <section class="case-content-section"><div class="case-content-copy"><p class="case-section-number">02</p><h2 data-i18n="interaction.heading">Interaction and visual direction</h2><p data-i18n="interaction.text">Visible timing zones, health values and direct feedback help the player understand each result while the fantasy-inspired arena gives the small prototype a distinct character.</p></div><div class="case-flow-grid case-content-visual"><article class="case-flow-step"><span>01</span><h3 data-i18n="interaction.enemyHeading">Enemy movement</h3><p data-i18n="interaction.enemyText">A timer moves the enemy and creates the timing window.</p></article><article class="case-flow-step"><span>02</span><h3 data-i18n="interaction.inputHeading">Player input</h3><p data-i18n="interaction.inputText">The attack button or Space checks the current position.</p></article><article class="case-flow-step"><span>03</span><h3 data-i18n="interaction.stateHeading">State update</h3><p data-i18n="interaction.stateText">Health, combo and difficulty change from the result.</p></article><article class="case-flow-step"><span>04</span><h3 data-i18n="interaction.feedbackHeading">Visible feedback</h3><p data-i18n="interaction.feedbackText">The interface reports the outcome before the next cycle.</p></article></div></section>
 
-    <section class="case-section">
-      <div>
-        <p class="section-label">Process</p>
-        <h2>From simple idea to playable loop</h2>
-      </div>
-      <div class="case-text-stack">
-        <article>
-          <h3>1. Core loop</h3>
-          <p>I started with the basic loop: an enemy moves, the player reacts, and the game updates health, status and difficulty.</p>
-        </article>
-        <article>
-          <h3>2. Player feedback</h3>
-          <p>I added visible timing zones, button labels and status values so the player can understand what is happening while playing.</p>
-        </article>
-        <article>
-          <h3>3. Difficulty and reset</h3>
-          <p>The game increases pressure over time, while restart logic keeps the loop from duplicating timers or keeping old state alive.</p>
-        </article>
-      </div>
-    </section>
+      <section class="case-content-section"><div class="case-content-copy"><p class="case-section-number">03</p><h2 data-i18n="implementation.heading">Implementation and challenges</h2><p data-i18n="implementation.text">Vanilla JavaScript keeps the game loop explainable. The hardest part was keeping timers, restart behaviour, player state and responsive controls in sync.</p></div><div class="case-feature-grid case-content-visual"><article class="case-feature"><h3 data-i18n="implementation.timerHeading">Timer lifecycle</h3><p data-i18n="implementation.timerText">Restart clears previous timers before a fresh loop begins.</p></article><article class="case-feature"><h3 data-i18n="implementation.controlsHeading">Two control modes</h3><p data-i18n="implementation.controlsText">Buttons and keyboard input use the same underlying actions.</p></article><article class="case-feature"><h3 data-i18n="implementation.difficultyHeading">Difficulty state</h3><p data-i18n="implementation.difficultyText">Pressure increases without changing the core rules.</p></article><article class="case-feature"><h3 data-i18n="implementation.responsiveHeading">Responsive arena</h3><p data-i18n="implementation.responsiveText">Status values and controls remain usable on smaller screens.</p></article></div></section>
 
-    <section class="case-section">
-      <div>
-        <p class="section-label">Implementation</p>
-        <h2>Code and testing choices</h2>
-      </div>
-      <div class="case-text-stack">
-        <article>
-          <h3>JavaScript choice</h3>
-          <p>I used vanilla JavaScript because the project is small enough to understand without a framework. That also makes the game easier to present and explain.</p>
-        </article>
-        <article>
-          <h3>Interaction choice</h3>
-          <p>The game can be controlled with buttons and keyboard shortcuts. This made the interaction faster and helped the game feel less like a normal webpage.</p>
-        </article>
-        <article>
-          <h3>Testing and iteration</h3>
-          <p>I added automated checks for important behavior such as restart, keyboard controls and enemy attacks. I also tested the layout responsively so the arena does not break on smaller screens.</p>
-        </article>
-      </div>
-    </section>
+      <section class="case-content-section"><div class="case-content-copy"><p class="case-section-number">04</p><h2 data-i18n="testing.heading">Testing and reflection</h2><p data-i18n="testing.text">Automated checks cover restart timers, keyboard controls, enemy attacks and reachable timing zones. External playtesting is still a planned next step.</p></div><div class="case-content-visual"><p class="case-testing-status" data-i18n="testing.status">Status: Planned — external playtesting has not yet been completed.</p><details class="case-test-plan"><summary data-i18n="testing.planSummary">Planned test details</summary><div class="case-test-plan-content"><div><h3 data-i18n="testing.objectiveHeading">Objective and participants</h3><p data-i18n="testing.objectiveText">Test with 3–5 first-time players whether they understand the goal, controls and difficulty changes without moderator instruction.</p></div><div><h3 data-i18n="testing.tasksHeading">Tasks</h3><ol class="case-task-list"><li data-i18n="testing.taskOne">Explain the game goal.</li><li data-i18n="testing.taskTwo">Attack successfully and use healing.</li><li data-i18n="testing.taskThree">Restart the game.</li><li data-i18n="testing.taskFour">Explain the difficulty change.</li></ol></div><div><h3 data-i18n="testing.measureHeading">Observe and measure</h3><p data-i18n="testing.measureText">Record completion, critical errors, assistance, hesitation, wrong turns and comments about timing and controls.</p></div><div><h3 data-i18n="testing.pendingHeading">Pending evidence</h3><p data-i18n="testing.pendingText">Findings and resulting changes remain pending until external playtests are completed.</p></div></div></details><div class="case-reflection-grid"><article class="case-reflection-card"><h3 data-i18n="testing.workedHeading">What worked well</h3><p data-i18n="testing.workedText">The project connects interaction logic and visible state instead of only styling a static interface.</p></article><article class="case-reflection-card"><h3 data-i18n="testing.challengeHeading">Biggest challenge</h3><p data-i18n="testing.challengeText">Keeping movement, attacks, restart and feedback from creating duplicate state.</p></article><article class="case-reflection-card"><h3 data-i18n="testing.improveHeading">What I would improve</h3><p data-i18n="testing.improveText">Run first-time playtests and refine any controls or timing feedback that cause hesitation.</p></article></div></div></section>
+    </div>
 
-    <section class="case-section">
-      <div>
-        <p class="section-label">Challenges</p>
-        <h2>Keeping timing, state and feedback in sync</h2>
-      </div>
-      <div class="case-text-stack">
-        <article>
-          <h3>Timer lifecycle</h3>
-          <p>Restarting had to clear previous timers before starting a new loop, otherwise enemy movement and attacks could run more than once.</p>
-        </article>
-        <article>
-          <h3>Readable timing</h3>
-          <p>The player needs to understand where a successful hit can happen while still reacting quickly to enemy movement.</p>
-        </article>
-        <article>
-          <h3>Responsive controls</h3>
-          <p>The arena, status values and controls had to remain usable on smaller screens without changing the underlying game rules.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div>
-        <p class="section-label">Final result</p>
-        <h2>A playable and testable JavaScript loop</h2>
-      </div>
-      <div class="case-text-stack">
-        <p>The result is a playable browser game with visible state changes, keyboard controls and increasing difficulty. It shows that I can connect interactive JavaScript behavior and automated checks instead of only styling a static page.</p>
-      </div>
-    </section>
-
-    <section class="case-section usability-plan">
-      <div>
-        <p class="section-label">Usability testing plan</p>
-        <h2>Can first-time players understand the game loop?</h2>
-      </div>
-      <div class="case-text-stack">
-        <p class="testing-status"><strong>Status: Planned — external testing has not yet been completed.</strong></p>
-        <article>
-          <h3>Objective and participants</h3>
-          <p>Test whether 3–5 people who play casual browser games, with mixed keyboard familiarity, can understand the goal, controls and difficulty changes without instruction from a moderator.</p>
-        </article>
-        <article>
-          <h3>Tasks</h3>
-          <ol class="test-task-list">
-            <li>Explain the goal of the game.</li>
-            <li>Attack successfully inside the timing zone.</li>
-            <li>Use healing at an appropriate moment.</li>
-            <li>Restart the game.</li>
-            <li>Explain how the difficulty changes.</li>
-          </ol>
-        </article>
-        <article>
-          <h3>Observe and measure</h3>
-          <p>Record task completion, critical errors, moderator assistance, hesitation or wrong turns, and participant comments. Observe whether the timing zone, health state and keyboard controls are noticed.</p>
-        </article>
-        <article>
-          <h3>Pending evidence</h3>
-          <p><strong>Findings:</strong> Pending external sessions. <strong>Resulting design changes:</strong> Pending analysis of the completed test notes.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div>
-        <p class="section-label">Reflection</p>
-        <h2>What I learned</h2>
-      </div>
-      <div class="case-text-stack">
-        <p>This project helped me understand how quickly small JavaScript projects need structure. Game state, timers and UI updates have to work together, otherwise the experience becomes confusing.</p>
-        <p><strong>Next step:</strong> I would improve the visual feedback, add clearer onboarding and make the difficulty curve easier to understand for first-time players.</p>
-      </div>
-    </section>
+    <a class="case-next" href="playnext.html"><div><p class="case-next-label" data-i18n="common.nextProject">Next project</p><h2>PlayNext</h2><p data-i18n="next.description">AI decision product · React and TypeScript</p></div><span class="case-next-arrow" aria-hidden="true">→</span></a>
   </main>
+
+  <footer class="case-footer"><p>© 2026 GerlachDesign</p><div><a href="mailto:martin.gerlach.2950@gmail.com">Email</a><a href="https://github.com/martincgerlach" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/martin-christoffer-gerlach-68272a21a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></footer>
+  <script src="case-translations.js?v=20260802-1"></script><script>window.pageTranslations = window.CaseStudyTranslations.forPage("blade");</script><script src="../language.js?v=20260727-1"></script><script src="case-study.js?v=20260802-1"></script>
 </body>
 </html>
